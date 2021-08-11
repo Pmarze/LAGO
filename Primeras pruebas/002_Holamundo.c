@@ -4,13 +4,13 @@
 
 #include <wiringPi.h>		// librería para utilizar los pines de Raspberry pi
 
-#define pin 7               // pin del LED en formato BOARD
+#define pin 7				// pin del LED en formato BOARD
 
 void main(){
-	int t=125;              // delay en micro segundos
+	int t=125;				// delay en micro segundos
 	int x;
-	wiringPiSetup();        // definir los comandos
-	pinMode(pin,OUTPUT);    // Fijar el pin como salida
+	wiringPiSetup();		// definir los comandos
+	pinMode(pin,OUTPUT);	// Fijar el pin como salida
 	for (x=0;x<10;x++){		// Ciclo para encender y apagar el LEDc
 		digitalWrite(pin,HIGH);
 		delay(t);
