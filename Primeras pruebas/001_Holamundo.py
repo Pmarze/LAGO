@@ -11,7 +11,7 @@ gp.setup(pin,gp.OUT)        # Fijar el pin como salida
 
 for i in range(0,10):       # Ciclo para encender y apagar el LED
 	gp.output(pin,gp.HIGH)
-	time.sleep(t)           # Tiempo de espera t segundos
+	time.sleep(t)			# Tiempo de espera t segundos
 	gp.output(pin,gp.LOW)
 	time.sleep(t)
 gp.cleanup()                # Se limpia la conexion utilizada
