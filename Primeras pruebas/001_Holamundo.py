@@ -16,4 +16,4 @@ for i in range(0,10):		# Ciclo para encender y apagar el LED
 	time.sleep(t)
 gp.cleanup()				# Se limpia la conexion utilizada
 
-gp.setwarnings(False)		# Evitar mensajes de error en la terminal
+gp.setwarnings(False)		# Quita mensajes de error en la terminal
