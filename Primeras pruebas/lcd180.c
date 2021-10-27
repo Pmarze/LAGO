@@ -46,26 +46,39 @@ void lcdLoc(int line); //move cursor
 void ClrLcd(void); // clr LCD return home
 void typeln(const char *s);
 void typeChar(char val);
-int fd;  // seen by all subroutines
+int fd_LCD;  // seen by all subroutines
 int i,t;  // variables para conteo de repetición y tiempo de delay
 
+// bmp
+char I2C_readByte(int reg);
+unsigned short I2C_readU16(int reg);
+short I2C_readS16(int reg);
+void I2C_writeByte(int reg,int val);
+void load_calibration();
+int read_raw_temp();
+int read_raw_pressure();
+float read_temperature();
+int read_pressure();
+float read_altitude();
+float read_sealevel_pressure();
 
 short AC1,AC2,AC3,B1,B2,MB,MC,MD;
 unsigned short AC4,AC5,AC6;
-int fd;
+int fd_BMP;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
-int main()   {
+int main(int argc,char **argv){
 
   if (wiringPiSetup () == -1) exit (1);
 
-  fd = wiringPiI2CSetup(I2C_ADDR);
-
-  //printf("fd = %d ", fd);
+  fd_LCD = wiringPiI2CSetup(I2C_ADDR);
+  fd_BMP = wiringPiI2CSetup(BMP180_Address);
+  
+  //printf("fd_LCD = %d ", fd_LCD);
 
   lcd_init(); // setup LCD
-
+  load_calibration();
   char array1[] = "Hello world!";
 
   t=1000;
@@ -84,6 +97,11 @@ int main()   {
     typeln("probando 1,2,3");
     delay(t);
     ClrLcd();
+
+    printf("\nTemperature : %.2f C\n",read_temperature());
+    printf("Pressure :    %.2f Pa\n",read_pressure()/100.0);
+    printf("Altitude :    %.2f h\n",read_altitude());
+    delay(t);    
     i++;
   }
   
@@ -146,20 +164,20 @@ void lcd_byte(int bits, int mode)   {
   bits_low = mode | ((bits << 4) & 0xF0) | LCD_BACKLIGHT ;
 
   // High bits
-  wiringPiI2CReadReg8(fd, bits_high);
+  wiringPiI2CReadReg8(fd_LCD, bits_high);
   lcd_toggle_enable(bits_high);
 
   // Low bits
-  wiringPiI2CReadReg8(fd, bits_low);
+  wiringPiI2CReadReg8(fd_LCD, bits_low);
   lcd_toggle_enable(bits_low);
 }
 
 void lcd_toggle_enable(int bits)   {
   // Toggle enable pin on LCD display
   delayMicroseconds(500);
-  wiringPiI2CReadReg8(fd, (bits | ENABLE));
+  wiringPiI2CReadReg8(fd_LCD, (bits | ENABLE));
   delayMicroseconds(500);
-  wiringPiI2CReadReg8(fd, (bits & ~ENABLE));
+  wiringPiI2CReadReg8(fd_LCD, (bits & ~ENABLE));
   delayMicroseconds(500);
 }
 
@@ -178,7 +196,7 @@ void lcd_init()   {
 ////////////////////////////////// 180 ////////////////////////////////////////////////
 char I2C_readByte(int reg)
 {
-    return (char)wiringPiI2CReadReg8(fd,reg);
+    return (char)wiringPiI2CReadReg8(fd_BMP,reg);
 }
 
 unsigned short I2C_readU16(int reg)
@@ -199,7 +217,7 @@ short I2C_readS16(int reg)
 }
 void I2C_writeByte(int reg,int val)
 {
-    wiringPiI2CWriteReg8(fd,reg,val);
+    wiringPiI2CWriteReg8(fd_BMP,reg,val);
 }
 
 void load_calibration()
