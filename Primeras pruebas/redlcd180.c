@@ -8,8 +8,6 @@
 #define BMP180_Address 0x77
 #define LCD_Address    0x26
 
-short AC1,AC2,AC3,B1,B2,MB,MC,MD;
-unsigned short AC4,AC5,AC6;
 int fd_LCD, fd_BMP;
 float temp, altu, pres;
 int i;
@@ -59,17 +57,3 @@ int main(int argc,char **argv){
 }
 
 /////////////////////////////////////////////////////////////////
-
-void load_calibration(){
-    AC1 = I2C_readS16(BMP180_CAL_AC1);
-    AC2 = I2C_readS16(BMP180_CAL_AC2);
-    AC3 = I2C_readS16(BMP180_CAL_AC3);
-    AC4 = I2C_readU16(BMP180_CAL_AC4);
-    AC5 = I2C_readU16(BMP180_CAL_AC5);
-    AC6 = I2C_readU16(BMP180_CAL_AC6);
-    B1  = I2C_readS16(BMP180_CAL_B1);
-    B2  = I2C_readS16(BMP180_CAL_B2);
-    MB  = I2C_readS16(BMP180_CAL_MB);
-    MC  = I2C_readS16(BMP180_CAL_MC);
-    MD  = I2C_readS16(BMP180_CAL_MD);
-}

@@ -44,6 +44,9 @@
 #define BMP180_READTEMPCMD      0x2E
 #define BMP180_READPRESSURECMD  0x34
 
+short AC1,AC2,AC3,B1,B2,MB,MC,MD;
+unsigned short AC4,AC5,AC6;
+
 ///////////////////////////////// LCD /////////////////////////////////////////////////
 // float to string
 void typeFloat(float myFloat, int fd){
@@ -121,7 +124,6 @@ void lcd_init(int fd){
   delayMicroseconds(500);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// BMP 180 //////////////////////////////////////////////
 char I2C_readByte(int reg, int fd){
     return (char)wiringPiI2CReadReg8(fd,reg);
@@ -144,6 +146,20 @@ short I2C_readS16(int reg){
 
 void I2C_writeByte(int reg,int val,int fd){
     wiringPiI2CWriteReg8(fd,reg,val);
+}
+
+void load_calibration(){
+    AC1 = I2C_readS16(BMP180_CAL_AC1);
+    AC2 = I2C_readS16(BMP180_CAL_AC2);
+    AC3 = I2C_readS16(BMP180_CAL_AC3);
+    AC4 = I2C_readU16(BMP180_CAL_AC4);
+    AC5 = I2C_readU16(BMP180_CAL_AC5);
+    AC6 = I2C_readU16(BMP180_CAL_AC6);
+    B1  = I2C_readS16(BMP180_CAL_B1);
+    B2  = I2C_readS16(BMP180_CAL_B2);
+    MB  = I2C_readS16(BMP180_CAL_MB);
+    MC  = I2C_readS16(BMP180_CAL_MC);
+    MD  = I2C_readS16(BMP180_CAL_MD);
 }
 
 int read_raw_temp(int fd){
@@ -234,3 +250,5 @@ float read_sealevel_pressure(int fd){
     p0 = pressure / pow(1.0 - altitude_m/44330.0,5.255);
     return p0;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
