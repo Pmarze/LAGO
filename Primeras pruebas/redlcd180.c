@@ -27,6 +27,8 @@ int main(int argc,char **argv){
     lcd_init(fd_LCD); // setup LCD
     load_calibration();
 
+    FILE *archivo;
+    archivo=fopen("salida.txt","w");
     while(i<n){
         temp=read_temperature(fd_BMP);
         altu=read_altitude(fd_BMP);
@@ -37,6 +39,7 @@ int main(int argc,char **argv){
         lcdLoc(LINE2,fd_LCD);
         typeFloat(temp,fd_LCD);
         printf("\nTemperature : %.2f C\n", temp);
+        fprintf(archivo,"temperatura: %f",temp);
         delay(t);
         ClrLcd(fd_LCD);
     
@@ -45,10 +48,12 @@ int main(int argc,char **argv){
         lcdLoc(LINE2,fd_LCD);
         typeFloat(pres,fd_LCD);
         printf("\nPresion: %.2f C\n", pres);
+        fprintf(archivo,"presion: %f",pres);
         delay(t);
         ClrLcd(fd_LCD);
         i++;
     }
+    fclose(archivo);
     ClrLcd();
     return 0;    
 }
