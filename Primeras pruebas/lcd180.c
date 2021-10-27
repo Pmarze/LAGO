@@ -1,3 +1,7 @@
+/* Se utiliza como base las librerías para I2C LCD por Lewis Loflin y de BMP180 por Alan
+Estas se modifican para trabajar en conjunto y se añaden algunas modificaciones para el 
+funcionamiento del programa
+*/
 /*
 *
 * by Lewis Loflin www.bristolwatch.com lewis@bvu.net
@@ -11,7 +15,19 @@
 * There is no warrenty of any kind use at your own risk.
 *
 */
-
+/********************************************************************************************
+*Filename      : bmp180test.c
+*Description   : bmp180 test code
+*Author        : Alan
+*Website       : www.osoyoo.com
+*Update        : 2017/07/06
+*
+*           BMP180----------------------- Pi
+*            3.3 ----------------------- 3.3V
+*            GND ----------------------- GND
+*            SDA ----------------------- SDA1
+*            SCL ----------------------- SCL1
+********************************************************************************************/
 #include <wiringPiI2C.h>    // lcd & 180
 #include <wiringPi.h>       // lcd & 180
 #include <stdio.h>          // lcd & 180
@@ -66,6 +82,7 @@ short AC1,AC2,AC3,B1,B2,MB,MC,MD;
 unsigned short AC4,AC5,AC6;
 int fd_BMP;
 
+float temp, altu, pres;
 
 ///////////////////////////////////////////////////////////////////////////////////////
 int main(int argc,char **argv){
@@ -82,26 +99,35 @@ int main(int argc,char **argv){
   char array1[] = "Hello world!";
 
   t=1000;
-  while (i<3)   {
+  while (i<10)   {
+    temp=read_temperature();
+    altu=read_altitude();
+    pres=read_pressure();
 
     lcdLoc(LINE1);
-    typeln("Using wiringPi");
+    typeln("Temperatura:");
     lcdLoc(LINE2);
-    typeln("Geany editor.");
+    typeFloat(temp);
+    printf("\nTemperature : %.2f C\n",temp);
     delay(t);
     ClrLcd();
 
     lcdLoc(LINE1);
-    typeln("Texto 2");
+    typeln("Altura:");
     lcdLoc(LINE2);
-    typeln("probando 1,2,3");
+    typeFloat(altu);
+    printf("\nAltura: %.2f C\n",altu);
     delay(t);
     ClrLcd();
 
-    printf("\nTemperature : %.2f C\n",read_temperature());
-    printf("Pressure :    %.2f Pa\n",read_pressure()/100.0);
-    printf("Altitude :    %.2f h\n",read_altitude());
-    delay(t);    
+    lcdLoc(LINE1);
+    typeln("Presión");
+    lcdLoc(LINE2);
+    typeFloat(pres);
+    printf("\nPresión: %.2f C\n",pres);
+    delay(t);
+    ClrLcd();
+  
     i++;
   }
   
