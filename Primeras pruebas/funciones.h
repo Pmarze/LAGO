@@ -11,6 +11,7 @@
 #define LINE1  0x80 // 1st line
 #define LINE2  0xC0 // 2nd line
 
+#define OSS BMP180_STANDARD
 #define LCD_BACKLIGHT   0x08  // On
 // LCD_BACKLIGHT = 0x00  # Off
 
@@ -47,6 +48,28 @@
 short AC1,AC2,AC3,B1,B2,MB,MC,MD;
 unsigned short AC4,AC5,AC6;
 
+
+void typeFloat(float,int);
+void typeInt(int,int);
+void ClrLcd(int);
+void lcdLoc(int,int);
+void typeChar(char,int);
+void typeln(const char *,int);
+void lcd_byte(int,int,int);
+void lcd_toggle_enable(int,int);
+void lcd_init(int);
+char I2C_readByte(int,int);
+unsigned short I2C_readU16(int,int);
+short I2C_readS16(int,int);
+void I2C_writeByte(int,int,int);
+void load_calibration(int);
+int read_raw_temp(int);
+int read_raw_pressure(int);
+float read_temperature(int);
+int read_pressure(int);
+float read_altitude(int);
+float read_sealevel_pressure(int);
+
 ///////////////////////////////// LCD /////////////////////////////////////////////////
 // float to string
 void typeFloat(float myFloat, int fd){
@@ -62,7 +85,7 @@ void typeInt(int i, int fd){
 }
 
 // clr lcd go home loc 0x80
-void ClrLcd(void,int fd){
+void ClrLcd(int fd){
   lcd_byte(0x01, LCD_CMD, fd);    
   lcd_byte(0x02, LCD_CMD, fd);    
 }
@@ -75,7 +98,7 @@ void lcdLoc(int line, int fd){
 // out char to LCD at current position
 void typeChar(char val,int fd){
 
-  lcd_byte(val, LCD_CHR,int fd);
+  lcd_byte(val, LCD_CHR, fd);
 }
 
 void typeln(const char *s, int fd){
@@ -129,17 +152,17 @@ char I2C_readByte(int reg, int fd){
     return (char)wiringPiI2CReadReg8(fd,reg);
 }
 
-unsigned short I2C_readU16(int reg){
+unsigned short I2C_readU16(int reg, int fd){
     int MSB,LSB;
-    MSB = I2C_readByte(reg);
-    LSB = I2C_readByte(reg + 1);
+    MSB = I2C_readByte(reg, fd);
+    LSB = I2C_readByte(reg + 1, fd);
     int value = (MSB << 8) +LSB;
     return (unsigned short)value;
 }
 
-short I2C_readS16(int reg){
+short I2C_readS16(int reg,int fd){
     int result;
-    result = I2C_readU16(reg);
+    result = I2C_readU16(reg,fd);
     if (result > 32767)result -= 65536;
     return (short)result;
 }
@@ -148,18 +171,18 @@ void I2C_writeByte(int reg,int val,int fd){
     wiringPiI2CWriteReg8(fd,reg,val);
 }
 
-void load_calibration(){
-    AC1 = I2C_readS16(BMP180_CAL_AC1);
-    AC2 = I2C_readS16(BMP180_CAL_AC2);
-    AC3 = I2C_readS16(BMP180_CAL_AC3);
-    AC4 = I2C_readU16(BMP180_CAL_AC4);
-    AC5 = I2C_readU16(BMP180_CAL_AC5);
-    AC6 = I2C_readU16(BMP180_CAL_AC6);
-    B1  = I2C_readS16(BMP180_CAL_B1);
-    B2  = I2C_readS16(BMP180_CAL_B2);
-    MB  = I2C_readS16(BMP180_CAL_MB);
-    MC  = I2C_readS16(BMP180_CAL_MC);
-    MD  = I2C_readS16(BMP180_CAL_MD);
+void load_calibration(int fd){
+    AC1 = I2C_readS16(BMP180_CAL_AC1,fd);
+    AC2 = I2C_readS16(BMP180_CAL_AC2,fd);
+    AC3 = I2C_readS16(BMP180_CAL_AC3,fd);
+    AC4 = I2C_readU16(BMP180_CAL_AC4,fd);
+    AC5 = I2C_readU16(BMP180_CAL_AC5,fd);
+    AC6 = I2C_readU16(BMP180_CAL_AC6,fd);
+    B1  = I2C_readS16(BMP180_CAL_B1,fd);
+    B2  = I2C_readS16(BMP180_CAL_B2,fd);
+    MB  = I2C_readS16(BMP180_CAL_MB,fd);
+    MC  = I2C_readS16(BMP180_CAL_MC,fd);
+    MD  = I2C_readS16(BMP180_CAL_MD,fd);
 }
 
 int read_raw_temp(int fd){
