@@ -4,6 +4,6 @@
 
 void main(){
     printf("Primera prueba\n");
-    printf("de compilación en \n")
-    printf("RedPitaya :)")
+    printf("de compilación en \n");
+    printf("RedPitaya :)");
 }
