@@ -3,5 +3,7 @@
 #include <unistd.h>
 
 void main(){
-    printf("Hola mundo\n");
+    printf("Primera prueba\n");
+    printf("de compilación en \n")
+    printf("RedPitaya :)")
 }
