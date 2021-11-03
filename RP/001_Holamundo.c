@@ -3,5 +3,5 @@
 #include <unistd.h>
 
 void main(){
-    printf("Hola mundo");
+    printf("Hola mundo\n");
 }
