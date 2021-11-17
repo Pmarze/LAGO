@@ -39,6 +39,35 @@
 /* eeprom size on a redpitaya */
 //#define EEPROMSIZE                 64*1024/8
 
+////////////////////////////////////////////////////////////////////////////////
+// Command definition
+#define SET_MUX_RATIO       0xA8
+#define SET_DISP_OFFSET     0xD3  // display offset
+#define DISPLAY_ON          0xAF
+#define DISPLAY_OFF         0xAE   // micropi SET_DISP
+#define SET_ENTIRE_ON       0xA4  // entire display on
+#define DISPLAY_IGN_RAM     0xA5  // display ingnore RAM
+#define DISPLAY_NORMAL      0xA6  // display normal micropi SET_NORM_INV
+#define DISPLAY_INVERSE     0xA7  // display inverse
+#define DEACT_SCROLL        0x2E  // desactivate scroll 
+#define ACTIVE_SCROLL       0x2F  
+#define SET_START_LINE      0x40  // Set display start line
+#define MEMORY_ADDR_MODE    0x20  // Set memory address micropi SET_MEM_ADDR
+#define SET_COLUMN_ADDR     0x21  // set column addres
+#define SET_PAGE_ADDR       0x22  // set page address
+#define SET_SEG_REMAP       0xA0  // set segment remap (column address 0 is mapped to SEG0 (RESET))
+#define SET_SEG_REMAP_OP    0xA1  // set segment remap (column address 127 is mapped to SEG0)
+#define COM_SCAN_DIR        0xC0  // Set COM output scan direction (normal mode (RESET) Scan from COM0 to COM[N –1]) micropi SET_COM_OUT_DIR
+#define COM_SCAN_DIR_OP     0xC8  // Set COM output scan direction (remapped mode. Scan from COM[N-1] to COM0)
+#define SET_COM_PIN_CFG     0xDA  // Set COM pins Hardware configuration 
+#define SET_CONTRAST        0x81  // Set contrast control
+#define SET_OSC_FREQ        0xD5  // micropi SET_DISP_CLK_DIV
+#define SET_CHAR_REG        0x8D  // Charge pump setting micropi SET_CHARGE_PUMP
+#define SET_PRECHARGE       0xD9  // Set pre-charge Period
+#define SET_VCOM_DESEL      0xDB  // Set VcomH deselect level micropi SET_VCOM_DESEL
+
+////////////////////////////////////////////////////////////////////////////////
+
 /* Inline functions definition */
 static int iic_read(char *buffer, int offset, int size);
 static int iic_write(char *data, int offset, int size);
@@ -80,45 +109,45 @@ int main(int argc, char *argv[])
         return -1;
     }
     char buf[10];
-    buf[0] = 0x80;
-    buf[1] = 0xae;
-    if ( i2c_smbus_write_byte_data(fd, 0x00, 0xae) < 0 )
+    buf[0] = SET_OSC_FREQ;
+    buf[1] = DISPLAY_OFF;
+    if ( i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_OFF) < 0 )
     {
         printf("Unable to send commands\n");
         printf("errno: %i %s\n",errno,strerror(errno));
         return -1;
     }
-    i2c_smbus_write_byte_data(fd, 0x00, 0xd5);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_OSC_FREQ);      
     i2c_smbus_write_byte_data(fd, 0x00, 0x80);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xA8);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_MUX_RATIO);
     i2c_smbus_write_byte_data(fd, 0x00, 0x1f);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xd3);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_DISP_OFFSET);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x40 | 0x0 );
-    i2c_smbus_write_byte_data(fd, 0x00, 0x8d);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE | 0x0 );
+    i2c_smbus_write_byte_data(fd, 0x00, SET_CHAR_REG);
     i2c_smbus_write_byte_data(fd, 0x00, 0x14);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x20);
+    i2c_smbus_write_byte_data(fd, 0x00, MEMORY_ADDR_MODE);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xa0 | 0x1 );
-    i2c_smbus_write_byte_data(fd, 0x00, 0xc8);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xda);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_SEG_REMAP | 0x1 );
+    i2c_smbus_write_byte_data(fd, 0x00, COM_SCAN_DIR_OP);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_COM_PIN_CFG);
     i2c_smbus_write_byte_data(fd, 0x00, 0x02);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x81);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_CONTRAST);
     i2c_smbus_write_byte_data(fd, 0x00, 0x8f);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xd9);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_PRECHARGE);
     i2c_smbus_write_byte_data(fd, 0x00, 0xf1);
     i2c_smbus_write_byte_data(fd, 0x00, 0xd8);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x40);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xa4);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xa6);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x2e);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xaf);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_ENTIRE_ON);
+    i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_NORMAL);
+    i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
+    i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
 
 
-    i2c_smbus_write_byte_data(fd, 0x00, 0x22);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xff);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x21);
+    i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
 
@@ -140,11 +169,8 @@ int main(int argc, char *argv[])
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
 
 
-    i2c_smbus_write_byte_data(fd, 0x00, 0xAF);
-
-
     for( int i = 0; i< 32; i++){
-        i2c_smbus_write_byte_data(fd, 0x40, 0x0f);
+        i2c_smbus_write_byte_data(fd, 0x40, 0x00);
     }
 
     sleep(1);
