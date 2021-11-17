@@ -50,40 +50,40 @@ void B_M(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7F);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x49);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x49);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x49);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x36);    
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x36);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);    
 }
 
 void C_M(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x3E);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x22);    
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x22);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);    
 }
 
 void D_M(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7F);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x22);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x1C);    
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x1C);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);    
 }
 
 void E_M(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7f);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x49);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x49);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x49);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);    
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);    
 }
 
 void F_M(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7f);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x09);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x09);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x09);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x01);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
 }
 
 void G_M(int fd){
@@ -98,8 +98,8 @@ void H_M(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7F);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x08);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x08);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x08);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7F);    
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7F);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);    
 }
 
 void I_M(int fd){
@@ -111,11 +111,11 @@ void I_M(int fd){
 }
 
 void J_M(int fd){
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x20);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x40);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x3F);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x01);    
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
 }
 
 void K_M(int fd){
@@ -123,7 +123,7 @@ void K_M(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x08);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x14);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x22);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);    
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);    
 }
 
 void L_M(int fd){
@@ -162,8 +162,8 @@ void P_M(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7F);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x09);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x09);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x09);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x06);    
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x06);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);    
 }
 
 void T_M(int fd){

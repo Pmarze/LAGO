@@ -163,6 +163,7 @@ int main(int argc, char *argv[])
     i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
+    
     space(fd);
     L_M(fd);
     A_M(fd);
@@ -172,6 +173,19 @@ int main(int argc, char *argv[])
     G_M(fd);
     T_M(fd);
     space(fd);
+
+    i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
+    i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x05);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
+    
+    space(fd);
+    L_M(fd);
+    A_M(fd);
+    G_M(fd);
+    O_M(fd);
 
     /* Write to redpitaya eeprom */
     //status = iic_write((char *)data, offset, size);
