@@ -134,11 +134,11 @@ int main(int argc, char *argv[])
     i2c_smbus_write_byte_data(fd, 0x00, SET_SEG_REMAP | 0x1 );
     i2c_smbus_write_byte_data(fd, 0x00, COM_SCAN_DIR_OP);
     i2c_smbus_write_byte_data(fd, 0x00, SET_COM_PIN_CFG);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x02); // x12
+    i2c_smbus_write_byte_data(fd, 0x00, 0x12); // x12 **
     i2c_smbus_write_byte_data(fd, 0x00, SET_CONTRAST);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
     i2c_smbus_write_byte_data(fd, 0x00, SET_PRECHARGE);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xf1); //xc2
+    i2c_smbus_write_byte_data(fd, 0x00, 0xc2); //xc2
     i2c_smbus_write_byte_data(fd, 0x00, 0xd8);
     i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE);
     i2c_smbus_write_byte_data(fd, 0x00, SET_ENTIRE_ON);
