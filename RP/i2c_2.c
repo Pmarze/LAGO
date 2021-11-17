@@ -134,11 +134,11 @@ int main(int argc, char *argv[])
     i2c_smbus_write_byte_data(fd, 0x00, SET_SEG_REMAP | 0x1 );
     i2c_smbus_write_byte_data(fd, 0x00, COM_SCAN_DIR_OP);
     i2c_smbus_write_byte_data(fd, 0x00, SET_COM_PIN_CFG);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x12);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x02); // x12
     i2c_smbus_write_byte_data(fd, 0x00, SET_CONTRAST);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
     i2c_smbus_write_byte_data(fd, 0x00, SET_PRECHARGE);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xc2);
+    i2c_smbus_write_byte_data(fd, 0x00, 0xf1); //xc2
     i2c_smbus_write_byte_data(fd, 0x00, 0xd8);
     i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE);
     i2c_smbus_write_byte_data(fd, 0x00, SET_ENTIRE_ON);
@@ -173,19 +173,6 @@ int main(int argc, char *argv[])
     G_M(fd);
     T_M(fd);
     space(fd);
-
-    i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x05);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
-    
-    space(fd);
-    L_M(fd);
-    A_M(fd);
-    G_M(fd);
-    O_M(fd);
 
     /* Write to redpitaya eeprom */
     //status = iic_write((char *)data, offset, size);
