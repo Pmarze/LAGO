@@ -155,9 +155,13 @@ int main(int argc, char *argv[])
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
     
     space(fd);
-    E_M(fd);
-    F_M(fd);
-    E_M(fd);
+    L_M(fd);
+    A_M(fd);
+    G_M(fd);
+    O_m(fd);
+    space(fd);
+    G_M(fd);
+    T_M(fd);
     space(fd);
 
     /* Write to redpitaya eeprom */
