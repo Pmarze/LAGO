@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
-#include <avr/pgmspace.h>
 
 #define SUCCESS     0
 #define ERROR       1
@@ -51,7 +50,7 @@
 #define MAX_X               END_COLUMN_ADDR
 #define MAX_Y               (END_PAGE_ADDR+1)*8
 
-const uint8_t INIT_SSD1306[]{
+const uint8_t INIT_SSD1306[]={
   // number of initializers
     18,
     0, DISPLAY_OFF,
@@ -79,3 +78,7 @@ const uint8_t INIT_SSD1306[]{
 };
 
 static char cacheMemLCD[CACHE_SIZE_MEM];
+
+void main(){
+  printf("hola mundo xd\n");
+}
