@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include <avr/pgmspace.h>
 
 #define SUCCESS     0
 #define ERROR       1
