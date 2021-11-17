@@ -161,16 +161,16 @@ int main(int argc, char *argv[])
 
     sleep(1);
 
-    i2c_smbus_write_byte_data(fd, 0x00, 0x22);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xff);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x21);
+    i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
 
 
     for( int i = 0; i< 32; i++){
-        i2c_smbus_write_byte_data(fd, 0x40, 0x0f);
+        i2c_smbus_write_byte_data(fd, 0x40, 0xf0);
     }
 
     sleep(1);
