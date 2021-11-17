@@ -50,7 +50,7 @@
 #define MAX_X               END_COLUMN_ADDR
 #define MAX_Y               (END_PAGE_ADDR+1)*8
 
-const uint8_t INIT_SSD1306[] = PROGMEM {
+const uint8_t INIT_SSD1306[] PROGMEM={
     // number of initializers
     18,
     0, DISPLAY_OFF,
