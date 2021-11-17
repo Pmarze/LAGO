@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
 
 
     for( int i = 0; i< 512; i++){
-        i2c_smbus_write_byte_data(fd, 0x40, 0x01);
+        i2c_smbus_write_byte_data(fd, 0x40, 0x00);
     }
 
     sleep(1);
@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
 
 
     for( int i = 0; i< 32; i++){
-        i2c_smbus_write_byte_data(fd, 0x40, 0x02);
+        i2c_smbus_write_byte_data(fd, 0x40, 0xf0);
     }
 
     sleep(1);
