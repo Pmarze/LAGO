@@ -66,6 +66,8 @@
 #define SET_PRECHARGE       0xD9  // Set pre-charge Period
 #define SET_VCOM_DESEL      0xDB  // Set VcomH deselect level micropi SET_VCOM_DESEL
 
+#define INIT_STATUS         0xFF
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /* Inline functions definition */
