@@ -160,42 +160,6 @@ int main(int argc, char *argv[])
     E_M(fd);
     space(fd);
 
-    for( int i = 0; i< 512; i++){
-        i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
-    }
-
-    sleep(1);
-
-    i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x05);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
-
-
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
-
-    for( int i = 0; i< 32; i++){
-        i2c_smbus_write_byte_data(fd, SET_START_LINE, 0xf0);
-    }
-
-    sleep(1);
-
-    for( int i = 0; i< 32; i++){
-        i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
-    }
-
-    sleep(1);
-
-    for( int i = 0; i< 32; i++){
-        i2c_smbus_write_byte_data(fd, SET_START_LINE, 0xff);
-    }
-
     /* Write to redpitaya eeprom */
     //status = iic_write((char *)data, offset, size);
     //if(status){
