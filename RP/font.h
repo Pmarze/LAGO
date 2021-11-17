@@ -12,8 +12,23 @@
 #define SET_START_LINE      0x40  // Set display start line
 
 void space(int);
+void A_M(int);
+void B_M(int);
+void C_M(int);
+void D_M(int);
 void E_M(int);
 void F_M(int);
+void G_M(int);
+void H_M(int);
+void I_M(int);
+void J_M(int);
+void K_M(int);
+void L_M(int);
+void M_M(int);
+void N_M(int);
+void O_M(int);
+void P_M(int);
+void T_M(int);
 
 void space(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);

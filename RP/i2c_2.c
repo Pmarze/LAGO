@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
     L_M(fd);
     A_M(fd);
     G_M(fd);
-    O_m(fd);
+    O_M(fd);
     space(fd);
     G_M(fd);
     T_M(fd);
