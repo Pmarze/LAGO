@@ -80,5 +80,4 @@ const uint8_t INIT_SSD1306[]={
 static char cacheMemLCD[CACHE_SIZE_MEM];
 
 void main(){
-  printf("hola mundo xd\n");
 }
