@@ -156,10 +156,10 @@ int main(int argc, char *argv[])
     
     space(fd);
     E_M(fd);
-    L_M(fd);
+    F_M(fd);
     E_M(fd);
     space(fd);
-    
+
     for( int i = 0; i< 512; i++){
         i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
     }
