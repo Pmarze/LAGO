@@ -520,7 +520,7 @@ void _M(int fd){
 
 
 ///////////////////////////////////////////////////////////////////////
-static int iic_write(char *data, int offset, int size){
+static int iic_write(char *data, int offset, int size, int fd){
 
     /* variable declaration */
     int bytes_written;
@@ -584,7 +584,7 @@ static int iic_write(char *data, int offset, int size){
     return 0;
 }
 
-static int iic_read(char *buffer, int offset, int size)
+static int iic_read(char *buffer, int offset, int size, int fd)
 {
     ssize_t bytes_written;
     ssize_t bytes_read;

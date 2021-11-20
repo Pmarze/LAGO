@@ -25,8 +25,8 @@
 #define PAGESIZE        32
 /* eeprom size on a redpitaya */
 
-static int iic_read(char *buffer, int offset, int size);
-static int iic_write(char *data, int offset, int size);
+static int iic_read(char *buffer, int offset, int size, int fd);
+static int iic_write(char *data, int offset, int size, int fd);
 
 /*
 * File descriptors
