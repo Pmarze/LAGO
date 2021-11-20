@@ -11,6 +11,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Command definition
+
 #define SET_MUX_RATIO       0xA8
 #define SET_DISP_OFFSET     0xD3  // display offset
 #define DISPLAY_ON          0xAF
@@ -116,7 +117,7 @@ void initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, SET_CONTRAST);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
     i2c_smbus_write_byte_data(fd, 0x00, SET_PRECHARGE);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xc2); //xc2
+    i2c_smbus_write_byte_data(fd, 0x00, 0xf1); //xc2
     i2c_smbus_write_byte_data(fd, 0x00, 0xd8);
     i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE);
     i2c_smbus_write_byte_data(fd, 0x00, SET_ENTIRE_ON);

@@ -96,11 +96,15 @@ int main(int argc, char *argv[])
     
     clear_lcd(fd);
     numeros(fd);
-    sleep(10);
+    sleep(5);
 
     clear_lcd(fd);
-    
-    page_data(fd, 0x00, 0x00);
+    abecedario(fd);
+    sleep(5);
+
+    clear_lcd(fd);
+
+    page_data(fd, 0x64, 0x00);
     
     space(fd);
     L_M(fd);
