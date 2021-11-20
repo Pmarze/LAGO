@@ -44,8 +44,8 @@
 
 void page_data(int, int, int);
 void initialize(int);
-void abecedario(int);
-void numeros(int);
+void abecedario(int, int, int);
+void numeros(int, int, int);
 void clear_lcd(int);
 
 void space(int);
