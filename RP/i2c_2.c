@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
 */
-    page_data(fd, 0x00);
+    page_data(fd, 0x00, 0x00);
 
 
     for( int i = 0; i< 512; i++){
