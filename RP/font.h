@@ -520,6 +520,7 @@ void _M(int fd){
 
 
 ///////////////////////////////////////////////////////////////////////
+
 static int iic_write(char *data, int offset, int size, int fd){
 
     /* variable declaration */
@@ -620,3 +621,5 @@ static int iic_read(char *buffer, int offset, int size, int fd)
 
     return 0;
 }
+
+///////////////////////////////////////////////////////////////////////
