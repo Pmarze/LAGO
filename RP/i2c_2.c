@@ -93,10 +93,10 @@ int main(int argc, char *argv[])
     }
 
     initialize(fd);
-
-    page_data(fd, 0x00, 0x00);
-
+    
+    clear_lcd(fd);
     numeros(fd);
+    sleep(10);
 
     clear_lcd(fd);
     
