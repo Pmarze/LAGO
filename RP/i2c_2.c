@@ -20,9 +20,9 @@
 #include <stdint.h>
 #include "font.h"
 
-#define OLED96_ADDR                    0x3c
+#define OLED96_ADDR     0x3c
 
-#define PAGESIZE                   32
+#define PAGESIZE        32
 /* eeprom size on a redpitaya */
 
 static int iic_read(char *buffer, int offset, int size);
