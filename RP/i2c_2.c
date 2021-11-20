@@ -117,14 +117,17 @@ int main(int argc, char *argv[])
     i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
 
-
+/*
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
     i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
     i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, 0x00);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
-    
+*/
+    page_data(fd, 0x00);
+
+
     for( int i = 0; i< 512; i++){
         i2c_smbus_write_byte_data(fd, 0x40, 0x00);
     }

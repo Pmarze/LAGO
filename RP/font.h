@@ -79,6 +79,15 @@ void N_7(int);
 void N_8(int);
 void N_9(int);
 
+void page_data(int fd, int page_a){
+    i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
+    i2c_smbus_write_byte_data(fd, 0x00, page_a);
+    i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
+}
+
 void space(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
