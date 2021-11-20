@@ -95,11 +95,12 @@ int main(int argc, char *argv[])
     initialize(fd);
     
     clear_lcd(fd);
-    numeros(fd);
+    numeros(fd,0x00,0x00);
     sleep(5);
 
     clear_lcd(fd);
-    abecedario(fd);
+    abecedario(fd,0x32,0x00);
+    abecedario(fd,0x40,0x00)
     sleep(5);
 
     clear_lcd(fd);

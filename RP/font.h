@@ -113,7 +113,7 @@ void initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, SET_SEG_REMAP | 0x1 );
     i2c_smbus_write_byte_data(fd, 0x00, COM_SCAN_DIR_OP);
     i2c_smbus_write_byte_data(fd, 0x00, SET_COM_PIN_CFG);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x12); // x12 **
+    i2c_smbus_write_byte_data(fd, 0x00, 0x02); // x12 **
     i2c_smbus_write_byte_data(fd, 0x00, SET_CONTRAST);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
     i2c_smbus_write_byte_data(fd, 0x00, SET_PRECHARGE);
@@ -126,8 +126,8 @@ void initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
 }
 
-void numeros(int fd){
-    page_data(fd, 0x00, 0x00);
+void numeros(int fd, int page, int column)){
+    page_data(fd, page, column);
     N_1(fd);
     N_2(fd);
     N_3(fd);
@@ -140,8 +140,8 @@ void numeros(int fd){
     N_0(fd);
 }
 
-void abecedario(int fd){
-    page_data(fd, 0x00, 0x00);
+void abecedario(int fd, int page, int column){
+    page_data(fd, page, column);
     A_M(fd);
     B_M(fd);
     C_M(fd);
