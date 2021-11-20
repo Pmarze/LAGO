@@ -40,6 +40,13 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+
+void page_data(int, int, int);
+void initialize(int);
+void abecedario(int);
+void numeros(int);
+void clear_lcd(int);
+
 void space(int);
 void A_M(int);
 void B_M(int);
@@ -79,6 +86,8 @@ void N_7(int);
 void N_8(int);
 void N_9(int);
 
+////////////////////////////////////////////////////////////////////////////////
+
 void page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, page_a);
@@ -87,6 +96,82 @@ void page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, column_a);
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
 }
+
+void initialize(int fd){
+    i2c_smbus_write_byte_data(fd, 0x00, SET_OSC_FREQ);      
+    i2c_smbus_write_byte_data(fd, 0x00, 0x80);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_MUX_RATIO);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x1f);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_DISP_OFFSET);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE | 0x0 );
+    i2c_smbus_write_byte_data(fd, 0x00, SET_CHAR_REG);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x14);
+    i2c_smbus_write_byte_data(fd, 0x00, MEMORY_ADDR_MODE);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_SEG_REMAP | 0x1 );
+    i2c_smbus_write_byte_data(fd, 0x00, COM_SCAN_DIR_OP);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_COM_PIN_CFG);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x12); // x12 **
+    i2c_smbus_write_byte_data(fd, 0x00, SET_CONTRAST);
+    i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_PRECHARGE);
+    i2c_smbus_write_byte_data(fd, 0x00, 0xc2); //xc2
+    i2c_smbus_write_byte_data(fd, 0x00, 0xd8);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE);
+    i2c_smbus_write_byte_data(fd, 0x00, SET_ENTIRE_ON);
+    i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_NORMAL);
+    i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
+    i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
+}
+
+void numeros(int fd){
+    page_data(fd, 0x00, 0x00);
+    N_1(fd);
+    N_2(fd);
+    N_3(fd);
+    N_4(fd);
+    N_5(fd);
+    N_6(fd);
+    N_7(fd);
+    N_8(fd);
+    N_9(fd);
+    N_0(fd);
+}
+
+void abecedario(int fd){
+    page_data(fd, 0x00, 0x00);
+    A_M(fd);
+    B_M(fd);
+    C_M(fd);
+    D_M(fd);
+    E_M(fd);
+    F_M(fd);
+    G_M(fd);
+    H_M(fd);
+    I_M(fd);
+    J_M(fd);
+    K_M(fd);
+    L_M(fd);
+    M_M(fd);
+    N_M(fd);
+    O_M(fd);
+    P_M(fd);
+    V_M(fd);
+    W_M(fd);
+    X_M(fd);
+    Y_M(fd);
+    Z_M(fd);
+}
+
+void clear_lcd(int fd){
+    page_data(fd, 0x00, 0x00);
+    for( int i = 0; i< 512; i++){
+    i2c_smbus_write_byte_data(fd, 0x40, 0x00);
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 void space(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);

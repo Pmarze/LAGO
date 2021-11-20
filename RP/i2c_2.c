@@ -91,46 +91,14 @@ int main(int argc, char *argv[])
         printf("errno: %i %s\n",errno,strerror(errno));
         return -1;
     }
-    i2c_smbus_write_byte_data(fd, 0x00, SET_OSC_FREQ);      
-    i2c_smbus_write_byte_data(fd, 0x00, 0x80);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_MUX_RATIO);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x1f);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_DISP_OFFSET);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE | 0x0 );
-    i2c_smbus_write_byte_data(fd, 0x00, SET_CHAR_REG);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x14);
-    i2c_smbus_write_byte_data(fd, 0x00, MEMORY_ADDR_MODE);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_SEG_REMAP | 0x1 );
-    i2c_smbus_write_byte_data(fd, 0x00, COM_SCAN_DIR_OP);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_COM_PIN_CFG);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x12); // x12 **
-    i2c_smbus_write_byte_data(fd, 0x00, SET_CONTRAST);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_PRECHARGE);
-    i2c_smbus_write_byte_data(fd, 0x00, 0xc2); //xc2
-    i2c_smbus_write_byte_data(fd, 0x00, 0xd8);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_ENTIRE_ON);
-    i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_NORMAL);
-    i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
-    i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
 
-/*
-    i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
-    i2c_smbus_write_byte_data(fd, 0x00, SET_COLUMN_ADDR);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x00);
-    i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
-*/
+    initialize(fd);
+
     page_data(fd, 0x00, 0x00);
 
+    numeros(fd);
 
-    for( int i = 0; i< 512; i++){
-        i2c_smbus_write_byte_data(fd, 0x40, 0x00);
-    }
+    clear_lcd(fd);
     
     page_data(fd, 0x00, 0x00);
     
@@ -142,43 +110,7 @@ int main(int argc, char *argv[])
     space(fd);
     G_M(fd);
     T_M(fd);
-    space(fd);
-    space(fd);
-    N_1(fd);
-    N_2(fd);
-    N_3(fd);
-    N_4(fd);
-    N_5(fd);
-    N_6(fd);
-    N_7(fd);
-    N_8(fd);
-    N_9(fd);
-    N_0(fd);
 
-    page_data(fd, 0x32, 0x00);
-
-    space(fd);
-    A_M(fd);
-    B_M(fd);
-    C_M(fd);
-    D_M(fd);
-    E_M(fd);
-    F_M(fd);
-    G_M(fd);
-    H_M(fd);
-    I_M(fd);
-    J_M(fd);
-    K_M(fd);
-    L_M(fd);
-    M_M(fd);
-    N_M(fd);
-    O_M(fd);
-    P_M(fd);
-    V_M(fd);
-    W_M(fd);
-    X_M(fd);
-    Y_M(fd);
-    Z_M(fd);
 
     /* Write to redpitaya eeprom */
     //status = iic_write((char *)data, offset, size);
