@@ -126,7 +126,7 @@ void initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
 }
 
-void numeros(int fd, int page, int column)){
+void numeros(int fd, int page, int column){
     page_data(fd, page, column);
     N_1(fd);
     N_2(fd);
