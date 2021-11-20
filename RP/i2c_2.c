@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 
     clear_lcd(fd);
     abecedario(fd,0x32,0x00);
-    abecedario(fd,0x40,0x00);
+    abecedario(fd,0x64,0x00);
     sleep(5);
 
     clear_lcd(fd);
