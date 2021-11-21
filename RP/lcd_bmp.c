@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 void digitos(int);
-int tempera
+int tempera;
 
 int main(int argc, char **argv){
 	char *i2c_device = "/dev/i2c-0";
