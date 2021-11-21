@@ -2,6 +2,9 @@
 #include <unistd.h>
 #include <stdio.h>
 
+void digitos(int);
+int tempera
+
 int main(int argc, char **argv){
 	char *i2c_device = "/dev/i2c-0";
 	int address = 0x77;
@@ -23,9 +26,19 @@ int main(int argc, char **argv){
 			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
 			usleep(2 * 1000 * 1000);
 		}
-	
+        tempera=(int)t;
+        digitos(tempera);
 		bmp180_close(bmp);
 	}
-	
 	return 0;
+}
+
+void digitos(int num){
+	while(num > 0) //do till num greater than  0
+    {
+        int mod = num % 10;  //split last digit from number
+        printf("%d\n",mod); //print the digit. 
+    
+        num = num / 10;    //divide num by 10. num /= 10 also a valid one 
+    
 }
