@@ -41,4 +41,5 @@ void digitos(int num){
     
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     
+    }
 }
