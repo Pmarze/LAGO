@@ -4,6 +4,9 @@
 
 void digitos(int);
 int tempera;
+float t;
+long p;
+float alt;
 
 int main(int argc, char **argv){
 	char *i2c_device = "/dev/i2c-0";
@@ -20,9 +23,9 @@ int main(int argc, char **argv){
 	if(bmp != NULL){
 		int i;
 		for(i = 0; i < 10; i++) {
-			float t = bmp180_temperature(bmp);
-			long p = bmp180_pressure(bmp);
-			float alt = bmp180_altitude(bmp);
+			t = bmp180_temperature(bmp);
+			p = bmp180_pressure(bmp);
+			alt = bmp180_altitude(bmp);
 			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
 			usleep(2 * 1000 * 1000);
 		}
