@@ -108,7 +108,7 @@ void digitos(int fd, int num){
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     	j++;
     }
-	for(i=j,i<=0,i--){
+	for(i=j;i<=0;i--){
 	lcd_num(fd, lista[i]);
 	}
 }
