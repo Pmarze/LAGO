@@ -83,8 +83,8 @@ int main(int argc, char **argv){
 			alt = bmp180_altitude(bmp);
 			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
 			usleep(2 * 1000 * 1000);
-            tempera=(int)t;
-            digitos(fd, tempera*10);
+            tempera=(int)t*10;
+            digitos(fd, tempera);
 			sleep(1);
 			clear_lcd(fd);
 		}
