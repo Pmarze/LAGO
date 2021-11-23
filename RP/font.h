@@ -484,8 +484,8 @@ void N_3(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x21);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x41);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x45);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x45);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x39);  
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x4b);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x31);  
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
 }
 
