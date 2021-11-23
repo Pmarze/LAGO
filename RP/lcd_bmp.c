@@ -27,6 +27,7 @@ int fd;
 
 void digitos(int, int, int, int);
 void Text_temp(int, int, int);
+void Text_alt(int, int, int);
 int tempera;
 int altu;
 float t;
@@ -91,7 +92,8 @@ int main(int argc, char **argv){
             tempera=(int)t;
             Text_temp(fd, 0x00, 0x00);
 			digitos(fd, 0x00, 0x32, tempera);
-			digitos(fd, 0x32, 0x00, altu);
+			Text_alt(fd, 0x00, 0x00);
+			digitos(fd, 0x32, 0x32, altu);
 			sleep(1);
 			clear_lcd(fd);
 		}
@@ -129,5 +131,16 @@ void Text_temp(int fd,int page, int column){
 	E_M(fd);
 	M_M(fd);
 	P_M(fd);
+	equal(fd);
+}
+
+void Text_alt(int fd,int page, int column){
+	page_data(fd, page, column);
+	A_M(fd);
+	L_M(fd);
+	T_M(fd);
+	U_M(fd);
+	R_M(fd);
+	A_M(fd);
 	equal(fd);
 }
