@@ -125,7 +125,7 @@ void initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, 0xd8);
     i2c_smbus_write_byte_data(fd, 0x00, SET_START_LINE);
     i2c_smbus_write_byte_data(fd, 0x00, SET_ENTIRE_ON);
-    i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_NORMAL);
+    i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_INVERSE);       // NORMAL
     i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
 }
