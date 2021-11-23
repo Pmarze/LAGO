@@ -176,7 +176,7 @@ void clear_lcd(int fd){
     }
 }
 
-void lcd_num(int a){
+void lcd_num(int fd, int a){
 	if(a==1){
 		N_1(fd);
 	}
