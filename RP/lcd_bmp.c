@@ -47,6 +47,7 @@ void digitos_1(int, fd, int num){
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     
     }
+	clear_lcd(fd);
 }
 
 void lcd_num(int a){
