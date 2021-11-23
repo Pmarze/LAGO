@@ -49,6 +49,8 @@ void initialize(int);
 void abecedario(int, int, int);
 void numeros(int, int, int);
 void clear_lcd(int);
+void asterisk(int);
+
 
 void equal(int);
 void dot(int);
@@ -210,8 +212,16 @@ void lcd_num(int fd, int a){
 		N_0(fd);
 	}	
 }
-
+{ 0x14, 0x08, 0x3e, 0x08, 0x14 }
 ////////////////////////////////////////////////////////////////////////////////
+void asterisk(int fd){
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x14);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x08);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x3E);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x08);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x14);
+}
+
 void equal(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x14);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x14);

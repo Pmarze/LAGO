@@ -25,7 +25,7 @@ static int iic_write(char *data, int offset, int size, int fd);
 */
 int fd;
 
-void digitos(int, int, int, int);
+void digitos(int, int, int, int, int);
 void Text_temp(int, int, int);
 void Text_alt(int, int, int);
 void Text_Pres(int, int, int);
@@ -94,13 +94,13 @@ int main(int argc, char **argv){
             tempera=(int)t;
 			p=p*10;
             Text_temp(fd, 0x00, 0x00);
-			digitos(fd, 0x00, 0x32, tempera);
+			digitos(fd, 0x00, 0x32, tempera,1);
 			Text_alt(fd, 0x32, 0x00);
-			digitos(fd, 0x32, 0x32, altu);
+			digitos(fd, 0x32, 0x32, altu,3);
 			sleep(2);
 			clear_lcd(fd);
 			Text_Pres(fd, 0x00, 0x00);
-			digitos(fd, 0x32, 0x00, p);
+			digitos(fd, 0x32, 0x00, p,2);
 			sleep(2);
 			clear_lcd(fd);
 		}
@@ -110,7 +110,7 @@ int main(int argc, char **argv){
 	return 0;
 }
 
-void digitos(int fd,int page, int column, int num){
+void digitos(int fd,int page, int column, int num, int caso){
 	int lista[10];
 	int j=0;
 	int i;
@@ -129,6 +129,20 @@ void digitos(int fd,int page, int column, int num){
 			lcd_num(fd, lista[i]);
 		}
 		lcd_num(fd, lista[i]);
+	}
+	if(caso==1){
+		space(fd);
+		asterisk(fd);
+		C_M(fd);
+	}
+	if(caso==2){
+		space(fd);
+		P_M(fd);
+		A_M(fd);
+	}
+	if(caso==3){
+		space(fd);
+		M_M(fd);
 	}
 }
 
