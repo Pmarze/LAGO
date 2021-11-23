@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
-
 #include <stdlib.h>
 #include <linux/ioctl.h>
 #include <sys/ioctl.h>
@@ -17,12 +16,6 @@
 #define PAGESIZE        32
 /* eeprom size on a redpitaya */
 
-static int iic_read(char *buffer, int offset, int size, int fd);
-static int iic_write(char *data, int offset, int size, int fd);
-
-/*
-* File descriptors
-*/
 int fd;
 
 void digitos(int, int, int, int, int);
@@ -52,7 +45,6 @@ int main(int argc, char **argv){
         printf("Unable to set the OLED96 address\n");
         return -1;
     }
-    char buf[10];
     buf[0] = SET_OSC_FREQ;
     buf[1] = DISPLAY_OFF;
     if ( i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_OFF) < 0 )
@@ -61,19 +53,16 @@ int main(int argc, char **argv){
         printf("errno: %i %s\n",errno,strerror(errno));
         return -1;
     }
+	
 	initialize(fd);
-    
     clear_lcd(fd);
 
 	char *i2c_device = "/dev/i2c-0";
 	int address = 0x77;
-	
 	void *bmp = bmp180_init(address, i2c_device);
 	
 	bmp180_eprom_t eprom;
 	bmp180_dump_eprom(bmp, &eprom);
-	
-	
 	bmp180_set_oss(bmp, 1);
 
 	if(bmp != NULL){
@@ -104,72 +93,4 @@ int main(int argc, char **argv){
 	}
 	close(fd);
 	return 0;
-}
-
-void digitos(int fd,int page, int column, int num, int caso){
-	int lista[10];
-	int j=0;
-	int i;
-	page_data(fd, page, column);
-	while(num > 0) //do till num greater than  0
-    {
-        int mod = num % 10;  //split last digit from number
-        //printf("%d\n",mod); //print the digit. 
-		lista[j]=mod;
-        num = num / 10;    //divide num by 10. num /= 10 also a valid one 
-    	j++;
-    }
-	for(i=j-1;i>=0;i--){
-		if(i==0){
-			dot(fd);
-			lcd_num(fd, lista[i]);
-		}
-		lcd_num(fd, lista[i]);
-	}
-	if(caso==1){
-		space(fd);
-		C_M(fd);
-	}
-	if(caso==2){
-		space(fd);
-		P_M(fd);
-		A_M(fd);
-	}
-	if(caso==3){
-		space(fd);
-		M_M(fd);
-	}
-}
-
-void Text_temp(int fd,int page, int column){
-	page_data(fd, page, column);
-	T_M(fd);
-	E_M(fd);
-	M_M(fd);
-	P_M(fd);
-	equal(fd);
-}
-
-void Text_alt(int fd,int page, int column){
-	page_data(fd, page, column);
-	A_M(fd);
-	L_M(fd);
-	T_M(fd);
-	I_M(fd);
-	T_M(fd);
-	U_M(fd);
-	D_M(fd);
-	equal(fd);
-}
-
-void Text_Pres(int fd,int page, int column){
-	page_data(fd, page, column);
-	P_M(fd);
-	R_M(fd);
-	E_M(fd);
-	S_M(fd);
-	I_M(fd);
-	O_M(fd);
-	N_M(fd);
-	equal(fd);
 }

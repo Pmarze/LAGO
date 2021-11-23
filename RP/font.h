@@ -95,6 +95,11 @@ void N_9(int);
 
 void lcd_num(int, int);
 
+void digitos(int, int, int, int ,int);
+void Text_alt(int, int, int);
+void Text_Pres(int, int, int);
+void Text_temp(int, int, int);
+
 ////////////////////////////////////////////////////////////////////////////////
 
 void page_data(int fd, int page_a, int column_a){
@@ -684,3 +689,71 @@ static int iic_read(char *buffer, int offset, int size, int fd)
 }
 
 ///////////////////////////////////////////////////////////////////////
+
+void digitos(int fd,int page, int column, int num, int caso){
+	int lista[10];
+	int j=0;
+	int i;
+	page_data(fd, page, column);
+	while(num > 0) //do till num greater than  0
+    {
+        int mod = num % 10;  //split last digit from number
+        //printf("%d\n",mod); //print the digit. 
+		lista[j]=mod;
+        num = num / 10;    //divide num by 10. num /= 10 also a valid one 
+    	j++;
+    }
+	for(i=j-1;i>=0;i--){
+		if(i==0){
+			dot(fd);
+			lcd_num(fd, lista[i]);
+		}
+		lcd_num(fd, lista[i]);
+	}
+	if(caso==1){
+		space(fd);
+		C_M(fd);
+	}
+	if(caso==2){
+		space(fd);
+		P_M(fd);
+		A_M(fd);
+	}
+	if(caso==3){
+		space(fd);
+		M_M(fd);
+	}
+}
+
+void Text_temp(int fd,int page, int column){
+	page_data(fd, page, column);
+	T_M(fd);
+	E_M(fd);
+	M_M(fd);
+	P_M(fd);
+	equal(fd);
+}
+
+void Text_alt(int fd,int page, int column){
+	page_data(fd, page, column);
+	A_M(fd);
+	L_M(fd);
+	T_M(fd);
+	I_M(fd);
+	T_M(fd);
+	U_M(fd);
+	D_M(fd);
+	equal(fd);
+}
+
+void Text_Pres(int fd,int page, int column){
+	page_data(fd, page, column);
+	P_M(fd);
+	R_M(fd);
+	E_M(fd);
+	S_M(fd);
+	I_M(fd);
+	O_M(fd);
+	N_M(fd);
+	equal(fd);
+}
