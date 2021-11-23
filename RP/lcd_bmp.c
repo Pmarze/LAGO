@@ -71,6 +71,10 @@ int main(int argc, char **argv){
 	
 	bmp180_set_oss(bmp, 1);
 	
+	abecedario(fd,0x32,0x00);
+	sleep(3);
+	clear_lcd(fd);
+
 	if(bmp != NULL){
 		int i;
 		for(i = 0; i < 10; i++) {
@@ -99,5 +103,6 @@ void digitos(int fd, int num){
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     
     }
+	clear_lcd(fd);
 }
 
