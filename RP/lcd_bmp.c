@@ -89,7 +89,7 @@ int main(int argc, char **argv){
 			altu=(int)alt;
             //digitos(fd, 0x00, 0x00, tempera);
 			//sleep(1);
-			digitos(fd, 0x32, 0x00, altu);
+			digitos(fd, 0x00, 0x00, altu);
 			sleep(1);
 			clear_lcd(fd);
 		}
