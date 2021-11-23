@@ -25,8 +25,9 @@ static int iic_write(char *data, int offset, int size, int fd);
 */
 int fd;
 
-void digitos(int, int);
+void digitos(int, int, int, int);
 int tempera;
+int altu;
 float t;
 long p;
 float alt;
@@ -84,8 +85,11 @@ int main(int argc, char **argv){
 			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
 			usleep(2 * 1000 * 1000);
 			t=t*10;
+			alt=alt*10;
             tempera=(int)t;
-            digitos(fd, tempera);
+			altu=(int)alt;
+            digitos(fd, 0x00, 0x00 tempera);
+			digitos(fd, 0x32, 0x00, altu);
 			sleep(1);
 			clear_lcd(fd);
 		}
@@ -95,7 +99,7 @@ int main(int argc, char **argv){
 	return 0;
 }
 
-void digitos(int fd, int num){
+void digitos(int fd,int page, int column, int num){
 	int lista[5];
 	int j;
 	int i;
@@ -105,13 +109,10 @@ void digitos(int fd, int num){
         int mod = num % 10;  //split last digit from number
         //printf("%d\n",mod); //print the digit. 
 		lista[j]=mod;
-		//printf("%d\n",j);
-		//printf("%d\n",lista[j]);
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     	j++;
     }
 	for(i=j;i>=0;i--){
-		//printf("%d\n",lista[i]);
 		lcd_num(fd, lista[i]);
 	}
 }
