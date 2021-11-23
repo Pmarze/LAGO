@@ -36,13 +36,48 @@ int main(int argc, char **argv){
 	return 0;
 }
 
-void digitos(int num){
+void digitos_1(int, fd, int num){
+	num=num*10;
 	while(num > 0) //do till num greater than  0
     {
         int mod = num % 10;  //split last digit from number
         printf("%d\n",mod); //print the digit. 
-    
+		page_data(fd, 0x00, 0x00);
+		lcd_num(num);
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     
     }
+}
+
+void lcd_num(int a){
+	if(a==1){
+		N_1(fd);
+	}
+	if(a==2){
+		N_2(fd);
+	}
+	if(a==3){
+		N_3(fd);
+	}
+	if(a==4){
+		N_4(fd);
+	}
+	if(a==5){
+		N_5(fd);
+	}
+	if(a==6){
+		N_6(fd);
+	}
+	if(a==7){
+		N_7(fd);
+	}
+	if(a==8){
+		N_8(fd);
+	}
+	if(a==9){
+		N_8(fd);
+	}
+	if(a==0){
+		N_0(fd);
+	}	
 }
