@@ -88,7 +88,6 @@ int main(int argc, char **argv){
             tempera=(int)t;
             digitos(fd, 0x00, 0x00, tempera);
 			sleep(1);
-			sleep(1);
 			clear_lcd(fd);
 		}
 	bmp180_close(bmp);
