@@ -96,14 +96,20 @@ int main(int argc, char **argv){
 }
 
 void digitos(int fd, int num){
+	int lista=[];
+	int j;
+	int i;
 	page_data(fd, 0x00, 0x00);
 	while(num > 0) //do till num greater than  0
     {
         int mod = num % 10;  //split last digit from number
         //printf("%d\n",mod); //print the digit. 
-		lcd_num(fd, mod);
+		lista[j]=mod;
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
-    
+    	j++;
     }
+	for(i=j,i<=0,i--){
+	lcd_num(fd, lista[i]);
+	}
 }
 
