@@ -85,8 +85,11 @@ int main(int argc, char **argv){
 			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
 			usleep(2 * 1000 * 1000);
 			t=t*10;
+			alt=alt*10;
+			altu=(int)alt;
             tempera=(int)t;
             digitos(fd, 0x00, 0x00, tempera);
+			digitos(fd, 0x32, 0x00, altu);
 			sleep(1);
 			clear_lcd(fd);
 		}
@@ -109,7 +112,7 @@ void digitos(int fd,int page, int column, int num){
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     	j++;
     }
-	for(i=j;i>=0;i--){
+	for(i=j-1;i>=0;i--){
 		lcd_num(fd, lista[i]);
 	}
 }
