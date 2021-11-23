@@ -103,7 +103,7 @@ void digitos(int fd,int page, int column, int num){
 	int lista[5];
 	int j;
 	int i;
-	page_data(fd, 0x00, 0x00);
+	page_data(fd, page, column);
 	while(num > 0) //do till num greater than  0
     {
         int mod = num % 10;  //split last digit from number
