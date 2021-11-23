@@ -114,7 +114,7 @@ void digitos(int fd,int page, int column, int num){
     }
 	for(i=j-1;i>=0;i--){
 		if(i==0){
-			space(fd);
+			dot(fd);
 			lcd_num(fd, lista[i]);
 		}
 		lcd_num(fd, lista[i]);

@@ -50,6 +50,7 @@ void abecedario(int, int, int);
 void numeros(int, int, int);
 void clear_lcd(int);
 
+void dot(int);
 void space(int);
 void A_M(int);
 void B_M(int);
@@ -210,6 +211,13 @@ void lcd_num(int fd, int a){
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+void dot(int fd){
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x60);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x60);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
+}
 
 void space(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);
