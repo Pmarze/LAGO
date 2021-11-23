@@ -98,7 +98,7 @@ int main(int argc, char **argv){
 
 void digitos(int fd,int page, int column, int num){
 	int lista[10];
-	int j;
+	int j=0;
 	int i;
 	page_data(fd, page, column);
 	while(num > 0) //do till num greater than  0
