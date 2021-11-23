@@ -100,7 +100,7 @@ int main(int argc, char **argv){
 }
 
 void digitos(int fd,int page, int column, int num){
-	int lista[5];
+	int lista[10];
 	int j;
 	int i;
 	page_data(fd, page, column);
