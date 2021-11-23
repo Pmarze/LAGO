@@ -36,7 +36,7 @@ int main(int argc, char **argv){
 	return 0;
 }
 
-void digitos_1(int, fd, int num){
+void digitos_1(int fd, int num){
 	num=num*10;
 	while(num > 0) //do till num greater than  0
     {
