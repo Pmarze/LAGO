@@ -85,10 +85,8 @@ int main(int argc, char **argv){
 			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
 			usleep(2 * 1000 * 1000);
 			t=t*10;
-			alt=alt*10;
             tempera=(int)t;
 			altu=(int)alt;
-			printf("%d",alt);
             digitos(fd, 0x00, 0x00, tempera);
 			sleep(1);
 			digitos(fd, 0x32, 0x00, altu);
