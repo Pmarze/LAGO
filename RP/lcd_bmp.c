@@ -77,8 +77,8 @@ int main(int argc, char **argv){
 
 	if(bmp != NULL){
 		int i;
-		page_data(fd, 0x00, 0x00);
 		for(i = 0; i < 10; i++) {
+			page_data(fd, 0x00, 0x00);
 			t = bmp180_temperature(bmp);
 			p = bmp180_pressure(bmp);
 			alt = bmp180_altitude(bmp);
