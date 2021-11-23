@@ -75,14 +75,10 @@ int main(int argc, char **argv){
 	
 	
 	bmp180_set_oss(bmp, 1);
-	
-	abecedario(fd,0x32,0x00);
-	sleep(3);
-	clear_lcd(fd);
 
 	if(bmp != NULL){
 		int i;
-		for(i = 0; i < 10; i++) {
+		for(i = 0; i < 25; i++) {
 			t = bmp180_temperature(bmp);
 			p = bmp180_pressure(bmp);
 			alt = bmp180_altitude(bmp);
@@ -132,7 +128,6 @@ void digitos(int fd,int page, int column, int num, int caso){
 	}
 	if(caso==1){
 		space(fd);
-		asterisk(fd);
 		C_M(fd);
 	}
 	if(caso==2){
