@@ -84,7 +84,7 @@ int main(int argc, char **argv){
 			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
 			usleep(2 * 1000 * 1000);
             tempera=(int)t;
-            digitos(fd, tempera);
+            digitos(fd, tempera*10);
 			sleep(1);
 			clear_lcd(fd);
 		}
@@ -96,7 +96,6 @@ int main(int argc, char **argv){
 
 void digitos(int fd, int num){
 	page_data(fd, 0x00, 0x00);
-	num=num*10;
 	while(num > 0) //do till num greater than  0
     {
         int mod = num % 10;  //split last digit from number
