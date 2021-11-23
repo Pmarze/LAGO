@@ -78,7 +78,6 @@ int main(int argc, char **argv){
 	if(bmp != NULL){
 		int i;
 		for(i = 0; i < 10; i++) {
-			page_data(fd, 0x00, 0x00);
 			t = bmp180_temperature(bmp);
 			p = bmp180_pressure(bmp);
 			alt = bmp180_altitude(bmp);
@@ -96,6 +95,7 @@ int main(int argc, char **argv){
 }
 
 void digitos(int fd, int num){
+	page_data(fd, 0x00, 0x00);
 	num=num*10;
 	while(num > 0) //do till num greater than  0
     {
