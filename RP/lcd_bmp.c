@@ -26,6 +26,7 @@ static int iic_write(char *data, int offset, int size, int fd);
 int fd;
 
 void digitos(int, int, int, int);
+void Text_temp(int, int, int)
 int tempera;
 int altu;
 float t;
@@ -88,7 +89,8 @@ int main(int argc, char **argv){
 			alt=alt*10;
 			altu=(int)alt;
             tempera=(int)t;
-            digitos(fd, 0x00, 0x00, tempera);
+            Text_temp(fd, 0x00, 0x00)
+			digitos(fd, 0x00, 0x32, tempera);
 			digitos(fd, 0x32, 0x00, altu);
 			sleep(1);
 			clear_lcd(fd);
@@ -121,3 +123,11 @@ void digitos(int fd,int page, int column, int num){
 	}
 }
 
+void Text_temp(int fd,int page, int column){
+	page_data(fd, page, column);
+	T_M(fd);
+	E_M(fd);
+	M_M(fd);
+	P_M(fd);
+	equal(fd);
+}
