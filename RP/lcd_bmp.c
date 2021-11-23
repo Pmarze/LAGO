@@ -96,7 +96,7 @@ int main(int argc, char **argv){
 }
 
 void digitos(int fd, int num){
-	int lista=[];
+	int lista[5];
 	int j;
 	int i;
 	page_data(fd, 0x00, 0x00);
