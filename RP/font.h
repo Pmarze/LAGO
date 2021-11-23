@@ -212,7 +212,7 @@ void lcd_num(int fd, int a){
 		N_0(fd);
 	}	
 }
-{ 0x14, 0x08, 0x3e, 0x08, 0x14 }
+
 ////////////////////////////////////////////////////////////////////////////////
 void asterisk(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x14);
