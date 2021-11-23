@@ -87,11 +87,12 @@ int main(int argc, char **argv){
 			p = bmp180_pressure(bmp);
 			alt = bmp180_altitude(bmp);
 			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
-			usleep(2 * 1000 * 1000);
+			//usleep(2 * 1000 * 1000);
 			t=t*10;
 			alt=alt*10;
 			altu=(int)alt;
             tempera=(int)t;
+			p=p*10;
             Text_temp(fd, 0x00, 0x00);
 			digitos(fd, 0x00, 0x32, tempera);
 			Text_alt(fd, 0x32, 0x00);
@@ -145,9 +146,10 @@ void Text_alt(int fd,int page, int column){
 	A_M(fd);
 	L_M(fd);
 	T_M(fd);
+	I_M(fd);
+	T_M(fd);
 	U_M(fd);
-	R_M(fd);
-	A_M(fd);
+	D_M(fd);
 	equal(fd);
 }
 
