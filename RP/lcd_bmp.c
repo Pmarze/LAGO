@@ -86,6 +86,8 @@ int main(int argc, char **argv){
 			usleep(2 * 1000 * 1000);
             tempera=(int)t;
             digitos(fd, tempera);
+			sleep(1);
+			clear_lcd(fd);
 		}
 	bmp180_close(bmp);
 	}
@@ -103,6 +105,5 @@ void digitos(int fd, int num){
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     
     }
-	clear_lcd(fd);
 }
 
