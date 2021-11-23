@@ -88,6 +88,7 @@ int main(int argc, char **argv){
 			alt=alt*10;
             tempera=(int)t;
 			altu=(int)alt;
+			printf("%d",alt);
             digitos(fd, 0x00, 0x00, tempera);
 			sleep(1);
 			digitos(fd, 0x32, 0x00, altu);
