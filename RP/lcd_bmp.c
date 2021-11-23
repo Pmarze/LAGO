@@ -45,6 +45,7 @@ int main(int argc, char **argv){
         printf("Unable to set the OLED96 address\n");
         return -1;
     }
+	char buf[10];
     buf[0] = SET_OSC_FREQ;
     buf[1] = DISPLAY_OFF;
     if ( i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_OFF) < 0 )
