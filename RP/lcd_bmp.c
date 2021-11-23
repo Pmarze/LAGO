@@ -105,13 +105,13 @@ void digitos(int fd, int num){
         int mod = num % 10;  //split last digit from number
         //printf("%d\n",mod); //print the digit. 
 		lista[j]=mod;
-		printf("%d\n",j);
-		printf("%d\n",lista[j]);
+		//printf("%d\n",j);
+		//printf("%d\n",lista[j]);
         num = num / 10;    //divide num by 10. num /= 10 also a valid one 
     	j++;
     }
-	for(i=j;i<=0;i--){
-		printf("%d\n",lista[i]);
+	for(i=j;i>=0;i--){
+		//printf("%d\n",lista[i]);
 		lcd_num(fd, lista[i]);
 	}
 }
