@@ -25,7 +25,7 @@ static int iic_write(char *data, int offset, int size, int fd);
 */
 int fd;
 
-void digitos(int);
+void digitos(int, int);
 int tempera;
 float t;
 long p;
