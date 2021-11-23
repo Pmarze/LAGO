@@ -89,7 +89,7 @@ int main(int argc, char **argv){
 			alt=alt*10;
 			altu=(int)alt;
             tempera=(int)t;
-            Text_temp(fd, 0x00, 0x00)
+            Text_temp(fd, 0x00, 0x00);
 			digitos(fd, 0x00, 0x32, tempera);
 			digitos(fd, 0x32, 0x00, altu);
 			sleep(1);
