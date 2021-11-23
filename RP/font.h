@@ -89,6 +89,8 @@ void N_7(int);
 void N_8(int);
 void N_9(int);
 
+void lcd_num(int);
+
 ////////////////////////////////////////////////////////////////////////////////
 
 void page_data(int fd, int page_a, int column_a){
@@ -172,6 +174,39 @@ void clear_lcd(int fd){
     for( int i = 0; i< 512; i++){
     i2c_smbus_write_byte_data(fd, 0x40, 0x00);
     }
+}
+
+void lcd_num(int a){
+	if(a==1){
+		N_1(fd);
+	}
+	if(a==2){
+		N_2(fd);
+	}
+	if(a==3){
+		N_3(fd);
+	}
+	if(a==4){
+		N_4(fd);
+	}
+	if(a==5){
+		N_5(fd);
+	}
+	if(a==6){
+		N_6(fd);
+	}
+	if(a==7){
+		N_7(fd);
+	}
+	if(a==8){
+		N_8(fd);
+	}
+	if(a==9){
+		N_8(fd);
+	}
+	if(a==0){
+		N_0(fd);
+	}	
 }
 
 ////////////////////////////////////////////////////////////////////////////////

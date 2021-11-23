@@ -50,35 +50,3 @@ void digitos_1(int, fd, int num){
 	clear_lcd(fd);
 }
 
-void lcd_num(int a){
-	if(a==1){
-		N_1(fd);
-	}
-	if(a==2){
-		N_2(fd);
-	}
-	if(a==3){
-		N_3(fd);
-	}
-	if(a==4){
-		N_4(fd);
-	}
-	if(a==5){
-		N_5(fd);
-	}
-	if(a==6){
-		N_6(fd);
-	}
-	if(a==7){
-		N_7(fd);
-	}
-	if(a==8){
-		N_8(fd);
-	}
-	if(a==9){
-		N_8(fd);
-	}
-	if(a==0){
-		N_0(fd);
-	}	
-}
