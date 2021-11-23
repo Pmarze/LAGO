@@ -109,7 +109,8 @@ void digitos(int fd, int num){
     	j++;
     }
 	for(i=j;i<=0;i--){
-	lcd_num(fd, lista[i]);
+		printf("%d\n",lista[i]);
+		lcd_num(fd, lista[i]);
 	}
 }
 
