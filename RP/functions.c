@@ -11,6 +11,12 @@
 #include "font.h"
 #include "functions.h"
 
+#define OLED96_ADDR     0x3c
+#define PAGESIZE        32
+
+int fd;
+void *bmp;
+
 void page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, page_a);
