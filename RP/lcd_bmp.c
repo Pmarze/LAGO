@@ -34,7 +34,7 @@ char *i2c_device = "/dev/i2c-0";
 int address = 0x77;
 void *bmp;
 
-void main(int argc, char **argv){
+int main(int argc, char **argv){
 	
     inic_disp();
 	
@@ -47,6 +47,7 @@ void main(int argc, char **argv){
 	bmp180_close(bmp);
 	}
 	close(fd);
+	return 0
 }
 
 void inic_disp(){
@@ -56,17 +57,20 @@ void inic_disp(){
 	if(fd < 0)
     {
         printf("Cannot open the IIC device\n");
+		return 1;
     }
 
     status = ioctl(fd, I2C_SLAVE, OLED96_ADDR);
     if(status < 0)
     {
         printf("Unable to set the OLED96 address\n");
+		return -1;
     }
     if ( i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_OFF) < 0 )
     {
         printf("Unable to send commands\n");
         printf("errno: %i %s\n",errno,strerror(errno));
+		return -1;
     }
 	initialize(fd);
 	clear_lcd(fd);
