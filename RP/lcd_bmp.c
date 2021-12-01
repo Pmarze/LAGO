@@ -12,9 +12,6 @@
 #include "font.h"
 #include "functions.h"
 
-#define OLED96_ADDR     0x3c
-#define PAGESIZE        32
-
 int main(int argc, char **argv){
 	
     inic_disp();
