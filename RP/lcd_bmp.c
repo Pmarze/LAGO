@@ -66,7 +66,7 @@ int main(int argc, char **argv){
 		int i;
 		Bienvenida(fd,0x32,0x00);
 		for(i = 0; i < 25; i++) {
-			sensor(bmp, fd);
+			sensor(*bmp, fd);
 		}
 	bmp180_close(bmp);
 	}
