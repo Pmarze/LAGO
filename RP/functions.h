@@ -243,8 +243,7 @@ void datos(void *bmp, int fd){
 	float alt;
     int tempera;
     int altu;
-    int pres;
-
+    
 	t = bmp180_temperature(bmp);
 	p = bmp180_pressure(bmp);
 	alt = bmp180_altitude(bmp);
