@@ -224,6 +224,6 @@ void Bienvenida(int fd,int page, int column){
     o_MI(fd);
     s_MI(fd);
     sleep(3);
-
+    clear_lcd(fd);
 }
 #endif /*FUNCTIONS_H*/
