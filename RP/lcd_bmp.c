@@ -26,11 +26,8 @@ void Text_Pres(int, int, int);
 int tempera;
 int altu;
 int pres;
-float t;
-long p;
-float alt;
 
-int main(int argc, char **argv){
+void main(int argc, char **argv){
 	int status;
     fd = open("/dev/i2c-0", O_RDWR);
 
@@ -68,29 +65,35 @@ int main(int argc, char **argv){
 		int i;
 		Bienvenida(fd,0x32,0x00);
 		for(i = 0; i < 25; i++) {
-			t = bmp180_temperature(bmp);
-			p = bmp180_pressure(bmp);
-			alt = bmp180_altitude(bmp);
-			printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
-			//usleep(2 * 1000 * 1000);
-			t=t*10;
-			alt=alt*10;
-			altu=(int)alt;
-            tempera=(int)t;
-			p=p*10;
-            Text_temp(fd, 0x00, 0x00);
-			digitos(fd, 0x00, 0x32, tempera,1);
-			Text_alt(fd, 0x32, 0x00);
-			digitos(fd, 0x32, 0x32, altu,3);
-			sleep(2);
-			clear_lcd(fd);
-			Text_Pres(fd, 0x00, 0x00);
-			digitos(fd, 0x32, 0x00, p,2);
-			sleep(2);
-			clear_lcd(fd);
+			sensor(bmp, fd);
 		}
 	bmp180_close(bmp);
 	}
 	close(fd);
-	return 0;
+}
+
+void sensor(void bmp, int fd){
+	float t;
+	long p;
+	float alt;
+	t = bmp180_temperature(bmp);
+	p = bmp180_pressure(bmp);
+	alt = bmp180_altitude(bmp);
+	printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
+	//usleep(2 * 1000 * 1000);
+	t=t*10;
+	alt=alt*10;
+	altu=(int)alt;
+	tempera=(int)t;
+	p=p*10;
+	Text_temp(fd, 0x00, 0x00);
+	digitos(fd, 0x00, 0x32, tempera, 1);
+	Text_alt(fd, 0x32, 0x00);
+	digitos(fd, 0x32, 0x32, altu, 3);
+	sleep(2);
+	clear_lcd(fd);
+	Text_Pres(fd, 0x00, 0x00);
+	digitos(fd, 0x32, 0x00, p, 2);
+	sleep(2);
+	clear_lcd(fd);
 }
