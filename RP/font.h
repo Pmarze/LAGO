@@ -45,77 +45,7 @@
 #define INIT_STATUS         0xFF
 
 ////////////////////////////////////////////////////////////////////////////////
-/*
-void asterisk(int);
-void equal(int);
-void dot(int);
-void space(int);
-void A_M(int);
-void B_M(int);
-void C_M(int);
-void D_M(int);
-void E_M(int);
-void F_M(int);
-void G_M(int);
-void H_M(int);
-void I_M(int);
-void J_M(int);
-void K_M(int);
-void L_M(int);
-void M_M(int);
-void N_M(int);
-void O_M(int);
-void P_M(int);
-void Q_M(int);
-void R_M(int);
-void S_M(int);
-void T_M(int);
-void U_M(int);
-void V_M(int);
-void W_M(int);
-void X_M(int);
-void Y_M(int);
-void Z_M(int);
-void a_MI(int);
-void b_MI(int);
-void c_MI(int);
-void d_MI(int);
-void e_MI(int);
-void f_MI(int);
-void g_MI(int);
-void h_MI(int);
-void i_MI(int);
-void j_MI(int);
-void k_MI(int);
-void l_MI(int);
-void m_MI(int);
-void n_MI(int);
-void o_MI(int);
-void p_MI(int);
-void q_MI(int);
-void r_MI(int);
-void s_MI(int);
-void t_MI(int);
-void u_MI(int);
-void v_MI(int);
-void w_MI(int);
-void x_MI(int);
-void y_MI(int);
-void z_MI(int);
 
-void N_0(int);
-void N_1(int);
-void N_2(int);
-void N_3(int);
-void N_4(int);
-void N_5(int);
-void N_6(int);
-void N_7(int);
-void N_8(int);
-void N_9(int);
-*/
-
-////////////////////////////////////////////////////////////////////////////////
 void asterisk(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x14);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x08);
@@ -471,17 +401,6 @@ void N_9(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
 }
 
-/*
-void _M(int fd){
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);  
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
-}
-*/
-
 void a_MI(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x20);
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x54);
@@ -715,5 +634,16 @@ void z_MI(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x44);  
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
 }
+
+/*
+void _M(int fd){
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);  
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
+}
+*/
 
 #endif /* FONT_H_ */

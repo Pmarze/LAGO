@@ -24,7 +24,7 @@ void digitos(int, int, int, int ,int);
 void Text_alt(int, int, int);
 void Text_Pres(int, int, int);
 void Text_temp(int, int, int);
-
+void Bienvenida(int, int, int);
 ////////////////////////////////////////////////////////////////////////////////
 
 void page_data(int fd, int page_a, int column_a){
@@ -210,4 +210,20 @@ void lcd_num(int fd, int a){
 	}	
 }
 
+void Bienvenida(int fd,int page, int column){
+    page_data(fd, page, column);
+    B_M(fd);
+    i_MI(fd);
+    e_MI(fd);
+    n_MI(fd);
+    v_MI(fd);
+    e_MI(fd);
+    n_MI(fd);
+    i_MI(fd);
+    d_MI(fd);
+    o_MI(fd);
+    s_MI(fd);
+    sleep(3);
+
+}
 #endif /*FUNCTIONS_H*/

@@ -66,6 +66,7 @@ int main(int argc, char **argv){
 
 	if(bmp != NULL){
 		int i;
+		Bienvenida(fd,0x32,0x00);
 		for(i = 0; i < 25; i++) {
 			t = bmp180_temperature(bmp);
 			p = bmp180_pressure(bmp);
