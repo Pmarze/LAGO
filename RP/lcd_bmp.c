@@ -32,7 +32,7 @@ int pres;
 
 char *i2c_device = "/dev/i2c-0";
 int address = 0x77;
-void *bmp = bmp180_init(address, i2c_device);
+void *bmp;
 
 void main(int argc, char **argv){
 	
@@ -53,7 +53,6 @@ void inic_disp(){
 	int status;
 	
 	fd = open("/dev/i2c-0", O_RDWR);
-
 	if(fd < 0)
     {
         printf("Cannot open the IIC device\n");
@@ -71,7 +70,9 @@ void inic_disp(){
     }
 	initialize(fd);
 	clear_lcd(fd);
-
+	
+	bmp = bmp180_init(address, i2c_device);
+	
 	bmp180_eprom_t eprom;
 	bmp180_dump_eprom(bmp, &eprom);
 	bmp180_set_oss(bmp, 1);
