@@ -74,7 +74,7 @@ int main(int argc, char **argv){
 	return 0;
 }
 
-void sensor(void bmp, int fd){
+void sensor(void *bmp, int fd){
 	float t;
 	long p;
 	float alt;
