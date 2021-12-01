@@ -1,3 +1,6 @@
+#ifndef FONT_H_
+#define FONT_H_
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -712,3 +715,5 @@ void z_MI(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x44);  
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
 }
+
+#endif /* FONT_H_ */
