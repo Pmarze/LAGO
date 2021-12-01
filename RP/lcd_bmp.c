@@ -23,58 +23,62 @@ void digitos(int, int, int, int, int);
 void Text_temp(int, int, int);
 void Text_alt(int, int, int);
 void Text_Pres(int, int, int);
-void sensor(void *, int);
+void datos(void *, int);
+void inic_disp();
+
 int tempera;
 int altu;
 int pres;
 
-int main(int argc, char **argv){
-	int status;
-    fd = open("/dev/i2c-0", O_RDWR);
+char *i2c_device = "/dev/i2c-0";
+int address = 0x77;
+void *bmp = bmp180_init(address, i2c_device);
 
-    if(fd < 0)
+void main(int argc, char **argv){
+	
+    inic_disp();
+	
+	if(bmp != NULL){
+		int i;
+		Bienvenida(fd,0x32,0x00);
+		for(i = 0; i < 25; i++) {
+			datos(bmp, fd);
+		}
+	bmp180_close(bmp);
+	}
+	close(fd);
+}
+
+void inic_disp(){
+	int status;
+	
+	fd = open("/dev/i2c-0", O_RDWR);
+
+	if(fd < 0)
     {
         printf("Cannot open the IIC device\n");
-        return 1;
     }
 
     status = ioctl(fd, I2C_SLAVE, OLED96_ADDR);
     if(status < 0)
     {
         printf("Unable to set the OLED96 address\n");
-        return -1;
     }
     if ( i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_OFF) < 0 )
     {
         printf("Unable to send commands\n");
         printf("errno: %i %s\n",errno,strerror(errno));
-        return -1;
     }
-	
 	initialize(fd);
-    clear_lcd(fd);
+	clear_lcd(fd);
 
-	char *i2c_device = "/dev/i2c-0";
-	int address = 0x77;
-	void *bmp = bmp180_init(address, i2c_device);
-	
 	bmp180_eprom_t eprom;
 	bmp180_dump_eprom(bmp, &eprom);
 	bmp180_set_oss(bmp, 1);
 
-	if(bmp != NULL){
-		int i;
-		Bienvenida(fd,0x32,0x00);
-		for(i = 0; i < 25; i++) {
-			sensor(bmp, fd);
-		}
-	bmp180_close(bmp);
-	}
-	close(fd);
-	return 0;
 }
 
-void sensor(void *bmp, int fd){
+void datos(void *bmp, int fd){
 	float t;
 	long p;
 	float alt;
