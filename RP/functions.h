@@ -206,7 +206,7 @@ void lcd_num(int fd, int a){
 		N_0(fd);
 	}	
 }
-
+/*
 void lcd_abc(int fd, string b){
     if (b==A){
         A_M(fd);
@@ -359,3 +359,4 @@ void lcd_abc(int fd, string b){
         _M(fd);
     }
 }
+*/
