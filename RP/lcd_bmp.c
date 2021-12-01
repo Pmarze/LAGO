@@ -47,7 +47,7 @@ int main(int argc, char **argv){
 	bmp180_close(bmp);
 	}
 	close(fd);
-	return 0
+	return 0;
 }
 
 void inic_disp(){
