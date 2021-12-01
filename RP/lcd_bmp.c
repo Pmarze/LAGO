@@ -23,7 +23,7 @@ void digitos(int, int, int, int, int);
 void Text_temp(int, int, int);
 void Text_alt(int, int, int);
 void Text_Pres(int, int, int);
-void sensor(void, int);
+void sensor(void *, int);
 int tempera;
 int altu;
 int pres;
