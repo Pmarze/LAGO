@@ -23,11 +23,12 @@ void digitos(int, int, int, int, int);
 void Text_temp(int, int, int);
 void Text_alt(int, int, int);
 void Text_Pres(int, int, int);
+void sensor(void, int);
 int tempera;
 int altu;
 int pres;
 
-void main(int argc, char **argv){
+int main(int argc, char **argv){
 	int status;
     fd = open("/dev/i2c-0", O_RDWR);
 
@@ -70,6 +71,7 @@ void main(int argc, char **argv){
 	bmp180_close(bmp);
 	}
 	close(fd);
+	return 0;
 }
 
 void sensor(void bmp, int fd){
