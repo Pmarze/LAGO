@@ -57,20 +57,17 @@ void inic_disp(){
 	if(fd < 0)
     {
         printf("Cannot open the IIC device\n");
-		return 1;
     }
 
     status = ioctl(fd, I2C_SLAVE, OLED96_ADDR);
     if(status < 0)
     {
         printf("Unable to set the OLED96 address\n");
-		return -1;
     }
     if ( i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_OFF) < 0 )
     {
         printf("Unable to send commands\n");
         printf("errno: %i %s\n",errno,strerror(errno));
-		return -1;
     }
 	initialize(fd);
 	clear_lcd(fd);
@@ -80,7 +77,6 @@ void inic_disp(){
 	bmp180_eprom_t eprom;
 	bmp180_dump_eprom(bmp, &eprom);
 	bmp180_set_oss(bmp, 1);
-
 }
 
 void datos(void *bmp, int fd){
