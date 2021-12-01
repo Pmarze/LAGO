@@ -25,6 +25,10 @@ void Text_alt(int, int, int);
 void Text_Pres(int, int, int);
 void Text_temp(int, int, int);
 void Bienvenida(int, int, int);
+void datos(void *, int);
+void inic_disp();
+void close_disp(void *, int);
+
 ////////////////////////////////////////////////////////////////////////////////
 
 void page_data(int fd, int page_a, int column_a){
@@ -226,4 +230,71 @@ void Bienvenida(int fd,int page, int column){
     sleep(3);
     clear_lcd(fd);
 }
+
+void inic_disp(){
+	int status;
+	char *i2c_device = "/dev/i2c-0";
+    int address = 0x77;
+
+	fd = open("/dev/i2c-0", O_RDWR);
+	if(fd < 0)
+    {
+        printf("Cannot open the IIC device\n");
+    }
+
+    status = ioctl(fd, I2C_SLAVE, OLED96_ADDR);
+    if(status < 0)
+    {
+        printf("Unable to set the OLED96 address\n");
+    }
+    if ( i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_OFF) < 0 )
+    {
+        printf("Unable to send commands\n");
+        printf("errno: %i %s\n",errno,strerror(errno));
+    }
+	initialize(fd);
+	clear_lcd(fd);
+	
+	bmp = bmp180_init(address, i2c_device);
+	
+	bmp180_eprom_t eprom;
+	bmp180_dump_eprom(bmp, &eprom);
+	bmp180_set_oss(bmp, 1);
+}
+
+void close_disp(void *bmp, int fd){
+    bmp180_close(bmp);
+    close(fd);
+}
+
+void datos(void *bmp, int fd){
+	float t;
+	long p;
+	float alt;
+    int tempera;
+    int altu;
+    int pres;
+
+	t = bmp180_temperature(bmp);
+	p = bmp180_pressure(bmp);
+	alt = bmp180_altitude(bmp);
+	printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
+	//usleep(2 * 1000 * 1000);
+	t=t*10;
+	alt=alt*10;
+	altu=(int)alt;
+	tempera=(int)t;
+	p=p*10;
+	Text_temp(fd, 0x00, 0x00);
+	digitos(fd, 0x00, 0x32, tempera, 1);
+	Text_alt(fd, 0x32, 0x00);
+	digitos(fd, 0x32, 0x32, altu, 3);
+	sleep(2);
+	clear_lcd(fd);
+	Text_Pres(fd, 0x00, 0x00);
+	digitos(fd, 0x32, 0x00, p, 2);
+	sleep(2);
+	clear_lcd(fd);
+}
+
 #endif /*FUNCTIONS_H*/
