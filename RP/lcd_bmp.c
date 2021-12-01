@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <stdint.h>
 #include "font.h"
+#include "functions.h"
 
 #define OLED96_ADDR     0x3c
 
