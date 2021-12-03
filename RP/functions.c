@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include "font.h"
 #include "functions.h"
+#include "bmp180.h"
 
 void page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
