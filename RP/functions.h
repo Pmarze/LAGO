@@ -12,6 +12,7 @@
 #include <errno.h>
 #include <stdint.h>
 #include "font.h"
+#include "bmp180.h"
 
 #define OLED96_ADDR     0x3c
 #define PAGESIZE        32
