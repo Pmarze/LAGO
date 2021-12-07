@@ -12,7 +12,7 @@
 #include "functions.h"
 #include "bmp180.h"
 
-void page_data(int fd, int page_a, int column_a){
+void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, page_a);
     i2c_smbus_write_byte_data(fd, 0x00, INIT_STATUS);
@@ -21,7 +21,7 @@ void page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, 0x7f);
 }
 
-void initialize(int fd){
+void fun_initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, SET_OSC_FREQ);      
     i2c_smbus_write_byte_data(fd, 0x00, 0x80);
     i2c_smbus_write_byte_data(fd, 0x00, SET_MUX_RATIO);
@@ -49,8 +49,8 @@ void initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
 }
 
-void numeros(int fd, int page, int column){
-    page_data(fd, page, column);
+void fun_numeros(int fd, int page, int column){
+    fun_page_data(fd, page, column);
     N_1(fd);
     N_2(fd);
     N_3(fd);
@@ -63,8 +63,8 @@ void numeros(int fd, int page, int column){
     N_0(fd);
 }
 
-void abecedario(int fd, int page, int column){
-    page_data(fd, page, column);
+void fun_abecedario(int fd, int page, int column){
+    fun_page_data(fd, page, column);
     A_M(fd);
     B_M(fd);
     C_M(fd);
@@ -88,18 +88,18 @@ void abecedario(int fd, int page, int column){
     Z_M(fd);
 }
 
-void clear_lcd(int fd){
-    page_data(fd, 0x00, 0x00);
+void fun_clear_lcd(int fd){
+    fun_page_data(fd, 0x00, 0x00);
     for( int i = 0; i< 512; i++){
     i2c_smbus_write_byte_data(fd, 0x40, 0x00);
     }
 }
 
-void digitos(int fd,int page, int column, int num, int caso){
+void fun_digits(int fd,int page, int column, int num, int caso){
 	int lista[10];
 	int j=0;
 	int i;
-	page_data(fd, page, column);
+	fun_page_data(fd, page, column);
 	while(num > 0) //do till num greater than  0
     {
         int mod = num % 10;  //split last digit from number
@@ -110,9 +110,9 @@ void digitos(int fd,int page, int column, int num, int caso){
 	for(i=j-1;i>=0;i--){
 		if(i==0){
 			dot(fd);
-			lcd_num(fd, lista[i]);
+			fun_lcd_num(fd, lista[i]);
 		}
-		lcd_num(fd, lista[i]);
+		fun_lcd_num(fd, lista[i]);
 	}
 	if(caso==1){
 		space(fd);
@@ -129,8 +129,8 @@ void digitos(int fd,int page, int column, int num, int caso){
 	}
 }
 
-void Text_temp(int fd,int page, int column){
-	page_data(fd, page, column);
+void fun_Text_temp(int fd,int page, int column){
+	fun_page_data(fd, page, column);
 	T_M(fd);
 	E_M(fd);
 	M_M(fd);
@@ -138,8 +138,8 @@ void Text_temp(int fd,int page, int column){
 	equal(fd);
 }
 
-void Text_alt(int fd,int page, int column){
-	page_data(fd, page, column);
+void fun_Text_alt(int fd,int page, int column){
+	fun_page_data(fd, page, column);
 	A_M(fd);
 	L_M(fd);
 	T_M(fd);
@@ -150,8 +150,8 @@ void Text_alt(int fd,int page, int column){
 	equal(fd);
 }
 
-void Text_Pres(int fd,int page, int column){
-	page_data(fd, page, column);
+void fun_Text_Pres(int fd,int page, int column){
+	fun_page_data(fd, page, column);
 	P_M(fd);
 	R_M(fd);
 	E_M(fd);
@@ -162,7 +162,7 @@ void Text_Pres(int fd,int page, int column){
 	equal(fd);
 }
 
-void lcd_num(int fd, int a){
+void fun_lcd_num(int fd, int a){
 	if(a==1){
 		N_1(fd);
 	}
@@ -195,8 +195,8 @@ void lcd_num(int fd, int a){
 	}	
 }
 
-void Bienvenida(int fd,int page, int column){
-    page_data(fd, page, column);
+void fun_LAGO(int fd,int page, int column){
+    fun_page_data(fd, page, column);
     B_M(fd);
     i_MI(fd);
     e_MI(fd);
@@ -209,16 +209,16 @@ void Bienvenida(int fd,int page, int column){
     o_MI(fd);
     s_MI(fd);
     sleep(3);
-    clear_lcd(fd);
+    fun_clear_lcd(fd);
 }
 
 
-void close_disp(void *bmp, int fd){
+void fun_close_disp(void *bmp, int fd){
     bmp180_close(bmp);
     close(fd);
 }
 
-void datos(void *bmp, int fd){
+void fun_data(void *bmp, int fd){
 	float t;
 	long p;
 	float alt;
@@ -235,19 +235,19 @@ void datos(void *bmp, int fd){
 	altu=(int)alt;
 	tempera=(int)t;
 	p=p*10;
-	Text_temp(fd, 0x00, 0x00);
-	digitos(fd, 0x00, 0x32, tempera, 1);
-	Text_alt(fd, 0x32, 0x00);
-	digitos(fd, 0x32, 0x32, altu, 3);
+	fun_Text_temp(fd, 0x00, 0x00);
+	fun_digits(fd, 0x00, 0x32, tempera, 1);
+	fun_Text_alt(fd, 0x32, 0x00);
+	fun_digits(fd, 0x32, 0x32, altu, 3);
 	sleep(2);
-	clear_lcd(fd);
-	Text_Pres(fd, 0x00, 0x00);
-	digitos(fd, 0x32, 0x00, p, 2);
+	fun_clear_lcd(fd);
+	fun_Text_Pres(fd, 0x00, 0x00);
+	fun_digits(fd, 0x32, 0x00, p, 2);
 	sleep(2);
-	clear_lcd(fd);
+	fun_clear_lcd(fd);
 }
 
-void inic_disp(){
+void fun_inic_disp(){
 	int status;
 	char *i2c_device = "/dev/i2c-0";
     int address = 0x77;

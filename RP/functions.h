@@ -19,20 +19,20 @@
 int fd;
 void *bmp;
 
-void page_data(int, int, int);
-void initialize(int);
-void clear_lcd(int);
-void lcd_num(int, int);
+void fun_page_data(int, int, int);
+void fun_initialize(int);
+void fun_clear_lcd(int);
+void fun_lcd_num(int, int);
 
-void abecedario(int, int, int);
-void numeros(int, int, int);
-void digitos(int, int, int, int ,int);
-void Text_alt(int, int, int);
-void Text_Pres(int, int, int);
-void Text_temp(int, int, int);
-void Bienvenida(int, int, int);
-void datos(void *, int);
-void inic_disp();
-void close_disp(void *, int);
+void fun_abecedario(int, int, int);
+void fun_numeros(int, int, int);
+void fun_digits(int, int, int, int ,int);
+void fun_Text_alt(int, int, int);
+void fun_Text_Pres(int, int, int);
+void fun_Text_temp(int, int, int);
+void fun_LAGO(int, int, int);
+void fun_data(void *, int);
+void fun_inic_disp();
+void fun_close_disp(void *, int);
 
 #endif /*FUNCTIONS_H*/

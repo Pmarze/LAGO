@@ -14,17 +14,17 @@
 
 int main(int argc, char **argv){
 	
-    inic_disp();
+    fun_inic_disp();
 	
 	if(bmp != NULL){
 		int i;
-		Bienvenida(fd,0x32,0x00);
+		fun_LAGO(fd,0x32,0x00);
 		for(i = 0; i < 25; i++) {
-			datos(bmp, fd);
+			fun_data(bmp, fd);
 		}
 	}
 	
-	close_disp(bmp,fd);
+	fun_close_disp(bmp,fd);
 
 	return 0;
 }
