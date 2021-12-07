@@ -99,11 +99,10 @@ void fun_clear_lcd(int fd){
     }
 }
 
-void fun_digits(int fd,int page, int column, int num, int caso){
+void fun_digits(int fd, int num){
 	int lista[10];
 	int j=0;
 	int i;
-	fun_page_data(fd, page, column);
 	while(num > 0) //do till num greater than  0
     {
         int mod = num % 10;  //split last digit from number
@@ -118,52 +117,6 @@ void fun_digits(int fd,int page, int column, int num, int caso){
 		}
 		fun_lcd_num(fd, lista[i]);
 	}
-	if(caso==1){
-		space(fd);
-		C_M(fd);
-	}
-	if(caso==2){
-		space(fd);
-		P_M(fd);
-		A_M(fd);
-	}
-	if(caso==3){
-		space(fd);
-		M_M(fd);
-	}
-}
-
-void fun_Text_temp(int fd,int page, int column){
-	fun_page_data(fd, page, column);
-	T_M(fd);
-	E_M(fd);
-	M_M(fd);
-	P_M(fd);
-	equal(fd);
-}
-
-void fun_Text_alt(int fd,int page, int column){
-	fun_page_data(fd, page, column);
-	A_M(fd);
-	L_M(fd);
-	T_M(fd);
-	I_M(fd);
-	T_M(fd);
-	U_M(fd);
-	D_M(fd);
-	equal(fd);
-}
-
-void fun_Text_Pres(int fd,int page, int column){
-	fun_page_data(fd, page, column);
-	P_M(fd);
-	R_M(fd);
-	E_M(fd);
-	S_M(fd);
-	I_M(fd);
-	O_M(fd);
-	N_M(fd);
-	equal(fd);
 }
 
 void fun_lcd_num(int fd, int a){
@@ -199,19 +152,10 @@ void fun_lcd_num(int fd, int a){
 	}	
 }
 
-void fun_LAGO(int fd,int page, int column){
+void fun_bienv(int fd,int page, int column){
     fun_page_data(fd, page, column);
-    B_M(fd);
-    i_MI(fd);
-    e_MI(fd);
-    n_MI(fd);
-    v_MI(fd);
-    e_MI(fd);
-    n_MI(fd);
-    i_MI(fd);
-    d_MI(fd);
-    o_MI(fd);
-    s_MI(fd);
+    fun_println("Bienvenidos",fd,0x00,0x00);
+	fun_println("LAGO GT",fd,0x00,0x32);
     sleep(3);
     fun_clear_lcd(fd);
 }
@@ -239,14 +183,20 @@ void fun_data(void *bmp, int fd){
 	altu=(int)alt;
 	tempera=(int)t;
 	p=p*10;
-	fun_println("Temperatura =", fd, 0x00, 0x00);
-	fun_digits(fd, 0x00, 0x32, tempera, 1);
-	fun_println("Altura =", fd, 0x32, 0x00);
-	fun_digits(fd, 0x32, 0x32, altu, 3);
+	fun_page_data( fd, 0x00, 0x00);
+	fun_println(fd, "Temperatura = ");
+	fun_digits(fd, tempera);
+	fun_println(fd, " C");
+	fun_page_data( fd, 0x32, 0x00);
+	fun_println("Altura =");
+	fun_digits(fd, altu);
+	fun_println(fd, " m");
 	sleep(2);
 	fun_clear_lcd(fd);
-	fun_println("Presion =", fd, 0x00, 0x00);
-	fun_digits(fd, 0x32, 0x00, p, 2);
+	fun_page_data( fd, 0x00, 0x00);
+	fun_println("Presion =");
+	fun_digits(fd, p);
+	fun_println(fd, " Pa");
 	sleep(2);
 	fun_clear_lcd(fd);
 }
@@ -282,8 +232,7 @@ void fun_inic_disp(){
 	bmp180_set_oss(bmp, 1);
 }
 
-void fun_println(char arr[], int fd, int page, int column){
-	fun_page_data(fd, page, column);
+void fun_println(char arr[]){
 	int i;
 	for(i=0 ; i<strlen(arr); i++){
 		if(arr[i]==abecedary_upper[0]){A_M(fd);}
