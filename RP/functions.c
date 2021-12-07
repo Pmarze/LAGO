@@ -232,7 +232,7 @@ void fun_inic_disp(){
 	bmp180_set_oss(bmp, 1);
 }
 
-void fun_println(char arr[]){
+void fun_println(int fd, char arr[]){
 	int i;
 	for(i=0 ; i<strlen(arr); i++){
 		if(arr[i]==abecedary_upper[0]){A_M(fd);}
