@@ -20,13 +20,7 @@ int main(int argc, char **argv){
 		int i;
 		fun_LAGO(fd,0x32,0x00);
 		for(i = 0; i < 25; i++) {
-			//fun_data(bmp, fd);
-			fun_println("BACA");
-			sleep(1);
-			fun_clear_lcd(fd);
-			fun_println("baca minuscula");
-			sleep(1);
-			fun_clear_lcd(fd);			
+			fun_data(bmp, fd);			
 		}
 	}
 	

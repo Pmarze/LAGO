@@ -14,7 +14,7 @@
 
 char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz";
 char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-char special_signs[]=" *=.";
+char special_signs[]=" :*=.";
 
 void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
@@ -239,13 +239,13 @@ void fun_data(void *bmp, int fd){
 	altu=(int)alt;
 	tempera=(int)t;
 	p=p*10;
-	fun_Text_temp(fd, 0x00, 0x00);
+	fun_println("Temperatura =", 0x00, 0x00);
 	fun_digits(fd, 0x00, 0x32, tempera, 1);
-	fun_Text_alt(fd, 0x32, 0x00);
+	fun_println("Altura =",fd, 0x32, 0x00);
 	fun_digits(fd, 0x32, 0x32, altu, 3);
 	sleep(2);
 	fun_clear_lcd(fd);
-	fun_Text_Pres(fd, 0x00, 0x00);
+	fun_println("Presion =",fd, 0x00, 0x00);
 	fun_digits(fd, 0x32, 0x00, p, 2);
 	sleep(2);
 	fun_clear_lcd(fd);
@@ -282,8 +282,8 @@ void fun_inic_disp(){
 	bmp180_set_oss(bmp, 1);
 }
 
-void fun_println(char arr[]){
-	fun_page_data(fd, 0x00, 0x00);
+void fun_println(char arr[], int fd, int page, int column){
+	fun_page_data(fd, page, column);
 	int i;
 	for(i=0 ; i<strlen(arr); i++){
 		if(arr[i]==abecedary_upper[0]){A_M(fd);}
@@ -339,5 +339,7 @@ void fun_println(char arr[]){
 		if(arr[i]==abecedary_lower[24]){y_MI(fd);}
 		if(arr[i]==abecedary_lower[25]){z_MI(fd);}
 		if(arr[i]==special_signs[0]){space(fd);}
+		if(arr[i]==special_signs[1]){colon(fd);}
+		if(arr[i]==special_signs[3]){equal(fd);}
 	}
 }
