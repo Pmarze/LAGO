@@ -22,6 +22,7 @@ int main(int argc, char **argv){
 		for(i = 0; i < 25; i++) {
 			//fun_data(bmp, fd);
 			fun_println("BACA");
+			fun_clear_lcd(fd);
 		}
 	}
 	
