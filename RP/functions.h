@@ -27,7 +27,7 @@ void fun_lcd_num(int, int);
 void fun_abecedario(int, int, int);
 void fun_numeros(int, int, int);
 void fun_digits(int, int);
-void fun_bienv(int, int, int);
+void fun_bienv(int);
 void fun_data(void *, int);
 void fun_inic_disp();
 void fun_close_disp(void *, int);

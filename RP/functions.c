@@ -154,9 +154,9 @@ void fun_lcd_num(int fd, int a){
 
 void fun_bienv(int fd){
     fun_page_data(fd, 0x00, 0x32);
-    fun_println("Bienvenidos");
+    fun_println(fd, "Bienvenidos");
 	fun_page_data(fd, 0x32, 0x00);
-	fun_println("LAGO GT");
+	fun_println(fd, "LAGO GT");
     sleep(3);
     fun_clear_lcd(fd);
 }
