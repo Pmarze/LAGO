@@ -12,9 +12,6 @@
 #include "functions.h"
 #include "bmp180.h"
 
-char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz"
-char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-char special_signs[]="*=. "
 
 void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
