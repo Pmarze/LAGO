@@ -34,6 +34,6 @@ void fun_LAGO(int, int, int);
 void fun_data(void *, int);
 void fun_inic_disp();
 void fun_close_disp(void *, int);
-void fun_println(char []);
+void fun_println(char [], int, int, int);
 
 #endif /*FUNCTIONS_H*/
