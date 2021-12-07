@@ -16,10 +16,6 @@
 #define OLED96_ADDR     0x3c
 #define PAGESIZE        32
 
-char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz"
-char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-char special_signs[]="*=. "
-
 int fd;
 void *bmp;
 
