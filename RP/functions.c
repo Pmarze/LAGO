@@ -268,8 +268,8 @@ void fun_inic_disp(){
         printf("Unable to send commands\n");
         printf("errno: %i %s\n",errno,strerror(errno));
     }
-	initialize(fd);
-	clear_lcd(fd);
+	fun_initialize(fd);
+	fun_clear_lcd(fd);
 	
 	bmp = bmp180_init(address, i2c_device);
 	
