@@ -239,13 +239,13 @@ void fun_data(void *bmp, int fd){
 	altu=(int)alt;
 	tempera=(int)t;
 	p=p*10;
-	fun_println("Temperatura =", 0x00, 0x00);
+	fun_println("Temperatura =", fd, 0x00, 0x00);
 	fun_digits(fd, 0x00, 0x32, tempera, 1);
-	fun_println("Altura =",fd, 0x32, 0x00);
+	fun_println("Altura =", fd, 0x32, 0x00);
 	fun_digits(fd, 0x32, 0x32, altu, 3);
 	sleep(2);
 	fun_clear_lcd(fd);
-	fun_println("Presion =",fd, 0x00, 0x00);
+	fun_println("Presion =", fd, 0x00, 0x00);
 	fun_digits(fd, 0x32, 0x00, p, 2);
 	sleep(2);
 	fun_clear_lcd(fd);
