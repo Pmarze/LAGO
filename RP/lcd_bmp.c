@@ -18,7 +18,7 @@ int main(int argc, char **argv){
 	
 	if(bmp != NULL){
 		int i;
-		fun_LAGO(fd,0x32,0x00);
+		fun_bienv(fd);
 		for(i = 0; i < 25; i++) {
 			fun_data(bmp, fd);			
 		}

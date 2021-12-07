@@ -152,10 +152,11 @@ void fun_lcd_num(int fd, int a){
 	}	
 }
 
-void fun_bienv(int fd,int page, int column){
-    fun_page_data(fd, page, column);
-    fun_println("Bienvenidos",fd,0x00,0x00);
-	fun_println("LAGO GT",fd,0x00,0x32);
+void fun_bienv(int fd){
+    fun_page_data(fd, 0x00, 0x32);
+    fun_println("Bienvenidos");
+	fun_page_data(fd, 0x32, 0x00);
+	fun_println("LAGO GT");
     sleep(3);
     fun_clear_lcd(fd);
 }
@@ -188,13 +189,13 @@ void fun_data(void *bmp, int fd){
 	fun_digits(fd, tempera);
 	fun_println(fd, " C");
 	fun_page_data( fd, 0x32, 0x00);
-	fun_println("Altura =");
+	fun_println(fd, "Altura =");
 	fun_digits(fd, altu);
 	fun_println(fd, " m");
 	sleep(2);
 	fun_clear_lcd(fd);
 	fun_page_data( fd, 0x00, 0x00);
-	fun_println("Presion =");
+	fun_println(fd, "Presion =");
 	fun_digits(fd, p);
 	fun_println(fd, " Pa");
 	sleep(2);
