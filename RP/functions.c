@@ -12,6 +12,10 @@
 #include "functions.h"
 #include "bmp180.h"
 
+char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz"
+char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+char special_signs[]="*=. "
+
 void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, page_a);
@@ -276,4 +280,47 @@ void fun_inic_disp(){
 	bmp180_eprom_t eprom;
 	bmp180_dump_eprom(bmp, &eprom);
 	bmp180_set_oss(bmp, 1);
+}
+
+void fun_println(char arr[]){
+	fun_page_data(fd, 0x00, 0x00);
+	int i;
+	for(i=0 ; i<strlen(arr); i++){
+		if(arr[i]==abecedary_upper[0]){
+			A_M(fd);
+		}
+		if(arr[i]==abecedary_upper[1]){
+			B_M(fd);
+		}
+		if(arr[i]==abecedary_upper[2]){
+			C_M(fd);
+		}
+		if(arr[i]==abecedary_upper[3]){
+			D_M(fd);
+		}
+		if(arr[i]==abecedary_upper[4]){
+			E_M(fd);
+		}
+		if(arr[i]==abecedary_upper[5]){
+			F_M(fd);
+		}
+		if(arr[i]==abecedary_upper[6]){
+			G_M(fd);
+		}
+		if(arr[i]==abecedary_upper[7]){
+			H_M(fd);
+		}
+		if(arr[i]==abecedary_upper[8]){
+			I_M(fd);
+		}
+		if(arr[i]==abecedary_upper[9]){
+			J_M(fd);
+		}
+		if(arr[i]==abecedary_upper[10]){
+			K_M(fd);
+		}
+		if(arr[i]==abecedary_upper[11]){
+			L_M(fd);
+		}
+	}
 }
