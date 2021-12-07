@@ -53,44 +53,6 @@ void fun_initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
 }
 
-void fun_numeros(int fd, int page, int column){
-    fun_page_data(fd, page, column);
-    N_1(fd);
-    N_2(fd);
-    N_3(fd);
-    N_4(fd);
-    N_5(fd);
-    N_6(fd);
-    N_7(fd);
-    N_8(fd);
-    N_9(fd);
-    N_0(fd);
-}
-
-void fun_abecedario(int fd, int page, int column){
-    fun_page_data(fd, page, column);
-    A_M(fd);
-    B_M(fd);
-    C_M(fd);
-    D_M(fd);
-    E_M(fd);
-    F_M(fd);
-    G_M(fd);
-    H_M(fd);
-    I_M(fd);
-    J_M(fd);
-    K_M(fd);
-    L_M(fd);
-    M_M(fd);
-    N_M(fd);
-    O_M(fd);
-    P_M(fd);
-    V_M(fd);
-    W_M(fd);
-    X_M(fd);
-    Y_M(fd);
-    Z_M(fd);
-}
 
 void fun_clear_lcd(int fd){
     fun_page_data(fd, 0x00, 0x00);
@@ -103,11 +65,10 @@ void fun_digits(int fd, int num){
 	int lista[10];
 	int j=0;
 	int i;
-	while(num > 0) //do till num greater than  0
-    {
-        int mod = num % 10;  //split last digit from number
+	while(num > 0){
+        int mod = num % 10;
 		lista[j]=mod;
-        num = num / 10;    //divide num by 10. num /= 10 also a valid one 
+        num = num / 10;
     	j++;
     }
 	for(i=j-1;i>=0;i--){
@@ -119,41 +80,8 @@ void fun_digits(int fd, int num){
 	}
 }
 
-void fun_lcd_num(int fd, int a){
-	if(a==1){
-		N_1(fd);
-	}
-	if(a==2){
-		N_2(fd);
-	}
-	if(a==3){
-		N_3(fd);
-	}
-	if(a==4){
-		N_4(fd);
-	}
-	if(a==5){
-		N_5(fd);
-	}
-	if(a==6){
-		N_6(fd);
-	}
-	if(a==7){
-		N_7(fd);
-	}
-	if(a==8){
-		N_8(fd);
-	}
-	if(a==9){
-		N_8(fd);
-	}
-	if(a==0){
-		N_0(fd);
-	}	
-}
-
 void fun_bienv(int fd){
-    fun_page_data(fd, 0x00, 0x32);
+    fun_page_data(fd, 0x00, 0x00);
     fun_println(fd, "Bienvenidos");
 	fun_page_data(fd, 0x32, 0x00);
 	fun_println(fd, "LAGO GT");
@@ -188,16 +116,20 @@ void fun_data(void *bmp, int fd){
 	fun_println(fd, "Temperatura = ");
 	fun_digits(fd, tempera);
 	fun_println(fd, " C");
+
 	fun_page_data( fd, 0x32, 0x00);
-	fun_println(fd, "Altura =");
+	fun_println(fd, "Altura = ");
 	fun_digits(fd, altu);
 	fun_println(fd, " m");
+
 	sleep(2);
+
 	fun_clear_lcd(fd);
 	fun_page_data( fd, 0x00, 0x00);
-	fun_println(fd, "Presion =");
+	fun_println(fd, "Presion = ");
 	fun_digits(fd, p);
 	fun_println(fd, " Pa");
+
 	sleep(2);
 	fun_clear_lcd(fd);
 }
@@ -231,6 +163,19 @@ void fun_inic_disp(){
 	bmp180_eprom_t eprom;
 	bmp180_dump_eprom(bmp, &eprom);
 	bmp180_set_oss(bmp, 1);
+}
+
+void fun_lcd_num(int fd, int a){
+	if(a==1){N_1(fd);}
+	if(a==2){N_2(fd);}
+	if(a==3){N_3(fd);}
+	if(a==4){N_4(fd);}
+	if(a==5){N_5(fd);}
+	if(a==6){N_6(fd);}
+	if(a==7){N_7(fd);}
+	if(a==8){N_8(fd);}
+	if(a==9){N_8(fd);}
+	if(a==0){N_0(fd);}	
 }
 
 void fun_println(int fd, char arr[]){
@@ -290,6 +235,8 @@ void fun_println(int fd, char arr[]){
 		if(arr[i]==abecedary_lower[25]){z_MI(fd);}
 		if(arr[i]==special_signs[0]){space(fd);}
 		if(arr[i]==special_signs[1]){colon(fd);}
+		if(arr[i]==special_signs[2]){asterisk(fd);}
 		if(arr[i]==special_signs[3]){equal(fd);}
+		if(arr[i]==special_signs[4]){dot(fd);}
 	}
 }
