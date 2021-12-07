@@ -22,7 +22,11 @@ int main(int argc, char **argv){
 		for(i = 0; i < 25; i++) {
 			//fun_data(bmp, fd);
 			fun_println("BACA");
+			sleep(1);
 			fun_clear_lcd(fd);
+			fun_println("baca minuscula");
+			sleep(1);
+			fun_clear_lcd(fd);			
 		}
 	}
 	
