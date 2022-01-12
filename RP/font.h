@@ -5,6 +5,7 @@
     * @author Pablo M. Zeceña
     * @brief Library to display characters into the LCD and operational parameters of the SSD1306. 
     * Each character to be displayed on the screen is declared individually as a function. 
+    * This library is based on some functions of the SSD1306/lib/font.c repository, created by Marian Hrinko "https://github.com/Matiasus/SSD1306"
     * @code
       // Each character must be written using hexadecimal numbers 
       // sent one by one as shown in the example below
@@ -67,7 +68,7 @@
     */
 #define SET_DISP_OFFSET     0xD3
 #define DISPLAY_ON          0xAF
-#define DISPLAY_OFF         0xAE  // micropi SET_DISP
+#define DISPLAY_OFF         0xAE
   /**
     * @brief Entire display on
     */
@@ -79,8 +80,7 @@
   /**
     * @brief Display normal
     */
-#define DISPLAY_NORMAL      0xA6  // micropi SET_NORM_INV
-  /**
+#define DISPLAY_NORMAL      0xA6
     * @brief Display inverse
     */
 #define DISPLAY_INVERSE     0xA7
@@ -96,7 +96,7 @@
   /**
     * @brief Set memory address
     */
-#define MEMORY_ADDR_MODE    0x20  // micropi SET_MEM_ADDR
+#define MEMORY_ADDR_MODE    0x20
   /**
     * @brief  Set column addres
     */
@@ -116,7 +116,7 @@
   /**
     * @brief Set COM output scan direction (normal mode (RESET) Scan from COM0 to COM[N-1])
     */
-#define COM_SCAN_DIR        0xC0  // micropi SET_COM_OUT_DIR
+#define COM_SCAN_DIR        0xC0
   /**
     * @brief Set COM output scan direction (remapped mode. Scan from COM[N-1] to COM0)
     */
@@ -129,11 +129,11 @@
     * @brief Set constrast control
     */ 
 #define SET_CONTRAST        0x81
-#define SET_OSC_FREQ        0xD5  // micropi SET_DISP_CLK_DIV
+#define SET_OSC_FREQ        0xD5
   /**
     * @brief Charge pump setting
     */
-#define SET_CHAR_REG        0x8D  // micropi SET_CHARGE_PUMP
+#define SET_CHAR_REG        0x8D
   /**
     * @brief Set pre-charge Period
     */
@@ -141,7 +141,7 @@
   /**
     * @brief Set VcomH deselect level
     */
-#define SET_VCOM_DESEL      0xDB  // micropi SET_VCOM_DESEL
+#define SET_VCOM_DESEL      0xDB
 
 #define INIT_STATUS         0xFF
 

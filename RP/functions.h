@@ -4,6 +4,7 @@
     * @date 16/12/2021
     * @author Pablo M. Zeceña
     * @brief Library containing the necessary functions to make the SSD1306 LCD display and the BMP180 sensor work properly
+    * This library is based on some functions of the lharnaldi/rp_bmp180 repository, created by L. Horacio Arnaldi "https://github.com/lharnaldi/rp_bmp180"    
     * @code
       int main(int argc, char **argv){
 	      fun_inic_disp();
