@@ -106,7 +106,6 @@ void fun_data(void *bmp, int fd){
 	p = bmp180_pressure(bmp);
 	alt = bmp180_altitude(bmp);
 	printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
-	//usleep(2 * 1000 * 1000);
 	t=t*10;
 	alt=alt*10;
 	altu=(int)alt;

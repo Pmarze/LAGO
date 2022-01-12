@@ -1,3 +1,48 @@
+  /**
+    * @file font.h
+    * @version 1.0
+    * @date 16/12/2021
+    * @author Pablo M. Zeceña
+    * @brief Library to display characters into the LCD and operational parameters of the SSD1306. 
+    * Each character to be displayed on the screen is declared individually as a function. 
+    * This library is based on some functions of the SSD1306/lib/font.c repository, created by Marian Hrinko "https://github.com/Matiasus/SSD1306"
+    * @code
+      // Each character must be written using hexadecimal numbers 
+      // sent one by one as shown in the example below
+      void DEMO(int fd){
+          i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
+          i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
+          i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
+          i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
+          i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);  
+          i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
+      }
+    * @endcode    
+    *
+    * @code 
+      int main(int argc, char **argv){
+	    fun_inic_disp();
+	    if(bmp != NULL){
+          H_M(fd);
+          e_MI(fd);
+          l_MI(fd);
+          l_MI(fd);
+          o_MI(fd);
+          space(fd);
+          W_M(fd);
+          o_MI(fd);
+          r_MI(fd);
+          l_MI(fd);
+          d_MI(fd);
+	    }
+	    fun_close_disp(bmp,fd);
+
+	    return 0;
+      }
+      // The LCD Show: 
+      // Hello World
+    * @endcode  
+    */
 #ifndef FONT_H_
 #define FONT_H_
 
@@ -18,29 +63,85 @@
 // Command definition
 
 #define SET_MUX_RATIO       0xA8
-#define SET_DISP_OFFSET     0xD3  // display offset
+  /**
+    * @brief Display offset
+    */
+#define SET_DISP_OFFSET     0xD3
 #define DISPLAY_ON          0xAF
-#define DISPLAY_OFF         0xAE  // micropi SET_DISP
-#define SET_ENTIRE_ON       0xA4  // entire display on
-#define DISPLAY_IGN_RAM     0xA5  // display ingnore RAM
-#define DISPLAY_NORMAL      0xA6  // display normal micropi SET_NORM_INV
-#define DISPLAY_INVERSE     0xA7  // display inverse
-#define DEACT_SCROLL        0x2E  // desactivate scroll 
-#define ACTIVE_SCROLL       0x2F  
-#define SET_START_LINE      0x40  // Set display start line
-#define MEMORY_ADDR_MODE    0x20  // Set memory address micropi SET_MEM_ADDR
-#define SET_COLUMN_ADDR     0x21  // set column addres
-#define SET_PAGE_ADDR       0x22  // set page address
-#define SET_SEG_REMAP       0xA0  // set segment remap (column address 0 is mapped to SEG0 (RESET))
-#define SET_SEG_REMAP_OP    0xA1  // set segment remap (column address 127 is mapped to SEG0)
-#define COM_SCAN_DIR        0xC0  // Set COM output scan direction (normal mode (RESET) Scan from COM0 to COM[N –1]) micropi SET_COM_OUT_DIR
-#define COM_SCAN_DIR_OP     0xC8  // Set COM output scan direction (remapped mode. Scan from COM[N-1] to COM0)
-#define SET_COM_PIN_CFG     0xDA  // Set COM pins Hardware configuration 
-#define SET_CONTRAST        0x81  // Set contrast control
-#define SET_OSC_FREQ        0xD5  // micropi SET_DISP_CLK_DIV
-#define SET_CHAR_REG        0x8D  // Charge pump setting micropi SET_CHARGE_PUMP
-#define SET_PRECHARGE       0xD9  // Set pre-charge Period
-#define SET_VCOM_DESEL      0xDB  // Set VcomH deselect level micropi SET_VCOM_DESEL
+#define DISPLAY_OFF         0xAE
+  /**
+    * @brief Entire display on
+    */
+#define SET_ENTIRE_ON       0xA4
+  /**
+    * @brief Display ignore RAM
+    */
+#define DISPLAY_IGN_RAM     0xA5
+  /**
+    * @brief Display normal
+    */
+#define DISPLAY_NORMAL      0xA6
+    * @brief Display inverse
+    */
+#define DISPLAY_INVERSE     0xA7
+  /**
+    * @brief Desactivate scroll
+    */
+#define DEACT_SCROLL        0x2E
+#define ACTIVE_SCROLL       0x2F
+  /**
+    * @brief Set display start line
+    */  
+#define SET_START_LINE      0x40
+  /**
+    * @brief Set memory address
+    */
+#define MEMORY_ADDR_MODE    0x20
+  /**
+    * @brief  Set column addres
+    */
+#define SET_COLUMN_ADDR     0x21
+  /**
+    * @brief Set page address
+    */
+#define SET_PAGE_ADDR       0x22
+  /**
+    * @brief Set segment remap (column address 0 is mapped to SEG0 (RESET))
+    */
+#define SET_SEG_REMAP       0xA0
+  /**
+    * @brief Set segment remap (column address 127 is mapped to SEG0)
+    */
+#define SET_SEG_REMAP_OP    0xA1  
+  /**
+    * @brief Set COM output scan direction (normal mode (RESET) Scan from COM0 to COM[N-1])
+    */
+#define COM_SCAN_DIR        0xC0
+  /**
+    * @brief Set COM output scan direction (remapped mode. Scan from COM[N-1] to COM0)
+    */
+#define COM_SCAN_DIR_OP     0xC8
+  /**
+    * @brief Set COM pins Hardware configuration
+    */
+#define SET_COM_PIN_CFG     0xDA
+  /**
+    * @brief Set constrast control
+    */ 
+#define SET_CONTRAST        0x81
+#define SET_OSC_FREQ        0xD5
+  /**
+    * @brief Charge pump setting
+    */
+#define SET_CHAR_REG        0x8D
+  /**
+    * @brief Set pre-charge Period
+    */
+#define SET_PRECHARGE       0xD9
+  /**
+    * @brief Set VcomH deselect level
+    */
+#define SET_VCOM_DESEL      0xDB
 
 #define INIT_STATUS         0xFF
 
@@ -642,16 +743,5 @@ void z_MI(int fd){
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x44);  
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
 }
-
-/*
-void _M(int fd){
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x);  
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);  
-}
-*/
 
 #endif /* FONT_H_ */

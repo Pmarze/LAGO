@@ -1,4 +1,3 @@
-//#include "bmp180.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -9,7 +8,6 @@
 #include <string.h>
 #include <errno.h>
 #include <stdint.h>
-//#include "font.h"
 #include "functions.h"
 
 int main(int argc, char **argv){
