@@ -220,7 +220,7 @@ uint8_t z_MI[5] = {0x44,0x64,0x54,0x4C,0x44};
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void character(int fd, uint8_t C[]){
+void character(int fd, uint8_t* C[]){
 	for(int i=0 ; i<4; i++){
         i2c_smbus_write_byte_data(fd, SET_START_LINE, C[i]);
     }
