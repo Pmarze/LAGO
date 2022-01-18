@@ -81,6 +81,7 @@
     * @brief Display normal
     */
 #define DISPLAY_NORMAL      0xA6
+  /**
     * @brief Display inverse
     */
 #define DISPLAY_INVERSE     0xA7
