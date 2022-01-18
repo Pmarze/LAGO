@@ -235,6 +235,6 @@ void fun_println(int fd, char arr[]){
 		if(arr[i]==special_signs[1]){character(fd, *colon[5]);}
 		if(arr[i]==special_signs[2]){character(fd, *asterisk[5]);}
 		if(arr[i]==special_signs[3]){character(fd, *equal[5]);}
-		if(arr[i]==special_signs[4]){character(fd, *dot[5]);}
+		if(arr[i]==special_signs[4]){character(fd, dot);}
 	}
 }
