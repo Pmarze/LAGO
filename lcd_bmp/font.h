@@ -189,12 +189,11 @@ void space(int fd){
 }
 
 void A_M(int fd){
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7E);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x11);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x11);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x11);
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x7E); 
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00);       
+    int i;
+    uint8_t number[6] = {0x7E,0x11,0x11,0x11,0x7E,0x00};
+	for(i=0 ; i<5; i++){
+        i2c_smbus_write_byte_data(fd, SET_START_LINE, number[i]);
+    }      
 }
 
 void B_M(int fd){
