@@ -205,36 +205,36 @@ void fun_println(int fd, char arr[]){
 		if(arr[i]==abecedary_upper[23]){character(fd, (uint8_t *) X_M);}
 		if(arr[i]==abecedary_upper[24]){character(fd, (uint8_t *) Y_M);}
 		if(arr[i]==abecedary_upper[25]){character(fd, (uint8_t *) Z_M);}
-		if(arr[i]==abecedary_lower[0]){character(fd, (uint8_t *) a_M]);}
-		if(arr[i]==abecedary_lower[1]){character(fd, (uint8_t *) b_M]);}
-		if(arr[i]==abecedary_lower[2]){character(fd, (uint8_t *) c_M]);}
-		if(arr[i]==abecedary_lower[3]){character(fd, (uint8_t *) d_M]);}
-		if(arr[i]==abecedary_lower[4]){character(fd, (uint8_t *) e_M]);}
-		if(arr[i]==abecedary_lower[5]){character(fd, (uint8_t *) f_M]);}
-		if(arr[i]==abecedary_lower[6]){character(fd, (uint8_t *) g_M]);}
-		if(arr[i]==abecedary_lower[7]){character(fd, (uint8_t *) h_M]);}
-		if(arr[i]==abecedary_lower[8]){character(fd, (uint8_t *) i_M]);}
-		if(arr[i]==abecedary_lower[9]){character(fd, (uint8_t *) j_M]);}
-		if(arr[i]==abecedary_lower[10]){character(fd, (uint8_t *) k_M]);}
-		if(arr[i]==abecedary_lower[11]){character(fd, (uint8_t *) l_M]);}
-		if(arr[i]==abecedary_lower[12]){character(fd, (uint8_t *) m_M]);}
-		if(arr[i]==abecedary_lower[13]){character(fd, (uint8_t *) n_M]);}
-		if(arr[i]==abecedary_lower[14]){character(fd, (uint8_t *) o_M]);}
-		if(arr[i]==abecedary_lower[15]){character(fd, (uint8_t *) p_M]);}
-		if(arr[i]==abecedary_lower[16]){character(fd, (uint8_t *) q_M]);}
-		if(arr[i]==abecedary_lower[17]){character(fd, (uint8_t *) r_M]);}
-		if(arr[i]==abecedary_lower[18]){character(fd, (uint8_t *) s_M]);}
-		if(arr[i]==abecedary_lower[19]){character(fd, (uint8_t *) t_M]);}
-		if(arr[i]==abecedary_lower[20]){character(fd, (uint8_t *) u_M]);}
-		if(arr[i]==abecedary_lower[21]){character(fd, (uint8_t *) v_M]);}
-		if(arr[i]==abecedary_lower[22]){character(fd, (uint8_t *) w_M]);}
-		if(arr[i]==abecedary_lower[23]){character(fd, (uint8_t *) x_M]);}
-		if(arr[i]==abecedary_lower[24]){character(fd, (uint8_t *) y_M]);}
-		if(arr[i]==abecedary_lower[25]){character(fd, (uint8_t *) z_M]);}
-		if(arr[i]==special_signs[0]){character(fd, (uint8_t *) spa5]);}
-		if(arr[i]==special_signs[1]){character(fd, (uint8_t *) col5]);}
-		if(arr[i]==special_signs[2]){character(fd, (uint8_t *) astsk[5]);}
-		if(arr[i]==special_signs[3]){character(fd, (uint8_t *) equ5]);}
+		if(arr[i]==abecedary_lower[0]){character(fd, (uint8_t *) a_M);}
+		if(arr[i]==abecedary_lower[1]){character(fd, (uint8_t *) b_M);}
+		if(arr[i]==abecedary_lower[2]){character(fd, (uint8_t *) c_M);}
+		if(arr[i]==abecedary_lower[3]){character(fd, (uint8_t *) d_M);}
+		if(arr[i]==abecedary_lower[4]){character(fd, (uint8_t *) e_M);}
+		if(arr[i]==abecedary_lower[5]){character(fd, (uint8_t *) f_M);}
+		if(arr[i]==abecedary_lower[6]){character(fd, (uint8_t *) g_M);}
+		if(arr[i]==abecedary_lower[7]){character(fd, (uint8_t *) h_M);}
+		if(arr[i]==abecedary_lower[8]){character(fd, (uint8_t *) i_M);}
+		if(arr[i]==abecedary_lower[9]){character(fd, (uint8_t *) j_M);}
+		if(arr[i]==abecedary_lower[10]){character(fd, (uint8_t *) k_M);}
+		if(arr[i]==abecedary_lower[11]){character(fd, (uint8_t *) l_M);}
+		if(arr[i]==abecedary_lower[12]){character(fd, (uint8_t *) m_M);}
+		if(arr[i]==abecedary_lower[13]){character(fd, (uint8_t *) n_M);}
+		if(arr[i]==abecedary_lower[14]){character(fd, (uint8_t *) o_M);}
+		if(arr[i]==abecedary_lower[15]){character(fd, (uint8_t *) p_M);}
+		if(arr[i]==abecedary_lower[16]){character(fd, (uint8_t *) q_M);}
+		if(arr[i]==abecedary_lower[17]){character(fd, (uint8_t *) r_M);}
+		if(arr[i]==abecedary_lower[18]){character(fd, (uint8_t *) s_M);}
+		if(arr[i]==abecedary_lower[19]){character(fd, (uint8_t *) t_M);}
+		if(arr[i]==abecedary_lower[20]){character(fd, (uint8_t *) u_M);}
+		if(arr[i]==abecedary_lower[21]){character(fd, (uint8_t *) v_M);}
+		if(arr[i]==abecedary_lower[22]){character(fd, (uint8_t *) w_M);}
+		if(arr[i]==abecedary_lower[23]){character(fd, (uint8_t *) x_M);}
+		if(arr[i]==abecedary_lower[24]){character(fd, (uint8_t *) y_M);}
+		if(arr[i]==abecedary_lower[25]){character(fd, (uint8_t *) z_M);}
+		if(arr[i]==special_signs[0]){character(fd, (uint8_t *) space);}
+		if(arr[i]==special_signs[1]){character(fd, (uint8_t *) colon);}
+		if(arr[i]==special_signs[2]){character(fd, (uint8_t *) asterisk);}
+		if(arr[i]==special_signs[3]){character(fd, (uint8_t *) equal);}
 		if(arr[i]==special_signs[4]){character(fd, (uint8_t *) dot);}
 	}
 }
