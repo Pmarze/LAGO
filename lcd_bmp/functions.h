@@ -104,8 +104,8 @@ void fun_close_disp(void *, int);
     * @param fd Indicates the address of the BMP180 sensor
     * @param C Array containing the 5 hexadecimal numbers that make up the character
     */
-void fun_character(int, uint8_t []);
+void fun_character2(int, uint8_t []);
 
-void fun_character2(int, uint8_t [25][5], int);
+void fun_character(int, uint8_t [26][5], int);
 
 #endif /*FUNCTIONS_H*/
