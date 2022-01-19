@@ -180,7 +180,7 @@ void fun_lcd_num(int fd, int a){
 void fun_println(int fd, char arr[]){
 	int i;
 	for(i=0 ; i<strlen(arr); i++){
-		if(arr[i]==abecedary_upper[0]){fun_character(fd, capital, 0);}
+		if(arr[i]==abecedary_upper[0]){fun_character(fd, numbers, 0);}
 		if(arr[i]==abecedary_upper[1]){fun_character(fd, capital, 1);}
 		if(arr[i]==abecedary_upper[2]){fun_character(fd, capital, 2);}
 		if(arr[i]==abecedary_upper[3]){fun_character(fd, capital, 3);}
