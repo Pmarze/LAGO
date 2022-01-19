@@ -231,11 +231,19 @@ void fun_println(int fd, char arr[]){
 		if(arr[i]==abecedary_lower[22]){character(fd, w_MI);}
 		if(arr[i]==abecedary_lower[23]){character(fd, x_MI);}
 		if(arr[i]==abecedary_lower[24]){character(fd, y_MI);}
-		if(arr[i]==abecedary_lower[25]){character(fd, z_M);}
+		if(arr[i]==abecedary_lower[25]){character(fd, z_MI);}
 		if(arr[i]==special_signs[0]){character(fd, space);}
 		if(arr[i]==special_signs[1]){character(fd, colon);}
 		if(arr[i]==special_signs[2]){character(fd, asterisk);}
 		if(arr[i]==special_signs[3]){character(fd, equal);}
 		if(arr[i]==special_signs[4]){character(fd, dot);}
 	}
+}
+
+void character(int fd, uint8_t C[]){
+	int i;
+    for(i=0 ; i<5; i++){
+        i2c_smbus_write_byte_data(fd, SET_START_LINE, C[i]);
+    }
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00); 
 }

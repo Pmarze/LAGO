@@ -1,6 +1,6 @@
   /**
     * @file functions.h
-    * @version 1.0
+    * @version 1.1
     * @date 16/12/2021
     * @author Pablo M. Zeceña
     * @brief Library containing the necessary functions to make the SSD1306 LCD display and the BMP180 sensor work properly
@@ -99,5 +99,12 @@ void fun_inic_disp();
     * @param fd Indicates the direction of the dispositive
     */
 void fun_close_disp(void *, int);
+  /**
+    * @brief Reads the entered character and writes it to the screen by sending the corresponding hexadecimal number sequence.
+    * @param fd Indicates the address of the BMP180 sensor
+    * @param C Array containing the 5 hexadecimal numbers that make up the character
+    */
+void character(int fd, uint8_t C[]);
+
 
 #endif /*FUNCTIONS_H*/
