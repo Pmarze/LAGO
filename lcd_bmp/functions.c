@@ -233,20 +233,12 @@ void fun_println(int fd, char arr[]){
 		if(arr[i]==abecedary_lower[23]){fun_character(fd, lowercase, 23);}
 		if(arr[i]==abecedary_lower[24]){fun_character(fd, lowercase, 24);}
 		if(arr[i]==abecedary_lower[25]){fun_character(fd, lowercase, 25);}
-		if(arr[i]==special_signs[0]){fun_character2(fd, space);}
-		if(arr[i]==special_signs[1]){fun_character2(fd, colon);}
-		if(arr[i]==special_signs[2]){fun_character2(fd, asterisk);}
-		if(arr[i]==special_signs[3]){fun_character2(fd, equal);}
-		if(arr[i]==special_signs[4]){fun_character2(fd, dot);}
+		if(arr[i]==special_signs[0]){fun_character(fd, numbers, 10);}
+		if(arr[i]==special_signs[1]){fun_character(fd, numbers, 11);}
+		if(arr[i]==special_signs[2]){fun_character(fd, numbers, 12);}
+		if(arr[i]==special_signs[3]){fun_character(fd, numbers, 13);}
+		if(arr[i]==special_signs[4]){fun_character(fd, numbers, 14);}
 	}
-}
-
-void fun_character2(int fd, uint8_t C[]){
-	int i;
-    for(i=0 ; i<5; i++){
-        i2c_smbus_write_byte_data(fd, SET_START_LINE, C[i]);
-    }
-    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00); 
 }
 
 void fun_character(int fd, uint8_t C[26][5], int a){
