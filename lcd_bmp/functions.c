@@ -73,7 +73,7 @@ void fun_digits(int fd, int num){
     }
 	for(i=j-1;i>=0;i--){
 		if(i==0){
-			fun_character2(fd, dot);
+			fun_character(fd, numbers, 14);		// dot
 			fun_lcd_num(fd, lista[i]);
 		}
 		fun_lcd_num(fd, lista[i]);
