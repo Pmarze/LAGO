@@ -23,17 +23,17 @@
       int main(int argc, char **argv){
 	    fun_inic_disp();
 	    if(bmp != NULL){
-          H_M(fd);
-          e_MI(fd);
-          l_MI(fd);
-          l_MI(fd);
-          o_MI(fd);
-          space(fd);
-          W_M(fd);
-          o_MI(fd);
-          r_MI(fd);
-          l_MI(fd);
-          d_MI(fd);
+          fun_character(fd,H_M);
+          fun_character(fd,e_MI);
+          fun_character(fd,l_MI);
+          fun_character(fd,l_MI);
+          fun_character(fd,o_MI);
+          fun_character(fd,space);
+          fun_character(fd,W_M);
+          fun_character(fd,o_MI);
+          fun_character(fd,r_MI);
+          fun_character(fd,l_MI);
+          fun_character(fd,d_MI);
 	    }
 	    fun_close_disp(bmp,fd);
 
