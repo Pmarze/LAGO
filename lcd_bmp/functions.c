@@ -165,22 +165,23 @@ void fun_inic_disp(){
 }
 
 void fun_lcd_num(int fd, int a){
-	if(a==1){fun_character2(fd, N_1);}
-	if(a==2){fun_character2(fd, N_2);}
-	if(a==3){fun_character2(fd, N_3);}
-	if(a==4){fun_character2(fd, N_4);}
-	if(a==5){fun_character2(fd, N_5);}
-	if(a==6){fun_character2(fd, N_6);}
-	if(a==7){fun_character2(fd, N_7);}
-	if(a==8){fun_character2(fd, N_8);}
-	if(a==9){fun_character2(fd, N_9);}
-	if(a==0){fun_character2(fd, N_0);}
+	if(a==0){fun_character(fd, numbers, 0);}
+	if(a==1){fun_character(fd, numbers, 1);}
+	if(a==2){fun_character(fd, numbers, 2);}
+	if(a==3){fun_character(fd, numbers, 3);}
+	if(a==4){fun_character(fd, numbers, 4);}
+	if(a==5){fun_character(fd, numbers, 5);}
+	if(a==6){fun_character(fd, numbers, 6);}
+	if(a==7){fun_character(fd, numbers, 7);}
+	if(a==8){fun_character(fd, numbers, 8);}
+	if(a==9){fun_character(fd, numbers, 9);}
+	
 }
 
 void fun_println(int fd, char arr[]){
 	int i;
 	for(i=0 ; i<strlen(arr); i++){
-		if(arr[i]==abecedary_upper[0]){fun_character(fd, numbers, 0);}
+		if(arr[i]==abecedary_upper[0]){fun_character(fd, capital, 0);}
 		if(arr[i]==abecedary_upper[1]){fun_character(fd, capital, 1);}
 		if(arr[i]==abecedary_upper[2]){fun_character(fd, capital, 2);}
 		if(arr[i]==abecedary_upper[3]){fun_character(fd, capital, 3);}
