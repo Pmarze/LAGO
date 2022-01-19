@@ -206,31 +206,31 @@ void fun_println(int fd, char arr[]){
 		if(arr[i]==abecedary_upper[23]){character(fd, X_M);}
 		if(arr[i]==abecedary_upper[24]){character(fd, Y_M);}
 		if(arr[i]==abecedary_upper[25]){character(fd, Z_M);}
-		if(arr[i]==abecedary_lower[0]){character(fd, a_M);}
-		if(arr[i]==abecedary_lower[1]){character(fd, b_M);}
-		if(arr[i]==abecedary_lower[2]){character(fd, c_M);}
-		if(arr[i]==abecedary_lower[3]){character(fd, d_M);}
-		if(arr[i]==abecedary_lower[4]){character(fd, e_M);}
-		if(arr[i]==abecedary_lower[5]){character(fd, f_M);}
-		if(arr[i]==abecedary_lower[6]){character(fd, g_M);}
-		if(arr[i]==abecedary_lower[7]){character(fd, h_M);}
-		if(arr[i]==abecedary_lower[8]){character(fd, i_M);}
-		if(arr[i]==abecedary_lower[9]){character(fd, j_M);}
-		if(arr[i]==abecedary_lower[10]){character(fd, k_M);}
-		if(arr[i]==abecedary_lower[11]){character(fd, l_M);}
-		if(arr[i]==abecedary_lower[12]){character(fd, m_M);}
-		if(arr[i]==abecedary_lower[13]){character(fd, n_M);}
-		if(arr[i]==abecedary_lower[14]){character(fd, o_M);}
-		if(arr[i]==abecedary_lower[15]){character(fd, p_M);}
-		if(arr[i]==abecedary_lower[16]){character(fd, q_M);}
-		if(arr[i]==abecedary_lower[17]){character(fd, r_M);}
-		if(arr[i]==abecedary_lower[18]){character(fd, s_M);}
-		if(arr[i]==abecedary_lower[19]){character(fd, t_M);}
-		if(arr[i]==abecedary_lower[20]){character(fd, u_M);}
-		if(arr[i]==abecedary_lower[21]){character(fd, v_M);}
-		if(arr[i]==abecedary_lower[22]){character(fd, w_M);}
-		if(arr[i]==abecedary_lower[23]){character(fd, x_M);}
-		if(arr[i]==abecedary_lower[24]){character(fd, y_M);}
+		if(arr[i]==abecedary_lower[0]){character(fd, a_MI);}
+		if(arr[i]==abecedary_lower[1]){character(fd, b_MI);}
+		if(arr[i]==abecedary_lower[2]){character(fd, c_MI);}
+		if(arr[i]==abecedary_lower[3]){character(fd, d_MI);}
+		if(arr[i]==abecedary_lower[4]){character(fd, e_MI);}
+		if(arr[i]==abecedary_lower[5]){character(fd, f_MI);}
+		if(arr[i]==abecedary_lower[6]){character(fd, g_MI);}
+		if(arr[i]==abecedary_lower[7]){character(fd, h_MI);}
+		if(arr[i]==abecedary_lower[8]){character(fd, i_MI);}
+		if(arr[i]==abecedary_lower[9]){character(fd, j_MI);}
+		if(arr[i]==abecedary_lower[10]){character(fd, k_MI);}
+		if(arr[i]==abecedary_lower[11]){character(fd, l_MI);}
+		if(arr[i]==abecedary_lower[12]){character(fd, m_MI);}
+		if(arr[i]==abecedary_lower[13]){character(fd, n_MI);}
+		if(arr[i]==abecedary_lower[14]){character(fd, o_MI);}
+		if(arr[i]==abecedary_lower[15]){character(fd, p_MI);}
+		if(arr[i]==abecedary_lower[16]){character(fd, q_MI);}
+		if(arr[i]==abecedary_lower[17]){character(fd, r_MI);}
+		if(arr[i]==abecedary_lower[18]){character(fd, s_MI);}
+		if(arr[i]==abecedary_lower[19]){character(fd, t_MI);}
+		if(arr[i]==abecedary_lower[20]){character(fd, u_MI);}
+		if(arr[i]==abecedary_lower[21]){character(fd, v_MI);}
+		if(arr[i]==abecedary_lower[22]){character(fd, w_MI);}
+		if(arr[i]==abecedary_lower[23]){character(fd, x_MI);}
+		if(arr[i]==abecedary_lower[24]){character(fd, y_MI);}
 		if(arr[i]==abecedary_lower[25]){character(fd, z_M);}
 		if(arr[i]==special_signs[0]){character(fd, space);}
 		if(arr[i]==special_signs[1]){character(fd, colon);}
