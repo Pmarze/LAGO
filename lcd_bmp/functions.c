@@ -180,8 +180,8 @@ void fun_lcd_num(int fd, int a){
 void fun_println(int fd, char arr[]){
 	int i;
 	for(i=0 ; i<strlen(arr); i++){
-		if(arr[i]==abecedary_upper[0]){fun_character(fd, A_M);}
-		if(arr[i]==abecedary_upper[1]){fun_character(fd, B_M);}
+		if(arr[i]==abecedary_upper[0]){fun_character2(fd, capital, 0);}
+		if(arr[i]==abecedary_upper[1]){fun_character2(fd, capital, 1);}
 		if(arr[i]==abecedary_upper[2]){fun_character(fd, C_M);}
 		if(arr[i]==abecedary_upper[3]){fun_character(fd, D_M);}
 		if(arr[i]==abecedary_upper[4]){fun_character(fd, E_M);}
@@ -244,6 +244,14 @@ void fun_character(int fd, uint8_t C[]){
 	int i;
     for(i=0 ; i<5; i++){
         i2c_smbus_write_byte_data(fd, SET_START_LINE, C[i]);
+    }
+    i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00); 
+}
+
+void fun_character2(int fd, uint8_t C[25][5], int a){
+	int i;
+    for(i=0 ; i<5; i++){
+        i2c_smbus_write_byte_data(fd, SET_START_LINE, C[a][i]);
     }
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00); 
 }

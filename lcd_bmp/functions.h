@@ -106,5 +106,6 @@ void fun_close_disp(void *, int);
     */
 void fun_character(int, uint8_t []);
 
+void fun_character2(int, uint8_t [25][5], int);
 
 #endif /*FUNCTIONS_H*/
