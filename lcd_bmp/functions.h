@@ -102,7 +102,7 @@ void fun_close_disp(void *, int);
   /**
     * @brief Reads the entered character and writes it to the screen by sending the corresponding hexadecimal number sequence.
     * @param fd Indicates the address of the BMP180 sensor
-    * @param C Arrangement containing the 26 letters of the alphabet in the form of 5 hexadecimal numbers that make up each character.
+    * @param C Arrangement containing the 26 letters of the alphabet or number and special characters in the form of 5 hexadecimal numbers that make up each character.
     * @param a Number that indicates the letter. i.e. A=0, B=1, C=2 ... 
     */
 void fun_character(int, uint8_t [26][5], int);
