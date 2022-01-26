@@ -106,11 +106,12 @@ int main(int argc, char **argv)
     
     pa_data_file->Pulse_Size = BuffSize;
     
-    fun_inic_disp(bmp1,fd1);        // Inicializa dispositivo
+    
     pa_InitRP();
     pa_SettingsRP( pa_config );
 
-    
+    fun_inic_disp(bmp1,fd1);        // Inicializa dispositivo
+
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
     
     pa_flags.Running = true;
@@ -263,7 +264,8 @@ int main(int argc, char **argv)
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
 
-    
+    fun_close_disp(bmp1,fd1);       // cerrar dispositivo
+
     /* Releasing RP */
     
     pa_StopRP();
@@ -272,8 +274,7 @@ int main(int argc, char **argv)
     
     pa_CloseLogFile( pa_log_file );
     
-    fun_close_disp(bmp1,fd1);       // cerrar dispositivo
-
+    
     /* Releasing resources */
     
     free(PulseData);
