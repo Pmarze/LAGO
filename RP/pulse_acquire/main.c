@@ -112,7 +112,7 @@ int main(int argc, char **argv)
     pa_SettingsRP( pa_config );
 
     fun_inic_disp(bmp1,fd1);        // Inicializa dispositivo
-    fd2=fd1;
+    fd2=(int)fd1;
 
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
     
