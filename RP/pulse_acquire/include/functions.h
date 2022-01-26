@@ -100,7 +100,7 @@ void fun_inic_disp(void *, int*);
     * @param bmp Indicates the address of the BMP180 sensor
     * @param fd Indicates the direction of the dispositive
     */
-void fun_close_disp(void *, int*);
+void fun_close_disp(void *, int);
   /**
     * @brief Reads the entered character and writes it to the screen by sending the corresponding hexadecimal number sequence.
     * @param fd Indicates the address of the BMP180 sensor
