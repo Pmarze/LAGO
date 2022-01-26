@@ -255,9 +255,7 @@ void fun_character(int fd, uint8_t C[26][5], int a){
 
 
 void fun_test(){
-	
 	if(bmp != NULL){
-		int i;
 		while(pa_flags.Running) {
 			fun_data(bmp, fd, 60);			
 		}
