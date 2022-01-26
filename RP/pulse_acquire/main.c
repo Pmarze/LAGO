@@ -26,7 +26,7 @@
 #include "functions.h"
 
 void *bmp1;
-int fd1;
+int *fd1;
 
 volatile pa_flags_t pa_flags = { false, false };
 

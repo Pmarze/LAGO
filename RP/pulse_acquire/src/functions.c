@@ -137,7 +137,7 @@ void fun_data(void *bmp, int fd, int siesta){
 	sleep(siesta);
 }
 
-void fun_inic_disp(void *bmp, int fd){
+void fun_inic_disp(void *bmp, int *fd){
 	int status;
 	char *i2c_device = "/dev/i2c-0";
     int address = 0x77;
