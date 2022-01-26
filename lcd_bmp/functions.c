@@ -95,7 +95,7 @@ void fun_close_disp(void *bmp, int fd){
     close(fd);
 }
 
-void fun_data(void *bmp, int fd){
+void fun_data(void *bmp, int fd, int siesta){
 	float t;
 	long p;
 	float alt;
@@ -131,6 +131,7 @@ void fun_data(void *bmp, int fd){
 
 	sleep(2);
 	fun_clear_lcd(fd);
+	sleep(siesta);
 }
 
 void fun_inic_disp(){
