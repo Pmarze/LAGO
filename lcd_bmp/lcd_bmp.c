@@ -18,7 +18,7 @@ int main(int argc, char **argv){
 		int i;
 		fun_bienv(fd);
 		for(i = 0; i < 25; i++) {
-			fun_data(bmp, fd);			
+			fun_data(bmp, fd, 1);			
 		}
 	}
 	
