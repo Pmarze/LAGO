@@ -137,7 +137,7 @@ void fun_data(void *bmp, int fd, int siesta){
 	sleep(siesta);
 }
 
-void fun_inic_disp(){
+void fun_inic_disp(void *bmp, int fd){
 	int status;
 	char *i2c_device = "/dev/i2c-0";
     int address = 0x77;
@@ -254,7 +254,7 @@ void fun_character(int fd, uint8_t C[26][5], int a){
 }
 
 
-void fun_test(){
+void fun_test(void *bmp, int fd){
 	if(bmp != NULL){
 		while(pa_flags.Running) {
 			fun_data(bmp, fd, 60);			

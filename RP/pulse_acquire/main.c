@@ -25,6 +25,8 @@
 #include <stdint.h>
 #include "functions.h"
 
+void *bmp1;
+int fd1;
 
 volatile pa_flags_t pa_flags = { false, false };
 
@@ -104,7 +106,7 @@ int main(int argc, char **argv)
     
     pa_data_file->Pulse_Size = BuffSize;
     
-    fun_inic_disp();        // Inicializa dispositivo
+    fun_inic_disp(bmp1,fd1);        // Inicializa dispositivo
     pa_InitRP();
     pa_SettingsRP( pa_config );
 
@@ -270,7 +272,7 @@ int main(int argc, char **argv)
     
     pa_CloseLogFile( pa_log_file );
     
-    fun_close_disp();       // cerrar dispositivo
+    fun_close_disp(bmp1,fd1);       // cerrar dispositivo
 
     /* Releasing resources */
     

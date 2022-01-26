@@ -94,7 +94,7 @@ void fun_data(void *, int, int);
   /**
   * @brief Initializes all devices
   */
-void fun_inic_disp();
+void fun_inic_disp(void *, int);
   /**
     * @brief Close all devices
     * @param bmp Indicates the address of the BMP180 sensor
@@ -109,6 +109,6 @@ void fun_close_disp(void *, int);
     */
 void fun_character(int, uint8_t [26][5], int);
 
-void fun_test();
+void fun_test(void *, int);
 
 #endif /*FUNCTIONS_H*/
