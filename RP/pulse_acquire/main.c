@@ -25,7 +25,7 @@
 #include <stdint.h>
 #include "functions.h"
 
-void bmp1;
+void *bmp1;
 int fd1;
 
 
