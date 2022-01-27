@@ -25,9 +25,9 @@
 #include <stdint.h>
 #include "functions.h"
 
-void *bmp1;
-int *fd1;
-int fd2;
+void bmp1;
+int fd1;
+
 
 volatile pa_flags_t pa_flags = { false, false };
 
@@ -111,8 +111,7 @@ int main(int argc, char **argv)
     pa_InitRP();
     pa_SettingsRP( pa_config );
 
-    fun_inic_disp(bmp1,fd1);        // Inicializa dispositivo
-    fd2=(int)fd1;
+    fun_inic_disp(&bmp1,&fd1);        // Inicializa dispositivo
 
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
     
@@ -266,7 +265,7 @@ int main(int argc, char **argv)
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
 
-    fun_close_disp(bmp1,fd2);       // cerrar dispositivo
+    fun_close_disp(bmp1,fd1);       // cerrar dispositivo
 
     /* Releasing RP */
     
