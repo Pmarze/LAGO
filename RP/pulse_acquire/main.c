@@ -17,14 +17,6 @@
 #include "oscilloscope.h"
 #include "ini.h"
 #include "pa.h"
-#include <fcntl.h>
-#include <linux/ioctl.h>
-#include <sys/ioctl.h>
-#include <linux/i2c-dev.h>
-#include <errno.h>
-#include <stdint.h>
-#include "functions.h"
-
 
 volatile pa_flags_t pa_flags = { false, false };
 
@@ -36,6 +28,7 @@ void inthand(int signum)
 {
    pa_flags.Running = false;
 }
+
 
 int main(int argc, char **argv)
 {
@@ -52,7 +45,8 @@ int main(int argc, char **argv)
     pa_logger_t     *pa_logger      = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
     
     
-    pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger );    
+    pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger );
+    
     
     if (ini_parse(argv[1], pa_config_handler, pa_config) != 0) {
         printf("\nCan't load '%s' or has syntax errors\n\n",argv[1]);
@@ -107,8 +101,7 @@ int main(int argc, char **argv)
     pa_InitRP();
     pa_SettingsRP( pa_config );
 
-    fun_inic_disp();        // Inicializa dispositivo
-
+    
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
     
     pa_flags.Running = true;
@@ -261,8 +254,7 @@ int main(int argc, char **argv)
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
 
-    fun_close_disp();       // cerrar dispositivo
-
+    
     /* Releasing RP */
     
     pa_StopRP();
@@ -270,7 +262,6 @@ int main(int argc, char **argv)
     /* Closing log file */
     
     pa_CloseLogFile( pa_log_file );
-    
     
     /* Releasing resources */
     

@@ -12,8 +12,6 @@
 #include "functions.h"
 #include "bmp180.h"
 
-#include "pa.h"
-
 char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz";
 char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 char special_signs[]=" :*=.";
@@ -133,7 +131,6 @@ void fun_data(void *bmp, int fd, int siesta){
 
 	sleep(2);
 	fun_clear_lcd(fd);
-
 	sleep(siesta);
 }
 

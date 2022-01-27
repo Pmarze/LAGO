@@ -35,7 +35,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <stdint.h>
-#include "pa.h"
 
 #define OLED96_ADDR     0x3c
 #define PAGESIZE        32
@@ -88,7 +87,6 @@ void fun_bienv(int);
     * @brief Obtains ambient temperature, pressure and altitude from the BMP180 sensor and displays these data on the LCD screen
     * @param bmp Indicates the address of the BMP180 sensor
     * @param fd Indicates the direction of the dispositive
-    * @param siesta Time interval (seconds) between measurements 
     */
 void fun_data(void *, int, int);
   /**
