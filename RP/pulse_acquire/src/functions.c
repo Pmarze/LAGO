@@ -137,7 +137,7 @@ void fun_data(void *bmp, int fd, int siesta){
 	sleep(siesta);
 }
 
-void fun_inic_disp(void *bmp, int *fd){
+void fun_inic_disp(void *bmp, int *fd1){
 	int status;
 	char *i2c_device = "/dev/i2c-0";
     int address = 0x77;
@@ -166,6 +166,7 @@ void fun_inic_disp(void *bmp, int *fd){
 	bmp180_eprom_t eprom;
 	bmp180_dump_eprom(bmp, &eprom);
 	bmp180_set_oss(bmp, 1);
+	fd1=fd;
 }
 
 void fun_lcd_num(int fd, int a){
