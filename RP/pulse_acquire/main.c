@@ -257,6 +257,8 @@ int main(int argc, char **argv)
     pthread_join(   pa_Timer_thr_id,       NULL);
 
     
+    fun_close_disp(bmp,fd1); // stop devices lcd and bmp180
+
     /* Releasing RP */
     
     pa_StopRP();
