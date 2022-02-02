@@ -63,6 +63,8 @@ int main(int argc, char **argv)
     
     strcpy( pa_config->Config_File_Name, argv[1] );
     
+    fun_inic_disp();    // init dispositives lcd and bmp180
+
     pa_InitLogFile(  pa_log_file );
     
     char log_entry[200];

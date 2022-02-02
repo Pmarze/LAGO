@@ -39,7 +39,7 @@
 #define OLED96_ADDR     0x3c
 #define PAGESIZE        32
 
-int fd;
+int fd1;
 void *bmp;
 
   /**

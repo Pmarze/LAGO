@@ -139,24 +139,24 @@ void fun_inic_disp(){
 	char *i2c_device = "/dev/i2c-0";
     int address = 0x77;
 
-	fd = open("/dev/i2c-0", O_RDWR);
-	if(fd < 0)
+	fd1 = open("/dev/i2c-0", O_RDWR);
+	if(fd1 < 0)
     {
         printf("Cannot open the IIC device\n");
     }
 
-    status = ioctl(fd, I2C_SLAVE, OLED96_ADDR);
+    status = ioctl(fd1, I2C_SLAVE, OLED96_ADDR);
     if(status < 0)
     {
         printf("Unable to set the OLED96 address\n");
     }
-    if ( i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_OFF) < 0 )
+    if ( i2c_smbus_write_byte_data(fd1, 0x00, DISPLAY_OFF) < 0 )
     {
         printf("Unable to send commands\n");
         printf("errno: %i %s\n",errno,strerror(errno));
     }
-	fun_initialize(fd);
-	fun_clear_lcd(fd);
+	fun_initialize(fd1);
+	fun_clear_lcd(fd1);
 	
 	bmp = bmp180_init(address, i2c_device);
 	

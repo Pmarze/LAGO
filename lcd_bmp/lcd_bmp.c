@@ -16,13 +16,13 @@ int main(int argc, char **argv){
 	
 	if(bmp != NULL){
 		int i;
-		fun_bienv(fd);
+		fun_bienv(fd1);
 		for(i = 0; i < 25; i++) {
-			fun_data(bmp, fd, 1);			
+			fun_data(bmp, fd1, 1);			
 		}
 	}
 	
-	fun_close_disp(bmp,fd);
+	fun_close_disp(bmp,fd1);
 
 	return 0;
 }
