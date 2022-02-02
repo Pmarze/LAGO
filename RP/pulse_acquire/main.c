@@ -18,6 +18,15 @@
 #include "ini.h"
 #include "pa.h"
 
+#include <unistd.h>
+#include <fcntl.h>
+#include <linux/ioctl.h>
+#include <sys/ioctl.h>
+#include <linux/i2c-dev.h>
+#include <errno.h>
+#include <stdint.h>
+#include "functions.h"
+
 volatile pa_flags_t pa_flags = { false, false };
 
 
