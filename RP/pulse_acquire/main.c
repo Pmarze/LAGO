@@ -71,8 +71,6 @@ int main(int argc, char **argv)
         return 1;
     
     strcpy( pa_config->Config_File_Name, argv[1] );
-    
-    fun_inic_disp();    // init dispositives lcd and bmp180
 
     pa_InitLogFile(  pa_log_file );
     
@@ -112,8 +110,9 @@ int main(int argc, char **argv)
     pa_InitRP();
     pa_SettingsRP( pa_config );
 
-    
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
+
+    fun_inic_disp();    // init dispositives lcd and bmp180
     
     pa_flags.Running = true;
     
@@ -269,6 +268,7 @@ int main(int argc, char **argv)
     pthread_join(   pa_Logger_thr_id,      NULL);
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
+    
     pthread_join(   pa_LcdBmp_thr_id,       NULL);
     
     fun_close_disp(bmp,fd1); // stop devices lcd and bmp180
