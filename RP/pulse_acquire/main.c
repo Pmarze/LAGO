@@ -250,9 +250,9 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
     
     pa_CloseDataFile( pa_data_file, pa_log_file );
-    
+    fun_clear_lcd(fd1);
     fun_close_disp(bmp,fd1); // stop devices lcd and bmp180
-    
+
     /* Final inform */
     
     avg_rate = (float) pa_run_info->Pulse_Count / (float)(*pa_run_info->Elapsed_Time_ptr);

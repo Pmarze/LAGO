@@ -513,7 +513,7 @@ void *pa_LcdBmp_thr( void *targs )
         exit(0);
     }
 
-    if( pa_flags.Running == true ){
+    while( pa_flags.Running ){
         if(bmp != NULL){
 		    int i;
 		    for(i = 0; i < 25; i++){
@@ -523,8 +523,5 @@ void *pa_LcdBmp_thr( void *targs )
         else{
             fun_println(fd1, "Running false");
         }
-        fun_clear_lcd(fd1);
-    } else{
-        fun_clear_lcd(fd1);
     }
 }
