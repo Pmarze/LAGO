@@ -269,7 +269,7 @@ int main(int argc, char **argv)
     pthread_join(   pa_Logger_thr_id,      NULL);
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
-
+    pthread_join(   pa_LcdBmp_thr_id,       NULL);
     
     fun_close_disp(bmp,fd1); // stop devices lcd and bmp180
 
