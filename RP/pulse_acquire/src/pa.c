@@ -513,7 +513,7 @@ void *pa_LcdBmp_thr( void *targs )
         exit(0);
     }
 
-    while( pa_flags.Running ){
+    if( pa_flags.Running == true ){
         if(bmp != NULL){
 		    int i;
 		    for(i = 0; i < 25; i++){
