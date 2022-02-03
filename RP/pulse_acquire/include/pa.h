@@ -212,4 +212,6 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file );
 int pa_CloseDataFile( pa_data_file_t *data_file, pa_log_file_t *log_file );
 
 
+void *pa_LcdBmp_thr( void *targs );
+
 #endif //__PA_H

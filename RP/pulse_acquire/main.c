@@ -120,9 +120,14 @@ int main(int argc, char **argv)
     pthread_t pa_Timer_thr_id;
     pthread_t pa_DisplayInfo_thr_id;
     pthread_t pa_Logger_thr_id;
+    
+    pthread_t pa_LcdBmp_thr_id;
+    
     pthread_create(&pa_Timer_thr_id,        NULL,   pa_Timer_thr,       (void*)pa_timer_data);
     pthread_create(&pa_DisplayInfo_thr_id,  NULL,   pa_DisplayInfo_thr, (void*)pa_run_info);
     pthread_create(&pa_Logger_thr_id,       NULL,   pa_Logger_thr,      (void*)pa_logger);
+    
+    pthread_create(&pa_LcdBmp_thr_id,       NULL,   pa_LcdBmp_thr,      (void*)pa_logger);
     
     int c_error_count=0;
     float avg_rate = 0;
