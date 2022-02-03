@@ -157,7 +157,9 @@ void fun_inic_disp(){
     }
 	fun_initialize(fd1);
 	fun_clear_lcd(fd1);
-	
+	fun_bienv(fd1);
+	sleep(2);
+	fun_clear_lcd(fd1);
 	bmp = bmp180_init(address, i2c_device);
 	
 	bmp180_eprom_t eprom;
