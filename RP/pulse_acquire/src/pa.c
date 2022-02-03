@@ -520,8 +520,7 @@ void *pa_LcdBmp_thr( void *targs )
 			    fun_data(bmp, fd1, 5);			
 		    }
 	    }
-    
-        } else{
+        else{
             fun_println(fd1, "Running false");
         }
         sleep(1);
