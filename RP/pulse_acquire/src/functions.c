@@ -121,7 +121,7 @@ void fun_data(void *bmp, int fd, int siesta){
 	fun_digits(fd, altu);
 	fun_println(fd, " m");
 
-	sleep(2);
+	sleep(siesta);
 
 	fun_clear_lcd(fd);
 	fun_page_data( fd, 0x00, 0x00);
@@ -129,9 +129,8 @@ void fun_data(void *bmp, int fd, int siesta){
 	fun_digits(fd, p);
 	fun_println(fd, " Pa");
 
-	sleep(2);
-	fun_clear_lcd(fd);
 	sleep(siesta);
+	fun_clear_lcd(fd);
 }
 
 void fun_inic_disp(){
