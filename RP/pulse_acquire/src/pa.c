@@ -524,5 +524,7 @@ void *pa_LcdBmp_thr( void *targs )
             fun_println(fd1, "Running false");
         }
         sleep(1);
+    } else{
+        fun_clear_lcd(fd1);
     }
 }
