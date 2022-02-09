@@ -266,9 +266,6 @@ int main(int argc, char **argv)
     /* Joining threads */
     
     pthread_join(   pa_Logger_thr_id,      NULL);
-
-    pthread_join(   pa_Logger2_thr_id,      NULL);
-
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
 
@@ -291,7 +288,6 @@ int main(int argc, char **argv)
     free(pa_log_file);
     free(pa_data_file);
     free(pa_logger);
-    free(pa_logger2);
     
     return 0;
 }
