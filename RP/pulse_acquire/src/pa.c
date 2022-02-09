@@ -111,7 +111,7 @@ int pa_config_handler(void* user, const char* section, const char* name, const c
                 strcpy( pconfig->File_Name_Prefix_bmp, value );
             else
             {
-                printf("\nInvalid \"File_Name_Prefix\": File prefix must have less than 20 characters.\n");
+                printf("\nInvalid \"File_Name_Prefix_bmp\": File prefix must have less than 20 characters.\n");
                 pconfig->Parse_Errors = true;
             }
         else
