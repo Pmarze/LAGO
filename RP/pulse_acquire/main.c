@@ -52,11 +52,8 @@ int main(int argc, char **argv)
     pa_log_file_t   *pa_log_file    = (pa_log_file_t *)     malloc( sizeof(pa_log_file_t)   );
     pa_data_file_t  *pa_data_file   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
     pa_logger_t     *pa_logger      = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
-
-    pa_logger_t     *pa_logger2     = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
     
-    pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger, pa_logger2 );
-    // pa_logger2 added to bmp document
+    pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger);
     
     if (ini_parse(argv[1], pa_config_handler, pa_config) != 0) {
         printf("\nCan't load '%s' or has syntax errors\n\n",argv[1]);
@@ -120,16 +117,13 @@ int main(int argc, char **argv)
     pthread_t pa_Timer_thr_id;
     pthread_t pa_DisplayInfo_thr_id;
     pthread_t pa_Logger_thr_id;
-    pthread_t pa_Logger2_thr_id;
-    
+
     pthread_t pa_LcdBmp_thr_id;
     
     pthread_create(&pa_Timer_thr_id,        NULL,   pa_Timer_thr,       (void*)pa_timer_data);
     pthread_create(&pa_DisplayInfo_thr_id,  NULL,   pa_DisplayInfo_thr, (void*)pa_run_info);
     pthread_create(&pa_Logger_thr_id,       NULL,   pa_Logger_thr,      (void*)pa_logger);
-    
-    pthread_create(&pa_Logger2_thr_id,       NULL,   pa_Logger_thr,      (void*)pa_logger2);
-    
+
     pthread_create(&pa_LcdBmp_thr_id,       NULL,   pa_LcdBmp_thr,      (void*)pa_logger);
     
     int c_error_count=0;
@@ -139,9 +133,7 @@ int main(int argc, char **argv)
     struct timespec LTClock, EClock;
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
-    pa_InitDataFile( pa_data_file );
-    pa_InitDataFileBMP( pa_data_file );
-    
+    pa_InitDataFile( pa_data_file );    
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
     
@@ -255,7 +247,7 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
     
     pa_CloseDataFile( pa_data_file, pa_log_file );
-    
+
     fun_clear_lcd(fd1);
     fun_close_disp(bmp,fd1); // stop devices lcd and bmp180
 
