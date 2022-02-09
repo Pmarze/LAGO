@@ -32,6 +32,7 @@ typedef struct pa_config_s
     uint16_t    Trigger_Timeout_Secs;
     uint32_t    Capture_Time_Secs;
     char        File_Name_Prefix[20];
+    char        File_Name_Prefix_bmp[20];
     char        File_Header_Comment[128];
     uint32_t    File_Time_Secs;
     bool        Parse_Errors;
