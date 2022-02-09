@@ -91,7 +91,6 @@ void fun_bienv(int fd){
 
 
 void fun_close_disp(void *bmp, int fd){
-	fun_clear_lcd(fd);
     bmp180_close(bmp);
     close(fd);
 }
