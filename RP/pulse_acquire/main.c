@@ -255,11 +255,10 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
     
     pa_CloseDataFile( pa_data_file, pa_log_file );
-<<<<<<< HEAD
+    
     fun_clear_lcd(fd1);
     fun_close_disp(bmp,fd1); // stop devices lcd and bmp180
-=======
->>>>>>> parent of 56c1b92 (return to previous version)
+
 
     /* Final inform */
     
