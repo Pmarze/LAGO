@@ -152,7 +152,7 @@ void *pa_LcdBmp_thr( void *targs );
  * Initializes structs passed as arguments to default values and
  * set pointers to share information.
  */
-int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_logger_t *logger);
+int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_logger_t *logger );
 
 /* pa_CheckConfig
  * 
@@ -215,7 +215,5 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file );
  * Closes data file and writes headers.
  */
 int pa_CloseDataFile( pa_data_file_t *data_file, pa_log_file_t *log_file );
-
-int pa_InitDataFileBMP( pa_data_file_t *file );
 
 #endif //__PA_H

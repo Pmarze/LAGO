@@ -218,7 +218,7 @@ void *pa_Logger_thr( void *targs )
     }
 }
 
-int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_logger_t *logger)
+int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_logger_t *logger )
 {
     
     strcpy( config->Config_File_Name,   "none.conf");
@@ -242,6 +242,7 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     
     log_file->Log_File                  = NULL;
     log_file->File_Name_Prefix_ptr      = config->File_Name_Prefix;
+    
     data_file->Output_File              = NULL;
     strcpy( data_file->Output_File_Name,"none.paa");
     data_file->File_Number              = 0;
@@ -256,6 +257,8 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     
     logger->Run_Info_ptr                = info;
     logger->Log_File_ptr                = log_file;
+    
+
     return 0;
 }
 
@@ -340,10 +343,9 @@ int pa_InitLogFile( pa_log_file_t *file )
     {
      
         char FileName[40];
-
         strcpy(FileName, file->File_Name_Prefix_ptr);
         strcat(FileName, "-run.log");
-
+    
         file->Log_File = fopen(FileName, "w");
         
         if( (file->Log_File) == NULL )
@@ -362,8 +364,6 @@ int pa_InitLogFile( pa_log_file_t *file )
         char log_entry[200];
         sprintf(log_entry, "Time Zone is %s", TZ);
         pa_LogFileEntry( file, log_entry );
-
-
     }
     return 0;
 }
@@ -396,7 +396,7 @@ int pa_InitDataFile( pa_data_file_t *file )
         strcat(FileName, "-");
         strcat(FileName, DateTime);
         strcat(FileName, ".paa");
-
+    
         file->Output_File = fopen(FileName, "wb");
         
         if( (file->Output_File) == NULL )
