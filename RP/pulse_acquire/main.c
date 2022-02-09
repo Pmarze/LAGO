@@ -128,7 +128,7 @@ int main(int argc, char **argv)
     pthread_create(&pa_DisplayInfo_thr_id,  NULL,   pa_DisplayInfo_thr, (void*)pa_run_info);
     pthread_create(&pa_Logger_thr_id,       NULL,   pa_Logger_thr,      (void*)pa_logger);
     
-    pthread_create(&pa_Logger2_thr_id,       NULL,   pa_Logger2_thr,      (void*)pa_logger2);
+    pthread_create(&pa_Logger2_thr_id,       NULL,   pa_Logger_thr,      (void*)pa_logger2);
     
     pthread_create(&pa_LcdBmp_thr_id,       NULL,   pa_LcdBmp_thr,      (void*)pa_logger);
     
