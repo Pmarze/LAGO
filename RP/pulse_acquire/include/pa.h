@@ -216,4 +216,6 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file );
  */
 int pa_CloseDataFile( pa_data_file_t *data_file, pa_log_file_t *log_file );
 
+int pa_InitDataFileBMP( pa_data_file_t *file );
+
 #endif //__PA_H

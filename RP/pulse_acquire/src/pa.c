@@ -521,3 +521,40 @@ void *pa_LcdBmp_thr( void *targs ){
 	    }
     }
 }
+
+int pa_InitDataFileBMP( pa_data_file_t *file )
+{
+    if( (file->Output_File) == NULL )
+    {
+        char DateTime[15];
+        file->Init_Time = time(NULL);
+        struct tm *t = localtime(&file->Init_Time);
+        strftime(DateTime, sizeof(DateTime)-1, "%d%m%y-%H%M%S", t);
+    
+        char FileName[40];
+        strcpy(FileName, "BMP180");
+        strcat(FileName, "-");
+        strcat(FileName, DateTime);
+        strcat(FileName, ".paa");
+    
+        file->Output_File = fopen(FileName, "wb");
+        
+        if( (file->Output_File) == NULL )
+        {
+            printf("\nError: Can't open file for output\n");
+            exit(0);
+        }
+        
+        fseek( file->Output_File, 640, SEEK_SET);
+        
+        file->File_Pulse_Count = 0;
+        
+        file->File_Number++;
+        
+        
+        strcpy( file->Output_File_Name, FileName);
+        
+    }
+    
+    return 0;
+}
