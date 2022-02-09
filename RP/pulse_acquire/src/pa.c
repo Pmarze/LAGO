@@ -360,14 +360,23 @@ int pa_LogFileEntry( pa_log_file_t *file, const char *Entry )
     return 0;
 }
 
-int pa_InitLogFile( pa_log_file_t *file )
+int pa_InitLogFile( pa_log_file_t *file, int document )
 {
     if( (file->Log_File) == NULL )
     {
      
         char FileName[40];
-        strcpy(FileName, file->File_Name_Prefix_ptr);
-        strcat(FileName, "-run.log");
+        if(document==1){
+            strcpy(FileName, file->File_Name_Prefix_ptr);
+            strcat(FileName, "-run.log");
+        }else if(document==2){
+            strcpy(FileName, file->File_Name_Prefix_bmp);
+            strcat(FileName, "-run.log");
+        }else{
+            printf("\nError: Wrong case, select only 1 or 2\n");
+            exit(0);
+        }
+        
     
         file->Log_File = fopen(FileName, "w");
         

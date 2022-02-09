@@ -185,7 +185,7 @@ int pa_StopRP();
  * 
  * Opens and initializes log file
  */
-int pa_InitLogFile( pa_log_file_t *file );
+int pa_InitLogFile( pa_log_file_t *file, int document);
 
 /* pa_LogFileEntry
  * 
