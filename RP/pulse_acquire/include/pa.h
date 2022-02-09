@@ -102,7 +102,7 @@ typedef struct pa_log_file_s
 {
     FILE *Log_File;
     const char     *File_Name_Prefix_ptr;
-    const char     *File_Name_Prefix_bmp;
+    //const char     *File_Name_Prefix_bmp;
 } pa_log_file_t;
 
 /* pa_logger_s:
