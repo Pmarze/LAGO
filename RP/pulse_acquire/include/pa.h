@@ -142,6 +142,11 @@ void *pa_DisplayInfo_thr( void *targs );
  */
 void *pa_Logger_thr( void *targs );
 
+/* pa_LcdBmp_thr
+ * This thread shows BMP180 data into the LCD SSD1306
+ */
+void *pa_LcdBmp_thr( void *targs );
+
 /* pa_InitVars
  * 
  * Initializes structs passed as arguments to default values and
@@ -210,8 +215,5 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file );
  * Closes data file and writes headers.
  */
 int pa_CloseDataFile( pa_data_file_t *data_file, pa_log_file_t *log_file );
-
-
-void *pa_LcdBmp_thr( void *targs );
 
 #endif //__PA_H
