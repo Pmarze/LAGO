@@ -88,6 +88,7 @@ typedef struct pa_data_file_s
     const uint32_t *Elapsed_Time_ptr;
     const uint32_t *File_Time_Secs_ptr;
     const char     *File_Name_Prefix_ptr;
+    const char     *File_Name_Prefix_bmp;
     const char     *File_Header_Comment_ptr;
     const int32_t  *Trigger_Level_ptr;
 } pa_data_file_t;

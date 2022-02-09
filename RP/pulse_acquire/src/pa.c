@@ -116,7 +116,7 @@ int pa_config_handler(void* user, const char* section, const char* name, const c
             }
         else
         {
-            printf("\nInvalid \"File_Name_Prefix\": Ivalid character(s) for a file name used.\n");
+            printf("\nInvalid \"File_Name_Prefix_bmp\": Ivalid character(s) for a file name used.\n");
             pconfig->Parse_Errors = true;
         }        
     } else if (MATCH("File", "File_Header_Comment")) {
