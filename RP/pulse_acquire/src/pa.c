@@ -542,8 +542,7 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file )
     return 0;
 }
 
-void *pa_LcdBmp_thr( void *targs )
-{
+void *pa_LcdBmp_thr( void *targs ){
     pa_logger_t *pa_logger = (pa_logger_t*)targs;
     
     if( pa_logger->Log_File_ptr->Log_File == NULL )
@@ -559,8 +558,5 @@ void *pa_LcdBmp_thr( void *targs )
 			    fun_data(bmp, fd1, 5);			
 		    }
 	    }
-        else{
-            fun_println(fd1, "Running false");
-        }
     }
 }

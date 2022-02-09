@@ -255,8 +255,11 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
     
     pa_CloseDataFile( pa_data_file, pa_log_file );
+<<<<<<< HEAD
     fun_clear_lcd(fd1);
     fun_close_disp(bmp,fd1); // stop devices lcd and bmp180
+=======
+>>>>>>> parent of 56c1b92 (return to previous version)
 
     /* Final inform */
     
@@ -277,8 +280,9 @@ int main(int argc, char **argv)
 
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
-    // pthread_join(   pa_LcdBmp_thr_id,      NULL);
 
+    fun_close_disp(bmp,fd1); // stop devices lcd and bmp180 
+    
     /* Releasing RP */
     
     pa_StopRP();
