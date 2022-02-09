@@ -53,7 +53,9 @@ int main(int argc, char **argv)
     pa_data_file_t  *pa_data_file   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
     pa_logger_t     *pa_logger      = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
     
-    
+    pa_log_file_t   *pa_log_file2    = (pa_log_file_t *)     malloc( sizeof(pa_log_file_t)   );
+    pa_data_file_t  *pa_data_file2   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
+
     pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger );
     
     
@@ -87,6 +89,7 @@ int main(int argc, char **argv)
     printf("\n|   %-25s%i", "Trigger_Timeout_Secs:",    pa_config->Trigger_Timeout_Secs);
     printf("\n|   %-25s%i", "Capture_Time_Secs:",       pa_config->Capture_Time_Secs);
     printf("\n|   %-25s%s", "File_Name_Prefix:",        pa_config->File_Name_Prefix);
+    printf("\n|   %-25s%s", "File_Name_Prefix_bmp:",    pa_config->File_Name_Prefix_bmp);
     printf("\n|   %-25s%s", "File_Header_Comment:",     pa_config->File_Header_Comment);
     printf("\n|   %-25s%i", "File_Time_Secs:",          pa_config->File_Time_Secs);
     printf("\n|");
