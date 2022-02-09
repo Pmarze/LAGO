@@ -251,6 +251,7 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     config->Trigger_Timeout_Secs        = 5;
     config->Capture_Time_Secs           = 1;
     strcpy( config->File_Name_Prefix,   "pa");
+    strcpy( config->File_Name_Prefix_bmp,"pa");     // added to bmp document
     strcpy( config->File_Header_Comment,"(None)");
     config->File_Time_Secs              = 60;
     config->Parse_Errors                = false;
@@ -368,8 +369,13 @@ int pa_InitLogFile( pa_log_file_t *file )
     {
      
         char FileName[40];
+        char FileName2[40];             // added to bmp document
+
         strcpy(FileName, file->File_Name_Prefix_ptr);
         strcat(FileName, "-run.log");
+
+        strcpy(FileName2, file->File_Name_Prefix_bmp);       // added to bmp document
+        strcat(FileName2, "-run.log");
     
         file->Log_File = fopen(FileName, "w");
         
@@ -389,6 +395,8 @@ int pa_InitLogFile( pa_log_file_t *file )
         char log_entry[200];
         sprintf(log_entry, "Time Zone is %s", TZ);
         pa_LogFileEntry( file, log_entry );
+
+
     }
     return 0;
 }
@@ -422,6 +430,12 @@ int pa_InitDataFile( pa_data_file_t *file )
         strcat(FileName, DateTime);
         strcat(FileName, ".paa");
     
+        strcpy(FileName, file->File_Name_Prefix_bmp);           // aded to bmp document
+        strcat(FileName, "-");
+        strcat(FileName, DateTime);
+        strcat(FileName, ".paa");
+
+
         file->Output_File = fopen(FileName, "wb");
         
         if( (file->Output_File) == NULL )
