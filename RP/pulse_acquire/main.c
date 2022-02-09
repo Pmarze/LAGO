@@ -53,11 +53,10 @@ int main(int argc, char **argv)
     pa_data_file_t  *pa_data_file   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
     pa_logger_t     *pa_logger      = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
 
-    // pa_data_file_t  *pa_data_file_bmp = (pa_data_file_t *)  malloc( sizeof(pa_data_file_t)  );
+    pa_logger_t     *pa_logger2     = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
     
-    
-    pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger );
-    
+    pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger, pa_logger2 );
+    // pa_logger2 added to bmp document
     
     if (ini_parse(argv[1], pa_config_handler, pa_config) != 0) {
         printf("\nCan't load '%s' or has syntax errors\n\n",argv[1]);
@@ -121,12 +120,15 @@ int main(int argc, char **argv)
     pthread_t pa_Timer_thr_id;
     pthread_t pa_DisplayInfo_thr_id;
     pthread_t pa_Logger_thr_id;
+    pthread_t pa_Logger2_thr_id;
     
     pthread_t pa_LcdBmp_thr_id;
     
     pthread_create(&pa_Timer_thr_id,        NULL,   pa_Timer_thr,       (void*)pa_timer_data);
     pthread_create(&pa_DisplayInfo_thr_id,  NULL,   pa_DisplayInfo_thr, (void*)pa_run_info);
     pthread_create(&pa_Logger_thr_id,       NULL,   pa_Logger_thr,      (void*)pa_logger);
+    
+    pthread_create(&pa_Logger2_thr_id,       NULL,   pa_Logger2_thr,      (void*)pa_logger2);
     
     pthread_create(&pa_LcdBmp_thr_id,       NULL,   pa_LcdBmp_thr,      (void*)pa_logger);
     
@@ -268,6 +270,9 @@ int main(int argc, char **argv)
     /* Joining threads */
     
     pthread_join(   pa_Logger_thr_id,      NULL);
+
+    pthread_join(   pa_Logger2_thr_id,      NULL);
+
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
 
@@ -290,6 +295,7 @@ int main(int argc, char **argv)
     free(pa_log_file);
     free(pa_data_file);
     free(pa_logger);
+    free(pa_logger2);
     
     return 0;
 }

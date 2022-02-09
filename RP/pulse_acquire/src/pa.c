@@ -96,6 +96,29 @@ int pa_config_handler(void* user, const char* section, const char* name, const c
             printf("\nInvalid \"File_Name_Prefix\": Ivalid character(s) for a file name used.\n");
             pconfig->Parse_Errors = true;
         }
+    } else if (MATCH("File", "File_Name_Prefix_bmp ")) {     // name of bmp document
+        char bad_chars[] = "/\0";
+        bool invalid_found = false;
+        int i;
+        for (i = 0; i < strlen(bad_chars); ++i) {
+            if (strchr(value, bad_chars[i]) != NULL) {
+                invalid_found = true;
+                break;
+            }
+        }
+        if (!invalid_found)
+            if( strlen(value) < 20 )
+                strcpy( pconfig->File_Name_Prefix_bmp, value );
+            else
+            {
+                printf("\nInvalid \"File_Name_Prefix\": File prefix must have less than 20 characters.\n");
+                pconfig->Parse_Errors = true;
+            }
+        else
+        {
+            printf("\nInvalid \"File_Name_Prefix_bmp\": Ivalid character(s) for a file name used.\n");
+            pconfig->Parse_Errors = true;
+        }        
     } else if (MATCH("File", "File_Header_Comment")) {
         if( strlen(value) < 121 )
             strcpy( pconfig->File_Header_Comment, value );
@@ -218,7 +241,7 @@ void *pa_Logger_thr( void *targs )
     }
 }
 
-int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_logger_t *logger )
+int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_logger_t *logger, pa_logger_t *logger2 )
 {
     
     strcpy( config->Config_File_Name,   "none.conf");
@@ -242,7 +265,7 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     
     log_file->Log_File                  = NULL;
     log_file->File_Name_Prefix_ptr      = config->File_Name_Prefix;
-    
+    log_file->File_Name_Prefix_bmp      = config->File_Name_Prefix_bmp;     // added to bmp document
     data_file->Output_File              = NULL;
     strcpy( data_file->Output_File_Name,"none.paa");
     data_file->File_Number              = 0;
@@ -252,12 +275,14 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     data_file->Elapsed_Time_ptr         = &timer_data->Elapsed_Time;
     data_file->File_Time_Secs_ptr       = &config->File_Time_Secs;
     data_file->File_Name_Prefix_ptr     = config->File_Name_Prefix;
+    data_file->File_Name_Prefix_bmp     = config->File_Name_Prefix_bmp;     // added to bmp document
     data_file->File_Header_Comment_ptr  = config->File_Header_Comment;
     data_file->Trigger_Level_ptr        = &config->Trigger_Level;
     
     logger->Run_Info_ptr                = info;
     logger->Log_File_ptr                = log_file;
-    
+    logger2->Log_File_ptr                = log_file;                     // added to bmp document
+    logger2->Run_Info_ptr                = info;
 
     return 0;
 }
@@ -520,41 +545,4 @@ void *pa_LcdBmp_thr( void *targs ){
 		    }
 	    }
     }
-}
-
-int pa_InitDataFileBMP( pa_data_file_t *file )
-{
-    if( (file->Output_File) == NULL )
-    {
-        char DateTime[15];
-        file->Init_Time = time(NULL);
-        struct tm *t = localtime(&file->Init_Time);
-        strftime(DateTime, sizeof(DateTime)-1, "%d%m%y-%H%M%S", t);
-    
-        char FileName[40];
-        strcpy(FileName, "BMP180");
-        strcat(FileName, "-");
-        strcat(FileName, DateTime);
-        strcat(FileName, ".paa");
-    
-        file->Output_File = fopen(FileName, "wb");
-        
-        if( (file->Output_File) == NULL )
-        {
-            printf("\nError: Can't open file for output\n");
-            exit(0);
-        }
-        
-        fseek( file->Output_File, 640, SEEK_SET);
-        
-        file->File_Pulse_Count = 0;
-        
-        file->File_Number++;
-        
-        
-        strcpy( file->Output_File_Name, FileName);
-        
-    }
-    
-    return 0;
 }
