@@ -96,6 +96,29 @@ int pa_config_handler(void* user, const char* section, const char* name, const c
             printf("\nInvalid \"File_Name_Prefix\": Ivalid character(s) for a file name used.\n");
             pconfig->Parse_Errors = true;
         }
+    } else if (MATCH("File", "File_Name_Prefix_bmp")) {
+        char bad_chars[] = "/\0";
+        bool invalid_found = false;
+        int i;
+        for (i = 0; i < strlen(bad_chars); ++i) {
+            if (strchr(value, bad_chars[i]) != NULL) {
+                invalid_found = true;
+                break;
+            }
+        }
+        if (!invalid_found)
+            if( strlen(value) < 20 )
+                strcpy( pconfig->File_Name_Prefix_bmp, value );
+            else
+            {
+                printf("\nInvalid \"File_Name_Prefix_bmp\": File prefix must have less than 20 characters.\n");
+                pconfig->Parse_Errors = true;
+            }
+        else
+        {
+            printf("\nInvalid \"File_Name_Prefix\": Ivalid character(s) for a file name used.\n");
+            pconfig->Parse_Errors = true;
+        }        
     } else if (MATCH("File", "File_Header_Comment")) {
         if( strlen(value) < 121 )
             strcpy( pconfig->File_Header_Comment, value );
