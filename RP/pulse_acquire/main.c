@@ -295,6 +295,8 @@ int main(int argc, char **argv)
     free(pa_run_info);
     free(pa_timer_data);
     free(pa_log_file);
+    free(pa_log_file2);
+    free(pa_data_file2);
     free(pa_data_file);
     free(pa_logger);
 
