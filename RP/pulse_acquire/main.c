@@ -265,7 +265,7 @@ int main(int argc, char **argv)
     
     sprintf(log_entry, "Elapsed time: %7i s; Pulse count: %11" PRIu64 "; Average rate: %5.2f Hz; Files writed: %7i", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, avg_rate, *pa_run_info->File_Number_ptr);
     pa_LogFileEntry( pa_log_file, log_entry );
-    
+
     /* Joining threads */
     
     pthread_join(   pa_Logger_thr_id,      NULL);
