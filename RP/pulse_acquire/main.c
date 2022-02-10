@@ -81,6 +81,7 @@ int main(int argc, char **argv)
     char log_entry[200];
     sprintf(log_entry, "%s Configuration file loaded", argv[1]);
     pa_LogFileEntry( pa_log_file, log_entry );
+    pa_LogFileEntry( pa_log_file2, log_entry );
     
     printf("\n|--------------------------- Pulse Acquire Tool ------------------------------|");
     printf("\n| Configuration values");
@@ -274,6 +275,7 @@ int main(int argc, char **argv)
     
     sprintf(log_entry, "Elapsed time: %7i s; Pulse count: %11" PRIu64 "; Average rate: %5.2f Hz; Files writed: %7i", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, avg_rate, *pa_run_info->File_Number_ptr);
     pa_LogFileEntry( pa_log_file, log_entry );
+    pa_LogFileEntry( pa_log_file2, log_entry );
     
     /* Joining threads */
     
