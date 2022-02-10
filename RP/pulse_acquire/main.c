@@ -79,8 +79,10 @@ int main(int argc, char **argv)
     pa_InitLogFile(  pa_log_file2, 2);
     
     char log_entry[200];
+    char log_entry2[200];
     sprintf(log_entry, "%s Configuration file loaded", argv[1]);
     pa_LogFileEntry( pa_log_file, log_entry );
+    pa_LogFileEntry( pa_log_file2, log_entry2 );
     
     printf("\n|--------------------------- Pulse Acquire Tool ------------------------------|");
     printf("\n| Configuration values");
@@ -255,7 +257,7 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
 
     pa_CloseDataFile( pa_data_file, pa_log_file );
-    pa_CloseDataFile( pa_data_file2, pa_log_file );
+    pa_CloseDataFile( pa_data_file2, pa_log_file2 );
 
     /* Final inform */
     
@@ -267,6 +269,7 @@ int main(int argc, char **argv)
     
     sprintf(log_entry, "Elapsed time: %7i s; Pulse count: %11" PRIu64 "; Average rate: %5.2f Hz; Files writed: %7i", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, avg_rate, *pa_run_info->File_Number_ptr);
     pa_LogFileEntry( pa_log_file, log_entry );
+    pa_LogFileEntry( pa_log_file2, log_entry2 );
 
     /* Joining threads */
     
@@ -283,7 +286,6 @@ int main(int argc, char **argv)
     /* Closing log file */
     
     pa_CloseLogFile( pa_log_file );
-    pa_CloseLogFile( pa_log_file2 );
     
     /* Releasing resources */
     
@@ -293,8 +295,6 @@ int main(int argc, char **argv)
     free(pa_timer_data);
     free(pa_log_file);
     free(pa_data_file);
-    free(pa_log_file2);
-    free(pa_data_file2);
     free(pa_logger);
 
     return 0;
