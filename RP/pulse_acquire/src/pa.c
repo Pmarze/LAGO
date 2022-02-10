@@ -296,9 +296,6 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
 
     logger->Run_Info_ptr                = info;
     logger->Log_File_ptr                = log_file;
-    
-    logger2->Run_Info_ptr                = info;
-    logger2->Log_File_ptr                = log_file;
 
     return 0;
 }
