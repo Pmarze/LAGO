@@ -141,6 +141,7 @@ int main(int argc, char **argv)
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
     pa_InitDataFile( pa_data_file );
+    pa_InitDataFile( pa_data_file2 );
     
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
@@ -218,10 +219,13 @@ int main(int argc, char **argv)
         
 
             pa_GetFileName( pa_data_file, pa_log_file );
+            pa_GetFileName( pa_data_file2, pa_log_file2 );
             
             fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file->Output_File );
+            fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file2->Output_File );
  
             fflush( pa_data_file->Output_File );
+            fflush( pa_data_file2->Output_File );
             
             pa_data_file->File_Pulse_Count++;
             
@@ -255,6 +259,7 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
     
     pa_CloseDataFile( pa_data_file, pa_log_file );
+    pa_CloseDataFile( pa_data_file2, pa_log_file2 );
 
     /* Final inform */
     
