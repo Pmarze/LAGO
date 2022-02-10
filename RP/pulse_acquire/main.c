@@ -57,7 +57,7 @@ int main(int argc, char **argv)
     pa_data_file_t  *pa_data_file2   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
 
     pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_log_file2, pa_data_file2, pa_logger );
-    
+    // structure modified to bmp second document
     
     if (ini_parse(argv[1], pa_config_handler, pa_config) != 0) {
         printf("\nCan't load '%s' or has syntax errors\n\n",argv[1]);
