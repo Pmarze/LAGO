@@ -145,6 +145,7 @@ int main(int argc, char **argv)
     
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
+    pa_LogFileEntry( pa_log_file2, "Acquisition started" );
     
     while( pa_flags.Running )
     {
@@ -248,6 +249,7 @@ int main(int argc, char **argv)
                 {
                     printf("\nTrigger timeout. Aborting...\n");
                     pa_LogFileEntry( pa_log_file, "Trigger timeout: Stopping" );
+                    pa_LogFileEntry( pa_log_file2, "Trigger timeout: Stopping" );
                     pa_flags.Running = false;
                     break;
                 }
@@ -257,7 +259,8 @@ int main(int argc, char **argv)
     
     
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
-    
+    pa_LogFileEntry( pa_log_file2, "Acquisition stopped" );
+
     pa_CloseDataFile( pa_data_file, pa_log_file );
     pa_CloseDataFile( pa_data_file2, pa_log_file2 );
 
@@ -287,6 +290,7 @@ int main(int argc, char **argv)
     /* Closing log file */
     
     pa_CloseLogFile( pa_log_file );
+    pa_CloseLogFile( pa_log_file2 );
     
     /* Releasing resources */
     
@@ -298,6 +302,9 @@ int main(int argc, char **argv)
     free(pa_data_file);
     free(pa_logger);
     
+    free(pa_log_file2);
+    free(pa_data_file2);
+
     return 0;
 }
 
