@@ -286,6 +286,7 @@ int main(int argc, char **argv)
     /* Closing log file */
     
     pa_CloseLogFile( pa_log_file );
+    pa_CloseLogFile( pa_log_file2 );
     
     /* Releasing resources */
     
