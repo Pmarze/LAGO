@@ -81,7 +81,6 @@ int main(int argc, char **argv)
     char log_entry[200];
     sprintf(log_entry, "%s Configuration file loaded", argv[1]);
     pa_LogFileEntry( pa_log_file, log_entry );
-    pa_LogFileEntry( pa_log_file2, log_entry );
     
     printf("\n|--------------------------- Pulse Acquire Tool ------------------------------|");
     printf("\n| Configuration values");
@@ -141,12 +140,9 @@ int main(int argc, char **argv)
     struct timespec LTClock, EClock;
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
-    pa_InitDataFile( pa_data_file );
-    pa_InitDataFile( pa_data_file2 );
-    
+    pa_InitDataFile( pa_data_file );    
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
-    pa_LogFileEntry( pa_log_file2, "Acquisition started" );
     
     while( pa_flags.Running )
     {
@@ -221,7 +217,6 @@ int main(int argc, char **argv)
         
 
             pa_GetFileName( pa_data_file, pa_log_file );
-            pa_GetFileName( pa_data_file2, pa_log_file2 );
             
             fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file->Output_File );
             fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file2->Output_File );
@@ -250,7 +245,6 @@ int main(int argc, char **argv)
                 {
                     printf("\nTrigger timeout. Aborting...\n");
                     pa_LogFileEntry( pa_log_file, "Trigger timeout: Stopping" );
-                    pa_LogFileEntry( pa_log_file2, "Trigger timeout: Stopping" );
                     pa_flags.Running = false;
                     break;
                 }
@@ -260,10 +254,8 @@ int main(int argc, char **argv)
     
     
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
-    pa_LogFileEntry( pa_log_file2, "Acquisition stopped" );
 
     pa_CloseDataFile( pa_data_file, pa_log_file );
-    pa_CloseDataFile( pa_data_file2, pa_log_file2 );
 
     /* Final inform */
     
@@ -275,7 +267,6 @@ int main(int argc, char **argv)
     
     sprintf(log_entry, "Elapsed time: %7i s; Pulse count: %11" PRIu64 "; Average rate: %5.2f Hz; Files writed: %7i", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, avg_rate, *pa_run_info->File_Number_ptr);
     pa_LogFileEntry( pa_log_file, log_entry );
-    pa_LogFileEntry( pa_log_file2, log_entry );
     
     /* Joining threads */
     
@@ -292,7 +283,6 @@ int main(int argc, char **argv)
     /* Closing log file */
     
     pa_CloseLogFile( pa_log_file );
-    pa_CloseLogFile( pa_log_file2 );
     
     /* Releasing resources */
     
@@ -303,9 +293,6 @@ int main(int argc, char **argv)
     free(pa_log_file);
     free(pa_data_file);
     free(pa_logger);
-    
-    free(pa_log_file2);
-    free(pa_data_file2);
 
     return 0;
 }
