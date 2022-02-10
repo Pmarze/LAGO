@@ -142,8 +142,8 @@ int main(int argc, char **argv)
     struct timespec LTClock, EClock;
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
-    pa_InitDataFile( pa_data_file );
-    pa_InitDataFile( pa_data_file2 );
+    pa_InitDataFile( pa_data_file ,1);
+    pa_InitDataFile( pa_data_file2 ,2);
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
     

@@ -429,7 +429,7 @@ int pa_CloseLogFile( pa_log_file_t *file )
 }
 
 
-int pa_InitDataFile( pa_data_file_t *file )
+int pa_InitDataFile( pa_data_file_t *file, int document )
 {
     if( (file->Output_File) == NULL )
     {
@@ -439,7 +439,11 @@ int pa_InitDataFile( pa_data_file_t *file )
         strftime(DateTime, sizeof(DateTime)-1, "%d%m%y-%H%M%S", t);
     
         char FileName[40];
-        strcpy(FileName, file->File_Name_Prefix_ptr);
+        if(document==1){
+            strcpy(FileName, file->File_Name_Prefix_ptr);
+        }else if(document==2){
+            strcpy(FileName, file->File_Name_Prefix_ptr);
+        }
         strcat(FileName, "-");
         strcat(FileName, DateTime);
         strcat(FileName, ".paa");

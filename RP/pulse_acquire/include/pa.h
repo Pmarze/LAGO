@@ -204,7 +204,7 @@ int pa_CloseLogFile( pa_log_file_t *file );
  * 
  * Opens and initializes a new data file.
  */
-int pa_InitDataFile( pa_data_file_t *file );
+int pa_InitDataFile( pa_data_file_t *file, int document );
 
 /* pa_GetFileName
  * 
