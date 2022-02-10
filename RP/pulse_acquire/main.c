@@ -219,10 +219,8 @@ int main(int argc, char **argv)
             pa_GetFileName( pa_data_file, pa_log_file );
             
             fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file->Output_File );
-            fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file2->Output_File );
  
             fflush( pa_data_file->Output_File );
-            fflush( pa_data_file2->Output_File );
             
             pa_data_file->File_Pulse_Count++;
             
