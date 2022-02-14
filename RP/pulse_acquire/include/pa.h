@@ -148,7 +148,7 @@ void *pa_Logger_thr( void *targs );
 /* pa_LcdBmp_thr
  * This thread shows BMP180 data into the LCD SSD1306
  */
-void *pa_LcdBmp_thr( void *targs );
+void *pa_LcdBmp_thr( void *targs, pa_data_file_t *data_file );
 
 /* pa_InitVars
  * 

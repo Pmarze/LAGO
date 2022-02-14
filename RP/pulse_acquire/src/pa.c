@@ -527,7 +527,7 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file )
     return 0;
 }
 
-void *pa_LcdBmp_thr( void *targs ){
+void *pa_LcdBmp_thr( void *targs, pa_data_file_t *data_file ){
     pa_logger_t *pa_logger = (pa_logger_t*)targs;
     
     if( pa_logger->Log_File_ptr->Log_File == NULL )
@@ -536,7 +536,7 @@ void *pa_LcdBmp_thr( void *targs ){
         exit(0);
     }
 
-    while( pa_flags.Running, pa_data_file_t *data_file){
+    while( pa_flags.Running){
         if(bmp != NULL){
 		    int i;
 		    for(i = 0; i < 25; i++){
