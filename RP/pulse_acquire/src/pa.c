@@ -556,8 +556,8 @@ int pa_Init_BMPfile( pa_data_file_t *data_file )
         strcpy(FileName, data_file->File_Name_Prefix_bmp);
         
         char DateTime[15];
-        file->Init_Time = time(NULL);
-        struct tm *t = localtime(&file->Init_Time);
+        data_file->Init_Time = time(NULL);
+        struct tm *t = localtime(&data_file->Init_Time);
         strftime(DateTime, sizeof(DateTime)-1, "%d%m%y-%H%M%S", t);
         
         strcat(FileName, "-");
