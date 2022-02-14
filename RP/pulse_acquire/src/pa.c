@@ -546,3 +546,26 @@ void *pa_LcdBmp_thr( void *targs ){
 	    }
     }
 }
+
+int pa_Init_BMPfile( pa_config_t *config )
+{
+    if( (config->File_Name_Prefix_bmp) == NULL )
+    {
+        FILE *fp;
+        char FileName[40];
+        strcpy(FileName, config->File_Name_Prefix_bmp);
+        strcat(FileName, ".txt");
+        fp = fopen(FileName, "w");
+        
+        if( (config->File_Name_Prefix_bmp) == NULL )
+        {
+            printf("\nError: Can't open file for output\n");
+            exit(0);
+        }
+        
+        fputs("prueba :D", fp);
+        fclose(fp);
+        
+    }
+    return 0;
+}

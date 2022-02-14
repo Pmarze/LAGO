@@ -114,6 +114,8 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
 
     fun_inic_disp();    // init dispositives lcd and bmp180
+
+    pa_Init_BMPfile( pa_config_t *config );
     
     pa_flags.Running = true;
     
