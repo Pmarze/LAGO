@@ -554,7 +554,7 @@ int pa_Init_BMPfile( pa_config_t *config )
         char FileName[40];
         strcpy(FileName, config->File_Name_Prefix_bmp);
         strcat(FileName, ".txt");
-        printf("\n|   %-25s%i", "ArchivoBMP",      FileName);
+        printf("\n|   %-25s%s", "ArchivoBMP",      FileName);
         fp = fopen(FileName, "w");
         
         if( (config->File_Name_Prefix_bmp) == NULL )
