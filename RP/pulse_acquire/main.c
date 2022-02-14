@@ -272,6 +272,7 @@ int main(int argc, char **argv)
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
 
+    pa_Close_BMPfile(pa_data_file2);
     fun_close_disp(bmp,fd1); // stop devices lcd and bmp180 
     
     /* Releasing RP */

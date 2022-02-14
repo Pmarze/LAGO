@@ -221,4 +221,6 @@ int pa_CloseDataFile( pa_data_file_t *data_file, pa_log_file_t *log_file );
 
 int pa_Init_BMPfile( pa_data_file_t *data_file );
 
+int pa_Close_BMPfile(pa_data_file_t *data_file);
+
 #endif //__PA_H
