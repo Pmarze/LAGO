@@ -13,6 +13,8 @@
 #include <time.h>
 #include <stdbool.h>
 
+FILE *bmpp;
+
 /* configuration file */
 
 /* ADC acquisition bits mask. */

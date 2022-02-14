@@ -23,8 +23,6 @@
 
 #include "functions.h"
 
-FILE *bmpp;
-
 int pa_config_handler(void* user, const char* section, const char* name, const char* value)
 {
     pa_config_t* pconfig = (pa_config_t*)user;
