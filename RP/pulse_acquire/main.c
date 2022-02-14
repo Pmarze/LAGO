@@ -115,7 +115,7 @@ int main(int argc, char **argv)
 
     fun_inic_disp();    // init dispositives lcd and bmp180
 
-    pa_Init_BMPfile( pa_config );
+    pa_Init_BMPfile( pa_data_file );
     
     pa_flags.Running = true;
     
