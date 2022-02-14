@@ -114,8 +114,6 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
 
     fun_inic_disp();    // init dispositives lcd and bmp180
-
-    pa_Init_BMPfile( pa_data_file );
     
     pa_flags.Running = true;
     
@@ -139,7 +137,7 @@ int main(int argc, char **argv)
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
     pa_InitDataFile( pa_data_file );
-    
+    pa_Init_BMPfile( pa_data_file );  
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
     
