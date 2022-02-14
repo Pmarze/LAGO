@@ -143,7 +143,7 @@ int main(int argc, char **argv)
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
     pa_InitDataFile( pa_data_file ,1);
-    pa_InitDataFile( pa_data_file2 ,2);
+    pa_InitDataFile( pa_data_file ,2);
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
     
@@ -220,6 +220,7 @@ int main(int argc, char **argv)
         
 
             pa_GetFileName( pa_data_file, pa_log_file, 1 );
+            pa_GetFileName( pa_data_file, pa_log_file, 2);
             
             fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file->Output_File );
  
