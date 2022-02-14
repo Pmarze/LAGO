@@ -22,6 +22,8 @@
 #include "pa.h"
 
 #include "functions.h"
+        
+FILE *fmp;
 
 int pa_config_handler(void* user, const char* section, const char* name, const char* value)
 {
@@ -550,7 +552,6 @@ int pa_Init_BMPfile( pa_data_file_t *data_file ){
     printf("\n|----------------------Start recording Atmospheric data-----------------------|\n");
     if( (data_file->File_Name_Prefix_bmp) != NULL )
     {
-        FILE *fmp;
         char FileName[40];
         strcpy(FileName, data_file->File_Name_Prefix_bmp);
         
@@ -570,7 +571,7 @@ int pa_Init_BMPfile( pa_data_file_t *data_file ){
             printf("\nError: Can't open file for output\n");
             exit(0);
         }
-        fputs("Inicia recoleccion de datos");
+        fputs("Inicia recoleccion de datos",fmp);
     }
     return 0;
 }
