@@ -544,5 +544,3 @@ void *pa_LcdBmp_thr( void *targs ){
 	    }
     }
 }
-
-void *pa_Create_doc()
