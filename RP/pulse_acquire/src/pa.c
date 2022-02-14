@@ -551,16 +551,20 @@ int pa_Init_BMPfile( pa_data_file_t *data_file )
     printf("si se esta iniciando la funcion");
     if( (data_file->File_Name_Prefix_bmp) != NULL )
     {
-        FILE *fp;
+        FILE *fmp;
         char FileName[40];
         strcpy(FileName, data_file->File_Name_Prefix_bmp);
         
         char DateTime[15];
+        file->Init_Time = time(NULL);
+        struct tm *t = localtime(&file->Init_Time);
+        strftime(DateTime, sizeof(DateTime)-1, "%d%m%y-%H%M%S", t);
         
+        strcat(FileName, "-");
         strcat(FileName, DateTime);
         strcat(FileName, ".txt");
         printf("\n|   %-25s%s", "ArchivoBMP",      FileName);
-        fp = fopen(FileName, "w");
+        fmp = fopen(FileName, "w");
         
         if( (data_file->File_Name_Prefix_bmp) == NULL )
         {
@@ -568,9 +572,11 @@ int pa_Init_BMPfile( pa_data_file_t *data_file )
             exit(0);
         }
 
-        fputs("prueba :D", fp);
-        fclose(fp);
+        fputs("prueba :D", fmp);
+        fclose(fmp);
         
     }
     return 0;
 }
+
+int pa_Close_BMPfile(pa_data_file_t *data_file)

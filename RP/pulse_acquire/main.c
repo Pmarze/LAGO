@@ -53,6 +53,7 @@ int main(int argc, char **argv)
     pa_data_file_t  *pa_data_file   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
     pa_logger_t     *pa_logger      = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
     
+    pa_data_file_t  *pa_data_file2   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
     
     pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger );
     
@@ -137,7 +138,9 @@ int main(int argc, char **argv)
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
     pa_InitDataFile( pa_data_file );
-    pa_Init_BMPfile( pa_data_file );  
+    pa_data_file2 = pa_data_file;
+
+    pa_Init_BMPfile( pa_data_file2 );  
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
     
