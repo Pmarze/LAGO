@@ -219,7 +219,7 @@ int main(int argc, char **argv)
             }
         
 
-            pa_GetFileName( pa_data_file, pa_log_file );
+            pa_GetFileName( pa_data_file, pa_log_file, 1 );
             
             fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file->Output_File );
  

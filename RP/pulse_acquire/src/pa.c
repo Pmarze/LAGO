@@ -442,7 +442,7 @@ int pa_InitDataFile( pa_data_file_t *file, int document )
         if(document==1){
             strcpy(FileName, file->File_Name_Prefix_ptr);
         }else if(document==2){
-            strcpy(FileName, file->File_Name_Prefix_ptr);
+            strcpy(FileName, file->File_Name_Prefix_bmp);
         }
         strcat(FileName, "-");
         strcat(FileName, DateTime);
@@ -543,12 +543,12 @@ int pa_CloseDataFile( pa_data_file_t *data_file, pa_log_file_t *log_file )
 }
 
 
-int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file )
+int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file , int document )
 {
     if( *data_file->Elapsed_Time_ptr > (data_file->File_Number)*(*data_file->File_Time_Secs_ptr) )
     {
         pa_CloseDataFile( data_file, log_file );
-        pa_InitDataFile( data_file );
+        pa_InitDataFile( data_file , document);
     }
     
     return 0;
