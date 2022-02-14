@@ -546,9 +546,8 @@ void *pa_LcdBmp_thr( void *targs ){
     }
 }
 
-int pa_Init_BMPfile( pa_data_file_t *data_file )
-{
-    printf("si se esta iniciando la funcion");
+int pa_Init_BMPfile( pa_data_file_t *data_file ){
+    printf("\n|----------------------Start recording Atmospheric data-----------------------|\n");
     if( (data_file->File_Name_Prefix_bmp) != NULL )
     {
         FILE *fmp;
@@ -579,4 +578,6 @@ int pa_Init_BMPfile( pa_data_file_t *data_file )
     return 0;
 }
 
-//int pa_Close_BMPfile(pa_data_file_t *data_file)
+int pa_Close_BMPfile(pa_data_file_t *data_file){
+
+}
