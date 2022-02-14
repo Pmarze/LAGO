@@ -546,19 +546,19 @@ void *pa_LcdBmp_thr( void *targs ){
     }
 }
 
-int pa_Init_BMPfile( pa_config_t *config )
+int pa_Init_BMPfile( pa_data_file_t *data_file )
 {
     printf("si se esta iniciando la funcion");
-    if( (config->File_Name_Prefix_bmp) == NULL )
+    if( (data_file->File_Name_Prefix_bmp) != NULL )
     {
         FILE *fp;
         char FileName[40];
-        strcpy(FileName, config->File_Name_Prefix_bmp);
+        strcpy(FileName, data_file->File_Name_Prefix_bmp);
         strcat(FileName, ".txt");
         printf("\n|   %-25s%s", "ArchivoBMP",      FileName);
         fp = fopen(FileName, "w");
         
-        if( (config->File_Name_Prefix_bmp) == NULL )
+        if( (data_file->File_Name_Prefix_bmp) == NULL )
         {
             printf("\nError: Can't open file for output\n");
             exit(0);
