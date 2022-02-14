@@ -548,6 +548,7 @@ void *pa_LcdBmp_thr( void *targs ){
 
 int pa_Init_BMPfile( pa_config_t *config )
 {
+    printf("si se esta iniciando la funcion");
     if( (config->File_Name_Prefix_bmp) == NULL )
     {
         FILE *fp;
