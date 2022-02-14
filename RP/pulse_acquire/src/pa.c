@@ -570,13 +570,13 @@ int pa_Init_BMPfile( pa_data_file_t *data_file ){
             printf("\nError: Can't open file for output\n");
             exit(0);
         }
-        fputs("Inicia recoleccion de datos",data_file->Output_BMP);
+        fputs("Acquisition started \n",data_file->Output_BMP);
     }
     return 0;
 }
 
 int pa_Close_BMPfile(pa_data_file_t *data_file){
-    fputs("fin de la prueba :D", data_file->Output_BMP);
+    fputs("Acquisition stopped", data_file->Output_BMP);
     fclose(data_file->Output_BMP);
     return 0;
 }
