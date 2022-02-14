@@ -536,11 +536,11 @@ void *pa_LcdBmp_thr( void *targs ){
         exit(0);
     }
 
-    while( pa_flags.Running ){
+    while( pa_flags.Running, pa_data_file_t *data_file){
         if(bmp != NULL){
 		    int i;
 		    for(i = 0; i < 25; i++){
-			    fun_data(bmp, fd1, 5);			
+			    fun_data(bmp, fd1, 5, data_file);			
 		    }
 	    }
     }
