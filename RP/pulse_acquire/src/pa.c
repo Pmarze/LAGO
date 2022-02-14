@@ -265,7 +265,6 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     
     log_file->Log_File                  = NULL;
     log_file->File_Name_Prefix_ptr      = config->File_Name_Prefix;
-    log_file->File_Name_Prefix_bmp      = config->File_Name_Prefix_bmp;
     
     data_file->Output_File              = NULL;
     strcpy( data_file->Output_File_Name,"none.paa");
