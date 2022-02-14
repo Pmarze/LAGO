@@ -11,6 +11,7 @@
 #include "font.h"
 #include "functions.h"
 #include "bmp180.h"
+#include "pa.h"
 
 char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz";
 char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
