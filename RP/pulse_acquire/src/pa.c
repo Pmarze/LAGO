@@ -554,7 +554,13 @@ int pa_Init_BMPfile( pa_data_file_t *data_file )
         FILE *fp;
         char FileName[40];
         strcpy(FileName, data_file->File_Name_Prefix_bmp);
-        strcpy(FileName, data_file->File_Time_Secs_ptr);
+        
+        char DateTime[15];
+        file->Init_Time = time(NULL);
+        struct tm *t = localtime(&file->Init_Time);
+        strftime(DateTime, sizeof(DateTime)-1, "%d%m%y-%H%M%S", t);
+        
+        strcat(FileName, DateTime);
         strcat(FileName, ".txt");
         printf("\n|   %-25s%s", "ArchivoBMP",      FileName);
         fp = fopen(FileName, "w");
