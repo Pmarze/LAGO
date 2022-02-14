@@ -265,6 +265,7 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     
     log_file->Log_File                  = NULL;
     log_file->File_Name_Prefix_ptr      = config->File_Name_Prefix;
+    log_file->File_Name_Prefix_ptr      = config->File_Name_Prefix_bmp;
     
     data_file->Output_File              = NULL;
     strcpy( data_file->Output_File_Name,"none.paa");
@@ -275,6 +276,7 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     data_file->Elapsed_Time_ptr         = &timer_data->Elapsed_Time;
     data_file->File_Time_Secs_ptr       = &config->File_Time_Secs;
     data_file->File_Name_Prefix_ptr     = config->File_Name_Prefix;
+    data_file->File_Name_Prefix_ptr     = config->File_Name_Prefix_bmp;
     data_file->File_Header_Comment_ptr  = config->File_Header_Comment;
     data_file->Trigger_Level_ptr        = &config->Trigger_Level;
     
