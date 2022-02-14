@@ -97,7 +97,7 @@ void fun_close_disp(void *bmp, int fd){
     close(fd);
 }
 
-void fun_data(void *bmp, int fd, int siesta, pa_data_file_t *data_file){
+void fun_data(void *bmp, int fd, int siesta, FILE *si){
 	float t;
 	long p;
 	float alt;
@@ -108,7 +108,7 @@ void fun_data(void *bmp, int fd, int siesta, pa_data_file_t *data_file){
 	p = bmp180_pressure(bmp);
 	alt = bmp180_altitude(bmp);
 	// printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
-	fprintf(data_file->Output_BMP, "Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
+	fprintf(si, "Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
 	t=t*10;
 	alt=alt*10;
 	altu=(int)alt;

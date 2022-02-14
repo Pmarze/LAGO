@@ -23,6 +23,8 @@
 
 #include "functions.h"
 
+FILE *bmpp;
+
 int pa_config_handler(void* user, const char* section, const char* name, const char* value)
 {
     pa_config_t* pconfig = (pa_config_t*)user;
@@ -540,7 +542,7 @@ void *pa_LcdBmp_thr( void *targs ){
         if(bmp != NULL){
 		    int i;
 		    for(i = 0; i < 25; i++){
-			    fun_data(bmp, fd1, 5, data_file);			
+			    fun_data(bmp, fd1, 5);			
 		    }
 	    }
     }
@@ -571,6 +573,7 @@ int pa_Init_BMPfile( pa_data_file_t *data_file ){
             exit(0);
         }
         fputs("Acquisition started \n",data_file->Output_BMP);
+        bmpp=data_file->Output_BMP;
     }
     return 0;
 }
