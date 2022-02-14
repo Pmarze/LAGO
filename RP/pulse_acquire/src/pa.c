@@ -241,7 +241,7 @@ void *pa_Logger_thr( void *targs )
     }
 }
 
-int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_log_file_t *log_file2, pa_data_file_t *data_file2, pa_logger_t *logger )
+int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_logger_t *logger )
 {
     
     strcpy( config->Config_File_Name,   "none.conf");
@@ -266,9 +266,6 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     log_file->Log_File                  = NULL;
     log_file->File_Name_Prefix_ptr      = config->File_Name_Prefix;
     
-    log_file2->Log_File                  = NULL;
-    log_file2->File_Name_Prefix_bmp      = config->File_Name_Prefix_bmp;
-
     data_file->Output_File              = NULL;
     strcpy( data_file->Output_File_Name,"none.paa");
     data_file->File_Number              = 0;
@@ -278,24 +275,12 @@ int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *time
     data_file->Elapsed_Time_ptr         = &timer_data->Elapsed_Time;
     data_file->File_Time_Secs_ptr       = &config->File_Time_Secs;
     data_file->File_Name_Prefix_ptr     = config->File_Name_Prefix;
-    data_file->File_Name_Prefix_bmp     = config->File_Name_Prefix_bmp;
     data_file->File_Header_Comment_ptr  = config->File_Header_Comment;
     data_file->Trigger_Level_ptr        = &config->Trigger_Level;
     
-    data_file2->Output_File              = NULL;
-    strcpy( data_file2->Output_File_Name,"none.paa");
-    data_file2->File_Number              = 0;
-    data_file2->Init_Time                = 0;
-    data_file2->Pulse_Size               = 0;
-    data_file2->File_Pulse_Count         = 0;
-    data_file2->Elapsed_Time_ptr         = &timer_data->Elapsed_Time;
-    data_file2->File_Time_Secs_ptr       = &config->File_Time_Secs;
-    data_file2->File_Name_Prefix_ptr     = config->File_Name_Prefix;
-    data_file2->File_Name_Prefix_bmp     = config->File_Name_Prefix_bmp;
-    data_file2->File_Header_Comment_ptr  = config->File_Header_Comment;
-
     logger->Run_Info_ptr                = info;
     logger->Log_File_ptr                = log_file;
+    
 
     return 0;
 }
@@ -375,23 +360,14 @@ int pa_LogFileEntry( pa_log_file_t *file, const char *Entry )
     return 0;
 }
 
-int pa_InitLogFile( pa_log_file_t *file, int document )
+int pa_InitLogFile( pa_log_file_t *file )
 {
     if( (file->Log_File) == NULL )
     {
      
         char FileName[40];
-        if(document==1){
-            strcpy(FileName, file->File_Name_Prefix_ptr);
-            strcat(FileName, "-run.log");
-        }else if(document==2){
-            strcpy(FileName, file->File_Name_Prefix_bmp);
-            strcat(FileName, "-run.log");
-        }else{
-            printf("\nError: Wrong case, select only 1 or 2\n");
-            exit(0);
-        }
-        
+        strcpy(FileName, file->File_Name_Prefix_ptr);
+        strcat(FileName, "-run.log");
     
         file->Log_File = fopen(FileName, "w");
         
@@ -429,7 +405,7 @@ int pa_CloseLogFile( pa_log_file_t *file )
 }
 
 
-int pa_InitDataFile( pa_data_file_t *file, int document )
+int pa_InitDataFile( pa_data_file_t *file )
 {
     if( (file->Output_File) == NULL )
     {
@@ -439,11 +415,7 @@ int pa_InitDataFile( pa_data_file_t *file, int document )
         strftime(DateTime, sizeof(DateTime)-1, "%d%m%y-%H%M%S", t);
     
         char FileName[40];
-        if(document==1){
-            strcpy(FileName, file->File_Name_Prefix_ptr);
-        }else if(document==2){
-            strcpy(FileName, file->File_Name_Prefix_bmp);
-        }
+        strcpy(FileName, file->File_Name_Prefix_ptr);
         strcat(FileName, "-");
         strcat(FileName, DateTime);
         strcat(FileName, ".paa");
@@ -543,12 +515,12 @@ int pa_CloseDataFile( pa_data_file_t *data_file, pa_log_file_t *log_file )
 }
 
 
-int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file , int document )
+int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file )
 {
     if( *data_file->Elapsed_Time_ptr > (data_file->File_Number)*(*data_file->File_Time_Secs_ptr) )
     {
         pa_CloseDataFile( data_file, log_file );
-        pa_InitDataFile( data_file , document);
+        pa_InitDataFile( data_file );
     }
     
     return 0;
@@ -567,8 +539,10 @@ void *pa_LcdBmp_thr( void *targs ){
         if(bmp != NULL){
 		    int i;
 		    for(i = 0; i < 25; i++){
-			    fun_data(bmp, fd1, 3);
+			    fun_data(bmp, fd1, 5);			
 		    }
 	    }
     }
 }
+
+void *pa_Create_doc()

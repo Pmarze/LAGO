@@ -102,7 +102,6 @@ typedef struct pa_log_file_s
 {
     FILE *Log_File;
     const char     *File_Name_Prefix_ptr;
-    const char     *File_Name_Prefix_bmp;
 } pa_log_file_t;
 
 /* pa_logger_s:
@@ -155,7 +154,7 @@ void *pa_LcdBmp_thr( void *targs );
  * Initializes structs passed as arguments to default values and
  * set pointers to share information.
  */
-int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_log_file_t *log_file2, pa_data_file_t *data_file2, pa_logger_t *logger );
+int pa_InitVars( pa_config_t *config, pa_run_info_t *info, pa_timer_data_t *timer_data, pa_log_file_t *log_file, pa_data_file_t *data_file, pa_logger_t *logger );
 
 /* pa_CheckConfig
  * 
@@ -186,7 +185,7 @@ int pa_StopRP();
  * 
  * Opens and initializes log file
  */
-int pa_InitLogFile( pa_log_file_t *file, int document);
+int pa_InitLogFile( pa_log_file_t *file );
 
 /* pa_LogFileEntry
  * 
@@ -204,14 +203,14 @@ int pa_CloseLogFile( pa_log_file_t *file );
  * 
  * Opens and initializes a new data file.
  */
-int pa_InitDataFile( pa_data_file_t *file, int document);
+int pa_InitDataFile( pa_data_file_t *file );
 
 /* pa_GetFileName
  * 
  * Checks data file status, closes and opens a new file
  * if needed.
  */
-int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file, int document );
+int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file );
 
 /* pa_CloseDataFile
  * 

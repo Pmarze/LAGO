@@ -53,11 +53,9 @@ int main(int argc, char **argv)
     pa_data_file_t  *pa_data_file   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
     pa_logger_t     *pa_logger      = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
     
-    pa_log_file_t   *pa_log_file2    = (pa_log_file_t *)     malloc( sizeof(pa_log_file_t)   );
-    pa_data_file_t  *pa_data_file2   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
-
-    pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_log_file2, pa_data_file2, pa_logger );
-    // structure modified to bmp second document
+    
+    pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger );
+    
     
     if (ini_parse(argv[1], pa_config_handler, pa_config) != 0) {
         printf("\nCan't load '%s' or has syntax errors\n\n",argv[1]);
@@ -74,15 +72,11 @@ int main(int argc, char **argv)
     
     strcpy( pa_config->Config_File_Name, argv[1] );
 
-    pa_InitLogFile(  pa_log_file , 1);
-    
-    pa_InitLogFile(  pa_log_file2, 2);
+    pa_InitLogFile(  pa_log_file );
     
     char log_entry[200];
-    char log_entry2[200];
     sprintf(log_entry, "%s Configuration file loaded", argv[1]);
     pa_LogFileEntry( pa_log_file, log_entry );
-    pa_LogFileEntry( pa_log_file2, log_entry2 );
     
     printf("\n|--------------------------- Pulse Acquire Tool ------------------------------|");
     printf("\n| Configuration values");
@@ -142,11 +136,10 @@ int main(int argc, char **argv)
     struct timespec LTClock, EClock;
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
-    pa_InitDataFile( pa_data_file ,1);
-    pa_InitDataFile( pa_data_file ,2);
+    pa_InitDataFile( pa_data_file );
+    
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
-    pa_LogFileEntry( pa_log_file2, "Prueba de texto en BMP" );
     
     while( pa_flags.Running )
     {
@@ -220,8 +213,7 @@ int main(int argc, char **argv)
             }
         
 
-            pa_GetFileName( pa_data_file, pa_log_file, 1 );
-            pa_GetFileName( pa_data_file, pa_log_file, 2);
+            pa_GetFileName( pa_data_file, pa_log_file );
             
             fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file->Output_File );
  
@@ -257,9 +249,8 @@ int main(int argc, char **argv)
     
     
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
-
+    
     pa_CloseDataFile( pa_data_file, pa_log_file );
-    pa_CloseDataFile( pa_data_file2, pa_log_file2 );
 
     /* Final inform */
     
@@ -271,8 +262,7 @@ int main(int argc, char **argv)
     
     sprintf(log_entry, "Elapsed time: %7i s; Pulse count: %11" PRIu64 "; Average rate: %5.2f Hz; Files writed: %7i", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, avg_rate, *pa_run_info->File_Number_ptr);
     pa_LogFileEntry( pa_log_file, log_entry );
-    pa_LogFileEntry( pa_log_file2, log_entry2 );
-
+    
     /* Joining threads */
     
     pthread_join(   pa_Logger_thr_id,      NULL);
@@ -288,7 +278,6 @@ int main(int argc, char **argv)
     /* Closing log file */
     
     pa_CloseLogFile( pa_log_file );
-    pa_CloseLogFile( pa_log_file2 );
     
     /* Releasing resources */
     
@@ -297,11 +286,9 @@ int main(int argc, char **argv)
     free(pa_run_info);
     free(pa_timer_data);
     free(pa_log_file);
-    free(pa_log_file2);
-    free(pa_data_file2);
     free(pa_data_file);
     free(pa_logger);
-
+    
     return 0;
 }
 
