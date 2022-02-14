@@ -108,7 +108,8 @@ void fun_data(void *bmp, int fd, int siesta, FILE *si){
 	p = bmp180_pressure(bmp);
 	alt = bmp180_altitude(bmp);
 	// printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
-	fprintf(si, "Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
+	//fprintf(si, "Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
+	fputs("Registro de datos \n", si);
 	t=t*10;
 	alt=alt*10;
 	altu=(int)alt;
