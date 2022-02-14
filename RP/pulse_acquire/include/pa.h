@@ -81,6 +81,7 @@ typedef struct pa_timer_data_s
 typedef struct pa_data_file_s
 {
     FILE *Output_File;
+    FILE *Output_BMP;
     char Output_File_Name[128];
     uint32_t File_Number;
     time_t   Init_Time;

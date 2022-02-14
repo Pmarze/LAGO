@@ -22,8 +22,6 @@
 #include "pa.h"
 
 #include "functions.h"
-        
-FILE *fmp;
 
 int pa_config_handler(void* user, const char* section, const char* name, const char* value)
 {
@@ -564,20 +562,21 @@ int pa_Init_BMPfile( pa_data_file_t *data_file ){
         strcat(FileName, DateTime);
         strcat(FileName, ".txt");
         printf("\n|   %-25s%s", "ArchivoBMP",      FileName);
-        fmp = fopen(FileName, "w");
+
+        data_file->Output_BMP = fopen(FileName, "w");
         
         if( (data_file->File_Name_Prefix_bmp) == NULL )
         {
             printf("\nError: Can't open file for output\n");
             exit(0);
         }
-        fputs("Inicia recoleccion de datos",fmp);
+        fputs("Inicia recoleccion de datos",data_file->Output_BMP);
     }
     return 0;
 }
 
 int pa_Close_BMPfile(pa_data_file_t *data_file){
-    fputs("fin de la prueba :D", fmp);
-    fclose(fmp);
+    fputs("fin de la prueba :D", data_file->Output_BMP);
+    fclose(data_file->Output_BMP);
     return 0;
 }
