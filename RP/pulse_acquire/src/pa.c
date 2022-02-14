@@ -571,6 +571,11 @@ int pa_Init_BMPfile( pa_data_file_t *data_file ){
             exit(0);
         }
         fputs("Acquisition started \n",data_file->Output_BMP);
+        fputs("Initial time: ",data_file->Output_BMP);
+        fputs(DateTime,data_file->Output_BMP);
+        fputs("\n",data_file->Output_BMP);
+        fputs("Temperature, Pressure, Altitude \n", data_file->Output_BMP);
+        
         bmpp=data_file->Output_BMP;
     }
     return 0;
