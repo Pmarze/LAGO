@@ -19,7 +19,6 @@ int main (int argc, char **argv) {
     while (1) {
         rp_DpinGetState (RP_DIO5_N, &state);
         rp_DpinSetState (RP_LED5, state);
-        }
     }
 
     // Releasing resources
