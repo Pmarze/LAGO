@@ -55,7 +55,6 @@ void fun_initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_NORMAL);
     i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
-	fun_setbutton(5);
 }
 
 
@@ -107,7 +106,7 @@ void fun_data(void *bmp, int fd, int siesta){
 	float alt;
     int tempera;
     int altu;
-
+	fun_setbutton(5);
 	while(1){
 		fun_buttonsgnl(5);
 	}
@@ -267,5 +266,4 @@ void fun_setbutton(int push){
 
 int fun_buttonsgnl(int push){
 	rp_DpinGetState (push+RP_DIO0_N, &state);
-	rp_DpinSetState (RP_LED0, state);
 }
