@@ -308,29 +308,6 @@ int rp_DpinSetState(rp_dpin_t pin, rp_pinState_t state) {
     return RP_OK;
 }
 
-int rp_Init()
-{
-    return rp_InitReset(true);
-}
-
-int rp_InitReset(bool reset)
-{
-    cmn_Init();
-
-    calib_Init();
-    hk_Init(reset);
-    ams_Init();
-    generate_Init();
-    osc_Init();
-    // TODO: Place other module initializations here
-
-    // Set default configuration per handler
-    if (reset){
-        rp_Reset();
-    }
-    g_api_state = true;
-    return RP_OK;
-}
 
 #ifdef __cplusplus
 }
