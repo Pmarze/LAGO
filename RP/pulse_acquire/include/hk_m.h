@@ -170,5 +170,5 @@ int rp_DpinSetState(rp_dpin_t pin, rp_pinState_t state) {
     }
     return RP_OK;
 }
-|
+
 #endif //__HOUSEKEEPING_H
