@@ -102,13 +102,13 @@ void fun_close_disp(void *bmp, int fd){
 }
 
 void fun_data(void *bmp, int fd, int siesta){
-	int prevstate, counter=0;
+	int prevstate, counter=siesta;
 	float t;
 	long p;
 	float alt;
     int tempera;
     int altu;
-	if(counter==60){
+	if(counter==siesta){
 		counter=0;
 		t = bmp180_temperature(bmp);
 		p = bmp180_pressure(bmp);
