@@ -95,7 +95,7 @@ int house_SetPllControlEnable(bool enable){
 
 ///////////////////////////////////////////////////////////////////////////
 int rp_DpinSetDirection(rp_dpin_t pin, rp_pinDirection_t direction) {
-    uint32_t tmp;
+    uint32_t tmpt;
     if (pin < RP_DIO0_P) {
         // LEDS
         if (direction == RP_OUT)  return RP_OK;
@@ -103,13 +103,13 @@ int rp_DpinSetDirection(rp_dpin_t pin, rp_pinDirection_t direction) {
     } else if (pin < RP_DIO0_N) {
         // DIO_P
         pin -= RP_DIO0_P;
-        tmp = ioread32(&hk->ex_cd_p);
-        iowrite32((tmp & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_p);
+        tmpt = ioread32(&hk->ex_cd_p);
+        iowrite32((tmpt & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_p);
     } else {
         // DIO_N
         pin -= RP_DIO0_N;
-        tmp = ioread32(&hk->ex_cd_n);
-        iowrite32((tmp & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_n);
+        tmpt = ioread32(&hk->ex_cd_n);
+        iowrite32((tmpt & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_n);
     }
     return RP_OK;
 }
@@ -147,7 +147,7 @@ int rp_DpinGetState(rp_dpin_t pin, rp_pinState_t* state) {
 }
 
 int rp_DpinSetState(rp_dpin_t pin, rp_pinState_t state) {
-    uint32_t tmp;
+    uint32_t tmpt;
     rp_pinDirection_t direction;
     rp_DpinGetDirection(pin, &direction);
     if (!direction) {
@@ -155,20 +155,20 @@ int rp_DpinSetState(rp_dpin_t pin, rp_pinState_t state) {
     }
     if (pin < RP_DIO0_P) {
         // LEDS
-        tmp = ioread32(&hk->led_control);
-        iowrite32((tmp & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->led_control);
+        tmpt = ioread32(&hk->led_control);
+        iowrite32((tmpt & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->led_control);
     } else if (pin < RP_DIO0_N) {
         // DIO_P
         pin -= RP_DIO0_P;
-        tmp = ioread32(&hk->ex_co_p);
-        iowrite32((tmp & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->ex_co_p);
+        tmpt = ioread32(&hk->ex_co_p);
+        iowrite32((tmpt & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->ex_co_p);
     } else {
         // DIO_N
         pin -= RP_DIO0_N;
-        tmp = ioread32(&hk->ex_co_n);
-        iowrite32((tmp & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->ex_co_n);
+        tmpt = ioread32(&hk->ex_co_n);
+        iowrite32((tmpt & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->ex_co_n);
     }
     return RP_OK;
 }
-
+|
 #endif //__HOUSEKEEPING_H
