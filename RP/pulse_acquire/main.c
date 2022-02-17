@@ -26,7 +26,6 @@
 #include <errno.h>
 #include <stdint.h>
 #include "functions.h"
-#include "hk_m.h"
 
 volatile pa_flags_t pa_flags = { false, false };
 
