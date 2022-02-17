@@ -20,7 +20,7 @@ char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 char special_signs[]=" :*=.";
 
 rp_pinState_t state;
-int pantalla;
+int pantalla=0;
 
 void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
@@ -118,26 +118,25 @@ void fun_data(void *bmp, int fd, int siesta){
 	tempera=(int)t;
 	p=p*10;
 	fun_clear_lcd(fd);
-	fun_page_data( fd, 0x00, 0x00);
-	fun_println(fd, "Temperatura = ");
-	fun_digits(fd, tempera);
-	fun_println(fd, " C");
 
-	fun_page_data( fd, 0x32, 0x00);
-	fun_println(fd, "Altura = ");
-	fun_digits(fd, altu);
-	fun_println(fd, " m");
+	if(pantalla%2==0){
+		fun_page_data( fd, 0x00, 0x00);
+		fun_println(fd, "Temperatura = ");
+		fun_digits(fd, tempera);
+		fun_println(fd, " C");
 
-	sleep(siesta);
-
-	fun_clear_lcd(fd);
-	fun_page_data( fd, 0x00, 0x00);
-	fun_println(fd, "Presion = ");
-	fun_digits(fd, p);
-	fun_println(fd, " Pa");
-
-	sleep(siesta);
-	fun_clear_lcd(fd);
+		fun_page_data( fd, 0x32, 0x00);
+		fun_println(fd, "Altura = ");
+		fun_digits(fd, altu);
+		fun_println(fd, " m");
+	}else if(pantalla%2==1){
+		fun_clear_lcd(fd);
+		fun_page_data( fd, 0x00, 0x00);
+		fun_println(fd, "Presion = ");
+		fun_digits(fd, p);
+		fun_println(fd, " Pa");
+	}
+	sleep(1);
 }
 
 void fun_inic_disp(){
@@ -266,7 +265,7 @@ void fun_led(int led, int pin){
 	rp_DpinGetState (pin+RP_DIO0_N, &state);
     rp_DpinSetState (led+RP_LED0, state);
 	if(state==RP_LOW){
-		pantalla=1;
+		pantalla++;
 		usleep(300000);
 	}
 }
