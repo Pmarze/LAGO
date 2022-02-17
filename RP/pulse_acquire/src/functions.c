@@ -90,8 +90,7 @@ void fun_bienv(int fd){
     fun_println(fd, "Bienvenidos");
 	fun_page_data(fd, 0x32, 0x00);
 	fun_println(fd, "LAGO GT");
-    sleep(3);
-    fun_clear_lcd(fd);
+	sleep(2);
 }
 
 
@@ -107,9 +106,6 @@ void fun_data(void *bmp, int fd, int siesta){
 	float alt;
     int tempera;
     int altu;
-	while(1){
-	fun_led(1,5);
-	}
 	t = bmp180_temperature(bmp);
 	p = bmp180_pressure(bmp);
 	alt = bmp180_altitude(bmp);
@@ -120,6 +116,7 @@ void fun_data(void *bmp, int fd, int siesta){
 	altu=(int)alt;
 	tempera=(int)t;
 	p=p*10;
+	fun_clear_lcd(fd);
 	fun_page_data( fd, 0x00, 0x00);
 	fun_println(fd, "Temperatura = ");
 	fun_digits(fd, tempera);
@@ -168,8 +165,6 @@ void fun_inic_disp(){
 	fun_initialize(fd1);
 	fun_clear_lcd(fd1);
 	fun_bienv(fd1);
-	sleep(2);
-	fun_clear_lcd(fd1);
 	bmp = bmp180_init(address, i2c_device);
 	
 	bmp180_eprom_t eprom;
@@ -269,4 +264,7 @@ void fun_setin(int pin){
 void fun_led(int led, int pin){
 	rp_DpinGetState (pin+RP_DIO0_N, &state);
     rp_DpinSetState (led+RP_LED0, state);
+	if(state==RP_LOW){
+		printf
+	}
 }
