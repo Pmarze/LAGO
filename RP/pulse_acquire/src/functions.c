@@ -266,4 +266,5 @@ void fun_setbutton(int push){
 
 int fun_buttonsgnl(int push){
 	rp_DpinGetState (push+RP_DIO0_N, &state);
+	rp_DpinSetState (push+RP_LED0, state);
 }

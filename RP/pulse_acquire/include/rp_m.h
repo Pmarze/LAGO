@@ -17,7 +17,6 @@ extern "C" {
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <rp_cross.h>
 
 #define ADC_BUFFER_SIZE             (16*1024)
 
@@ -309,6 +308,21 @@ int rp_DpinSetState(rp_dpin_t pin, rp_pinState_t state) {
     return RP_OK;
 }
 
+int rp_DpinGetDirection(rp_dpin_t pin, rp_pinDirection_t* direction) {
+    if (pin < RP_DIO0_P) {
+        // LEDS
+        *direction = RP_OUT;
+    } else if (pin < RP_DIO0_N) {
+        // DIO_P
+        pin -= RP_DIO0_P;
+        *direction = (ioread32(&hk->ex_cd_p) >> pin) & 0x1;
+    } else {
+        // DIO_N
+        pin -= RP_DIO0_N;
+        *direction = (ioread32(&hk->ex_cd_n) >> pin) & 0x1;
+    }
+    return RP_OK;
+}
 
 #ifdef __cplusplus
 }
