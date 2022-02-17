@@ -17,6 +17,8 @@ char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz";
 char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 char special_signs[]=" :*=.";
 
+rp_pinState_t state;
+
 void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
     i2c_smbus_write_byte_data(fd, 0x00, page_a);
@@ -252,4 +254,13 @@ void fun_character(int fd, uint8_t C[26][5], int a){
         i2c_smbus_write_byte_data(fd, SET_START_LINE, C[a][i]);
     }
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00); 
+}
+
+void fun_setin(int pin){
+	rp_DpinSetDirection (pin+P_DIO0_N, RP_IN);
+}
+
+void fun_led(int led){
+	rp_DpinGetState (led+RP_DIO0_N, &state);
+    rp_DpinSetState (RP_LED5, state);
 }
