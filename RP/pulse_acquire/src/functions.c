@@ -259,7 +259,7 @@ void fun_character(int fd, uint8_t C[26][5], int a){
 }
 
 void fun_setin(int pin){
-	rp_DpinSetDirection (pin+P_DIO0_N, RP_IN);
+	rp_DpinSetDirection (pin+RP_DIO0_N, RP_IN);
 }
 
 void fun_led(int led, int pin){
