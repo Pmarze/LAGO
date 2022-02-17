@@ -17,7 +17,6 @@ extern "C" {
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "hk_m.h"
 
 #define ADC_BUFFER_SIZE             (16*1024)
 
