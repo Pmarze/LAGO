@@ -244,42 +244,6 @@ typedef struct {
     int32_t  fe_ch2_hi_offs; //!< Front end DC offset, channel B
 } rp_calib_params_t;
 
-int rp_DpinSetDirection(rp_dpin_t pin, rp_pinDirection_t direction) {
-    uint32_t tmp;
-    if (pin < RP_DIO0_P) {
-        // LEDS
-        if (direction == RP_OUT)  return RP_OK;
-        else                      return RP_ELID;
-    } else if (pin < RP_DIO0_N) {
-        // DIO_P
-        pin -= RP_DIO0_P;
-        tmp = ioread32(&hk->ex_cd_p);
-        iowrite32((tmp & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_p);
-    } else {
-        // DIO_N
-        pin -= RP_DIO0_N;
-        tmp = ioread32(&hk->ex_cd_n);
-        iowrite32((tmp & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_n);
-    }
-    return RP_OK;
-}
-
-int rp_DpinGetDirection(rp_dpin_t pin, rp_pinDirection_t* direction) {
-    if (pin < RP_DIO0_P) {
-        // LEDS
-        *direction = RP_OUT;
-    } else if (pin < RP_DIO0_N) {
-        // DIO_P
-        pin -= RP_DIO0_P;
-        *direction = (ioread32(&hk->ex_cd_p) >> pin) & 0x1;
-    } else {
-        // DIO_N
-        pin -= RP_DIO0_N;
-        *direction = (ioread32(&hk->ex_cd_n) >> pin) & 0x1;
-    }
-    return RP_OK;
-}
-
 #ifdef __cplusplus
 }
 #endif
