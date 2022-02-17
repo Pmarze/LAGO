@@ -56,7 +56,6 @@ void fun_initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_NORMAL);
     i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
-	hk_Init(true);
 }
 
 
@@ -147,7 +146,9 @@ void fun_inic_disp(){
 	int status;
 	char *i2c_device = "/dev/i2c-0";
     int address = 0x77;
-
+	
+	hk_Init(true);
+	
 	fd1 = open("/dev/i2c-0", O_RDWR);
 	if(fd1 < 0)
     {
