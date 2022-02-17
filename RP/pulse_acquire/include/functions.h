@@ -108,8 +108,4 @@ void fun_close_disp(void *, int);
     */
 void fun_character(int, uint8_t [26][5], int);
 
-void fun_setbutton(int);
-
-int fun_buttonsgnl(int);
-
 #endif /*FUNCTIONS_H*/

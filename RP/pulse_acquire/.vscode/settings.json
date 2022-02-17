@@ -1,6 +1,0 @@
-{
-    "cmake.configureOnOpen": false,
-    "files.associations": {
-        "led_system.h": "c"
-    }
-}

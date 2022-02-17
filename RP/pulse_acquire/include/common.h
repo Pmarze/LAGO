@@ -19,7 +19,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include "common.h"
 #include "rp_m.h"
 
 #define ECHECK(x) { \

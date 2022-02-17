@@ -12,13 +12,10 @@
 #include "functions.h"
 #include "bmp180.h"
 #include "pa.h"
-#include "rp_m.h"
 
 char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz";
 char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 char special_signs[]=" :*=.";
-
-rp_pinState_t state;
 
 void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
@@ -106,10 +103,7 @@ void fun_data(void *bmp, int fd, int siesta){
 	float alt;
     int tempera;
     int altu;
-	fun_setbutton(5);
-	while(1){
-		fun_buttonsgnl(5);
-	}
+
 	t = bmp180_temperature(bmp);
 	p = bmp180_pressure(bmp);
 	alt = bmp180_altitude(bmp);
@@ -258,13 +252,4 @@ void fun_character(int fd, uint8_t C[26][5], int a){
         i2c_smbus_write_byte_data(fd, SET_START_LINE, C[a][i]);
     }
     i2c_smbus_write_byte_data(fd, SET_START_LINE, 0x00); 
-}
-
-void fun_setbutton(int push){
-	rp_DpinSetDirection (push+RP_DIO0_N, RP_IN);
-}
-
-int fun_buttonsgnl(int push){
-	rp_DpinGetState (push+RP_DIO0_N, &state);
-	rp_DpinSetState (push+RP_LED0, state);
 }
