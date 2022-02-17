@@ -107,7 +107,10 @@ void fun_data(void *bmp, int fd, int siesta){
 	float alt;
     int tempera;
     int altu;
-
+	fun_setin(5);
+	while(1){
+		fun_led(0,5);
+	}
 	t = bmp180_temperature(bmp);
 	p = bmp180_pressure(bmp);
 	alt = bmp180_altitude(bmp);
