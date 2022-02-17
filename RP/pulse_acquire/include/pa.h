@@ -226,4 +226,6 @@ int pa_Init_BMPfile( pa_data_file_t *data_file );
 
 int pa_Close_BMPfile(pa_data_file_t *data_file);
 
+void *pa_PushButton_thr( void *targs );
+
 #endif //__PA_H
