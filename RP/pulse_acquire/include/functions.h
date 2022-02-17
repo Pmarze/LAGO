@@ -89,7 +89,7 @@ void fun_bienv(int);
     * @param bmp Indicates the address of the BMP180 sensor
     * @param fd Indicates the direction of the dispositive
     */
-void fun_data(void *, int, int, int);
+void fun_data(void *, int, int, int, int);
   /**
   * @brief Initializes all devices
   */

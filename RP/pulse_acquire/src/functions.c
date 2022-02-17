@@ -101,15 +101,14 @@ void fun_close_disp(void *bmp, int fd){
     close(fd);
 }
 
-void fun_data(void *bmp, int fd, int siesta, int counter){
+void fun_data(void *bmp, int fd, int sample, int counter, int init){
 	int prevstate;
 	float t;
 	long p;
 	float alt;
     int tempera;
     int altu;
-	if(counter==siesta){
-		counter=0;
+	if(counter==sample){
 		t = bmp180_temperature(bmp);
 		p = bmp180_pressure(bmp);
 		alt = bmp180_altitude(bmp);
@@ -121,9 +120,8 @@ void fun_data(void *bmp, int fd, int siesta, int counter){
 		tempera=(int)t;
 		p=p*10;
 	}
-	if(pantalla==0){
-		fun_clear_lcd(fd);
-		prevstate=100;
+	if(init==0){
+		fun_clear_lcd(fd);			// clear the LCD from previous messages the first time
 	}
 	if(prevstate!=pantalla){
 		fun_clear_lcd(fd);

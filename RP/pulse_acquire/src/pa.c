@@ -538,14 +538,16 @@ void *pa_LcdBmp_thr( void *targs ){
 
     while( pa_flags.Running){
         if(bmp != NULL){
-            int counter=60;
-            int timesamp=5;
+            int counter=0, timesamp=5;  // time sample in seconds
+            counter=timesamp;
+            int init=0;
             while(1){
-			    fun_data(bmp, fd1, timesamp,counter);	
-                counter++;
+			    fun_data(bmp, fd1, timesamp,counter,init);	
                 if(counter==timesamp){
                     counter==0;
                 }		
+                counter++;
+                init=1;
             }
 	    }
     }

@@ -129,7 +129,7 @@ int main(int argc, char **argv)
     pthread_create(&pa_Logger_thr_id,       NULL,   pa_Logger_thr,      (void*)pa_logger);
     
     pthread_create(&pa_LcdBmp_thr_id,       NULL,   pa_LcdBmp_thr,      (void*)pa_logger);
-    pthread_create(&pa_PushButton_thr_id,       NULL,   pa_PushButton_thr,      (void*)pa_logger);
+    pthread_create(&pa_PushButton_thr_id,   NULL,   pa_PushButton_thr,  (void*)pa_logger);
     
     int c_error_count=0;
     float avg_rate = 0;
