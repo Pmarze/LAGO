@@ -56,7 +56,7 @@ void fun_initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_NORMAL);
     i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
-	hk_Init(reset);
+	hk_Init(true);
 }
 
 
