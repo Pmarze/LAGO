@@ -74,7 +74,6 @@ int main(int argc, char **argv)
     strcpy( pa_config->Config_File_Name, argv[1] );
 
     pa_InitLogFile(  pa_log_file );
-    fun_setin(5);
     char log_entry[200];
     sprintf(log_entry, "%s Configuration file loaded", argv[1]);
     pa_LogFileEntry( pa_log_file, log_entry );
@@ -115,7 +114,7 @@ int main(int argc, char **argv)
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
 
     fun_inic_disp();    // init dispositives lcd and bmp180
-    
+    fun_setin(5);
     pa_flags.Running = true;
     
     pthread_t pa_Timer_thr_id;
