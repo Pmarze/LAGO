@@ -102,23 +102,25 @@ void fun_close_disp(void *bmp, int fd){
 }
 
 void fun_data(void *bmp, int fd, int siesta){
-	int prevstate;
+	int prevstate, counter=0;
 	float t;
 	long p;
 	float alt;
     int tempera;
     int altu;
-	t = bmp180_temperature(bmp);
-	p = bmp180_pressure(bmp);
-	alt = bmp180_altitude(bmp);
-	// printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
-	fprintf(bmpp, "%.2f,%lu,%.2f\n", t, p, alt);
-	t=t*10;
-	alt=alt*10;
-	altu=(int)alt;
-	tempera=(int)t;
-	p=p*10;
-	
+	if(counter==60){
+		counter=0;
+		t = bmp180_temperature(bmp);
+		p = bmp180_pressure(bmp);
+		alt = bmp180_altitude(bmp);
+		// printf("Temperature = %.1f, Pressure = %lu, Altitude= %.1f\n", t, p, alt);
+		fprintf(bmpp, "%.2f,%lu,%.2f\n", t, p, alt);
+		t=t*10;
+		alt=alt*10;
+		altu=(int)alt;
+		tempera=(int)t;
+		p=p*10;
+	}
 	if(pantalla==0){
 		fun_clear_lcd(fd);
 	}
@@ -142,6 +144,7 @@ void fun_data(void *bmp, int fd, int siesta){
 		fun_println(fd, " Pa");
 	}
 	prevstate=pantalla;
+	counter++;
 	sleep(1);
 }
 

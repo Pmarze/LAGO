@@ -538,10 +538,7 @@ void *pa_LcdBmp_thr( void *targs ){
 
     while( pa_flags.Running){
         if(bmp != NULL){
-		    int i;
-		    for(i = 0; i < 25; i++){
-			    fun_data(bmp, fd1, 5);			
-		    }
+			fun_data(bmp, fd1, 5);			
 	    }
     }
 }
