@@ -20,6 +20,7 @@ char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 char special_signs[]=" :*=.";
 
 rp_pinState_t state;
+int pantalla;
 
 void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
@@ -265,7 +266,7 @@ void fun_led(int led, int pin){
 	rp_DpinGetState (pin+RP_DIO0_N, &state);
     rp_DpinSetState (led+RP_LED0, state);
 	if(state==RP_LOW){
-		printf("RP_LOW :D");
+		pantalla=1;
 		usleep(300000);
 	}
 }
