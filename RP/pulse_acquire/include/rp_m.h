@@ -18,6 +18,7 @@ extern "C" {
 #include <stdint.h>
 #include <stdbool.h>
 #include "led_system.h"
+#include "housekeeping.h"
 
 #define ADC_BUFFER_SIZE             (16*1024)
 
