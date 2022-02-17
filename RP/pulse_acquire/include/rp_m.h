@@ -17,7 +17,7 @@ extern "C" {
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <linux/io.h>
+#include <linux/ioctl.h>
 
 #define ADC_BUFFER_SIZE             (16*1024)
 
