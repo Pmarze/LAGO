@@ -242,11 +242,6 @@ typedef struct {
     int32_t  fe_ch2_hi_offs; //!< Front end DC offset, channel B
 } rp_calib_params_t;
 
-typedef enum {
-    RP_LOW, //!< Low state
-    RP_HIGH //!< High state
-} rp_pinState_t;
-
 int rp_DpinSetDirection(rp_dpin_t pin, rp_pinDirection_t direction) {
     uint32_t tmp;
     if (pin < RP_DIO0_P) {
