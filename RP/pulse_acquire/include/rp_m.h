@@ -75,8 +75,7 @@ extern "C" {
 #define RP_EFWB   22
 /** Extension module not connected */
 #define RP_EMNC   23
-/** Command not supported */
-#define RP_NOTS   24
+
 
 #define SPECTR_OUT_SIG_LEN (2*1024)
 

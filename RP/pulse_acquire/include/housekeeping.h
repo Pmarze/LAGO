@@ -20,8 +20,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "rp_cross.h"
-#include "rp_m.h"
 #include "common.h"
+
+/** Command not supported */
+#define RP_NOTS   24
 
 // Base Housekeeping address
 static const int HOUSEKEEPING_BASE_ADDR = 0x00000000;
