@@ -12,6 +12,7 @@
 #include "functions.h"
 #include "bmp180.h"
 #include "pa.h"
+#include "rp_m.h"
 
 char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz";
 char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -260,7 +261,7 @@ void fun_setin(int pin){
 	rp_DpinSetDirection (pin+P_DIO0_N, RP_IN);
 }
 
-void fun_led(int led){
-	rp_DpinGetState (led+RP_DIO0_N, &state);
-    rp_DpinSetState (RP_LED5, state);
+void fun_led(int led, int pin){
+	rp_DpinGetState (pin+RP_DIO0_N, &state);
+    rp_DpinSetState (led+RP_LED0, state);
 }

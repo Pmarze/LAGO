@@ -108,4 +108,8 @@ void fun_close_disp(void *, int);
     */
 void fun_character(int, uint8_t [26][5], int);
 
+void fun_setin(int pin);
+
+void fun_led(int led, int pin);
+
 #endif /*FUNCTIONS_H*/
