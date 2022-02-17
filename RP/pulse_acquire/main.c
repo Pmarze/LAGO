@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     strcpy( pa_config->Config_File_Name, argv[1] );
 
     pa_InitLogFile(  pa_log_file );
-    
+    fun_setin(5);
     char log_entry[200];
     sprintf(log_entry, "%s Configuration file loaded", argv[1]);
     pa_LogFileEntry( pa_log_file, log_entry );
