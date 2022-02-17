@@ -101,8 +101,8 @@ void fun_close_disp(void *bmp, int fd){
     close(fd);
 }
 
-void fun_data(void *bmp, int fd, int siesta){
-	int prevstate, counter=siesta;
+void fun_data(void *bmp, int fd, int siesta, int counter){
+	int prevstate;
 	float t;
 	long p;
 	float alt;
@@ -123,6 +123,7 @@ void fun_data(void *bmp, int fd, int siesta){
 	}
 	if(pantalla==0){
 		fun_clear_lcd(fd);
+		prevstate=100;
 	}
 	if(prevstate!=pantalla){
 		fun_clear_lcd(fd);
@@ -144,7 +145,6 @@ void fun_data(void *bmp, int fd, int siesta){
 		fun_println(fd, " Pa");
 	}
 	prevstate=pantalla;
-	counter++;
 	sleep(1);
 }
 
