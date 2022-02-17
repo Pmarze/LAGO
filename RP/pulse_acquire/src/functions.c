@@ -102,6 +102,7 @@ void fun_close_disp(void *bmp, int fd){
 }
 
 void fun_data(void *bmp, int fd, int siesta){
+	int prevstate;
 	float t;
 	long p;
 	float alt;
@@ -117,8 +118,13 @@ void fun_data(void *bmp, int fd, int siesta){
 	altu=(int)alt;
 	tempera=(int)t;
 	p=p*10;
-	fun_clear_lcd(fd);
-
+	
+	if(pantalla==0){
+		fun_clear_lcd(fd);
+	}
+	if(prevstate!=pantalla){
+		fun_clear_lcd(fd);
+	}
 	if(pantalla%2==0){
 		fun_page_data( fd, 0x00, 0x00);
 		fun_println(fd, "Temperatura = ");
@@ -130,12 +136,12 @@ void fun_data(void *bmp, int fd, int siesta){
 		fun_digits(fd, altu);
 		fun_println(fd, " m");
 	}else if(pantalla%2==1){
-		fun_clear_lcd(fd);
 		fun_page_data( fd, 0x00, 0x00);
 		fun_println(fd, "Presion = ");
 		fun_digits(fd, p);
 		fun_println(fd, " Pa");
 	}
+	prevstate=pantalla;
 	sleep(1);
 }
 
