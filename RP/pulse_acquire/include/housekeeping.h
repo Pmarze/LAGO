@@ -21,6 +21,7 @@
 #include <stdbool.h>
 #include "rp_cross.h"
 #include "rp_m.h"
+#include "common.h"
 
 // Base Housekeeping address
 static const int HOUSEKEEPING_BASE_ADDR = 0x00000000;
