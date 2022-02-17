@@ -56,6 +56,7 @@ void fun_initialize(int fd){
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_NORMAL);
     i2c_smbus_write_byte_data(fd, 0x00, DEACT_SCROLL);
     i2c_smbus_write_byte_data(fd, 0x00, DISPLAY_ON);
+	fun_setin(5);
 }
 
 
@@ -107,7 +108,6 @@ void fun_data(void *bmp, int fd, int siesta){
 	float alt;
     int tempera;
     int altu;
-	fun_setin(5);
 	while(1){
 		fun_led(0,5);
 	}
