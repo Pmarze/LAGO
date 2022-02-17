@@ -13,6 +13,7 @@
 #include "bmp180.h"
 #include "pa.h"
 #include "rp_m.h"
+#include "hk_m.h"
 
 char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz";
 char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
