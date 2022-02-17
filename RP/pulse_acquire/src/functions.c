@@ -266,5 +266,6 @@ void fun_led(int led, int pin){
     rp_DpinSetState (led+RP_LED0, state);
 	if(state==RP_LOW){
 		printf("RP_LOW :D");
+		usleep(300000);
 	}
 }

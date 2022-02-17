@@ -586,3 +586,20 @@ int pa_Close_BMPfile(pa_data_file_t *data_file){
     fclose(data_file->Output_BMP);
     return 0;
 }
+
+void *pa_PushButton_thr( void *targs ){
+    pa_logger_t *pa_logger = (pa_logger_t*)targs;
+    
+    if( pa_logger->Log_File_ptr->Log_File == NULL )
+    {
+        printf("Error: Log file not initialized");
+        exit(0);
+    }
+
+    while( pa_flags.Running){
+        while(1){
+            fun_led(1,5);
+            usleep(100000);
+        }
+    }
+}
