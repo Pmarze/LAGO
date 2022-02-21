@@ -19,8 +19,14 @@ char abecedary_lower[]="abcdefghijklmnopqrstuvwxyz";
 char abecedary_upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 char special_signs[]=" :*=.";
 
-rp_pinState_t state;
-int pantalla=0;
+/*
+ * Variable that changes when the push button is press
+ */
+rp_pinState_t state;	
+/*
+ * Initial value of the screen, analized by module 2 to show only the selected data
+ */
+int screen=0;
 
 void fun_page_data(int fd, int page_a, int column_a){
     i2c_smbus_write_byte_data(fd, 0x00, SET_PAGE_ADDR);
@@ -92,6 +98,7 @@ void fun_bienv(int fd){
 	fun_page_data(fd, 0x32, 0x00);
 	fun_println(fd, "LAGO GT");
 	sleep(2);
+	fun_clear_lcd(fd);
 }
 
 
@@ -101,7 +108,7 @@ void fun_close_disp(void *bmp, int fd){
     close(fd);
 }
 
-void fun_data(void *bmp, int fd, int sample, int counter, int init){
+void fun_data(void *bmp, int fd, int sample, int counter){
 	int prevstate;
 	float t;
 	long p;
@@ -120,13 +127,10 @@ void fun_data(void *bmp, int fd, int sample, int counter, int init){
 		tempera=(int)t;
 		p=p*10;
 	}
-	if(init==0){
-		fun_clear_lcd(fd);			// clear the LCD from previous messages the first time
-	}
-	if(prevstate!=pantalla){
+	if(prevstate!=screen){
 		fun_clear_lcd(fd);
 	}
-	if(pantalla%2==0){
+	if(screen%2==0){
 		fun_page_data( fd, 0x00, 0x00);
 		fun_println(fd, "Temperatura = ");
 		fun_digits(fd, tempera);
@@ -136,13 +140,13 @@ void fun_data(void *bmp, int fd, int sample, int counter, int init){
 		fun_println(fd, "Altura = ");
 		fun_digits(fd, altu);
 		fun_println(fd, " m");
-	}else if(pantalla%2==1){
+	}else if(screen%2==1){
 		fun_page_data( fd, 0x00, 0x00);
 		fun_println(fd, "Presion = ");
 		fun_digits(fd, p);
 		fun_println(fd, " Pa");
 	}
-	prevstate=pantalla;
+	prevstate=screen;
 	sleep(1);
 }
 
@@ -272,7 +276,7 @@ void fun_led(int led, int pin){
 	rp_DpinGetState (pin+RP_DIO0_N, &state);
     rp_DpinSetState (led+RP_LED0, state);
 	if(state==RP_LOW){
-		pantalla++;
+		screen++;
 		usleep(300000);
 	}
 }

@@ -540,9 +540,8 @@ void *pa_LcdBmp_thr( void *targs ){
         if(bmp != NULL){
             int counter=0, timesamp=5;  // time sample in seconds
             counter=timesamp;
-            int init=0;
             while(1){
-			    fun_data(bmp, fd1, timesamp,counter,init);	
+			    fun_data(bmp, fd1, timesamp,counter);	
                 if(counter==timesamp){
                     counter==0;
                 }		

@@ -4,15 +4,13 @@
  * @brief Red Pitaya library housekeeping module interface
  *
  * @Author Red Pitaya
- *
+ * 
  * (c) Red Pitaya  http://www.redpitaya.com
  *
  * This part of code is written in C programming language.
  * Please visit http://en.wikipedia.org/wiki/C_(programming_language)
  * for more details on the language used herein.
  */
-
-
 
 #ifndef __HOUSEKEEPING_H
 #define __HOUSEKEEPING_H
@@ -93,9 +91,15 @@ int house_SetPllControlEnable(bool enable){
 #endif
 }
 
-///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// The next functions are originally in pa.c and pa.h. Because the simplification of rp.h to became rp_m.h
+// now, exits some recursivities in the included libraries that imposibilite the adition of this functions in to this
+// particular library pa.c, For thtat, is convenient to add the functions here
+
+// The functions below, allow to set digital input and output pins to RP, and analize the state of the input pins 
+
 int rp_DpinSetDirection(rp_dpin_t pin, rp_pinDirection_t direction) {
-    uint32_t tmpt;
+    uint32_t tmp;
     if (pin < RP_DIO0_P) {
         // LEDS
         if (direction == RP_OUT)  return RP_OK;
@@ -103,13 +107,13 @@ int rp_DpinSetDirection(rp_dpin_t pin, rp_pinDirection_t direction) {
     } else if (pin < RP_DIO0_N) {
         // DIO_P
         pin -= RP_DIO0_P;
-        tmpt = ioread32(&hk->ex_cd_p);
-        iowrite32((tmpt & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_p);
+        tmp = ioread32(&hk->ex_cd_p);
+        iowrite32((tmp & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_p);
     } else {
         // DIO_N
         pin -= RP_DIO0_N;
-        tmpt = ioread32(&hk->ex_cd_n);
-        iowrite32((tmpt & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_n);
+        tmp = ioread32(&hk->ex_cd_n);
+        iowrite32((tmp & ~(1 << pin)) | ((direction << pin) & (1 << pin)), &hk->ex_cd_n);
     }
     return RP_OK;
 }
@@ -147,7 +151,7 @@ int rp_DpinGetState(rp_dpin_t pin, rp_pinState_t* state) {
 }
 
 int rp_DpinSetState(rp_dpin_t pin, rp_pinState_t state) {
-    uint32_t tmpt;
+    uint32_t tmp;
     rp_pinDirection_t direction;
     rp_DpinGetDirection(pin, &direction);
     if (!direction) {
@@ -155,18 +159,18 @@ int rp_DpinSetState(rp_dpin_t pin, rp_pinState_t state) {
     }
     if (pin < RP_DIO0_P) {
         // LEDS
-        tmpt = ioread32(&hk->led_control);
-        iowrite32((tmpt & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->led_control);
+        tmp = ioread32(&hk->led_control);
+        iowrite32((tmp & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->led_control);
     } else if (pin < RP_DIO0_N) {
         // DIO_P
         pin -= RP_DIO0_P;
-        tmpt = ioread32(&hk->ex_co_p);
-        iowrite32((tmpt & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->ex_co_p);
+        tmp = ioread32(&hk->ex_co_p);
+        iowrite32((tmp & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->ex_co_p);
     } else {
         // DIO_N
         pin -= RP_DIO0_N;
-        tmpt = ioread32(&hk->ex_co_n);
-        iowrite32((tmpt & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->ex_co_n);
+        tmp = ioread32(&hk->ex_co_n);
+        iowrite32((tmp & ~(1 << pin)) | ((state << pin) & (1 << pin)), &hk->ex_co_n);
     }
     return RP_OK;
 }

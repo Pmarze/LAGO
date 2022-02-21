@@ -221,11 +221,23 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file );
  */
 int pa_CloseDataFile( pa_data_file_t *data_file, pa_log_file_t *log_file );
 
-
+/* pa_Init_BMPfile
+ *
+ * Create and open the file that contains all the atmospheric data acquired
+ */
 int pa_Init_BMPfile( pa_data_file_t *data_file );
 
+/* pa_Close_BMPfile
+ *
+ * Close data file and write at the end of the document 
+ */
 int pa_Close_BMPfile(pa_data_file_t *data_file);
 
+/*
+ * pa_PushButton_thr
+ * Push button Thread function that are waiting the signal of the push button to change the value of the variable
+ * that changes the data showed in to the LCD
+ */
 void *pa_PushButton_thr( void *targs );
 
 #endif //__PA_H

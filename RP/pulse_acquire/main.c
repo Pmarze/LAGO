@@ -29,7 +29,6 @@
 
 volatile pa_flags_t pa_flags = { false, false };
 
-
 // Called when we recieve SIGINT (CTRL+C)
 // which then stops the infinite loop in main().
 
@@ -51,9 +50,8 @@ int main(int argc, char **argv)
     pa_timer_data_t *pa_timer_data  = (pa_timer_data_t *)   malloc( sizeof(pa_timer_data_t) );
     pa_log_file_t   *pa_log_file    = (pa_log_file_t *)     malloc( sizeof(pa_log_file_t)   );
     pa_data_file_t  *pa_data_file   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
+    pa_data_file_t  *pa_data_file2  = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );    
     pa_logger_t     *pa_logger      = (pa_logger_t *)       malloc( sizeof(pa_logger_t)     );
-    
-    pa_data_file_t  *pa_data_file2   = (pa_data_file_t *)    malloc( sizeof(pa_data_file_t)  );
     
     pa_InitVars( pa_config, pa_run_info, pa_timer_data, pa_log_file, pa_data_file, pa_logger );
     
@@ -95,8 +93,6 @@ int main(int argc, char **argv)
     printf("\n|");
     printf("\n|-----------------------------------------------------------------------------|\n");
     
-    
-    
 //    return 0;
     
     signal(SIGINT, inthand);
@@ -107,41 +103,38 @@ int main(int argc, char **argv)
     
     pa_data_file->Pulse_Size = BuffSize;
     
-    
     pa_InitRP();
     pa_SettingsRP( pa_config );
 
     pa_LogFileEntry( pa_log_file, "Red Pitaya acquisition configured" );
 
     fun_inic_disp();    // init dispositives lcd and bmp180
-    fun_setin(5);
+    fun_setin(5);       // Set the RP_DIO5_N as an digital input
     pa_flags.Running = true;
     
     pthread_t pa_Timer_thr_id;
     pthread_t pa_DisplayInfo_thr_id;
-    pthread_t pa_Logger_thr_id;
-    
+    pthread_t pa_Logger_thr_id;    
     pthread_t pa_LcdBmp_thr_id;
     pthread_t pa_PushButton_thr_id;
     
     pthread_create(&pa_Timer_thr_id,        NULL,   pa_Timer_thr,       (void*)pa_timer_data);
     pthread_create(&pa_DisplayInfo_thr_id,  NULL,   pa_DisplayInfo_thr, (void*)pa_run_info);
     pthread_create(&pa_Logger_thr_id,       NULL,   pa_Logger_thr,      (void*)pa_logger);
-    
     pthread_create(&pa_LcdBmp_thr_id,       NULL,   pa_LcdBmp_thr,      (void*)pa_logger);
     pthread_create(&pa_PushButton_thr_id,   NULL,   pa_PushButton_thr,  (void*)pa_logger);
     
     int c_error_count=0;
     float avg_rate = 0;
     
- //   uint16_t Trigger_timeout = 60;
+ // uint16_t Trigger_timeout = 60;
     struct timespec LTClock, EClock;
     clock_gettime(CLOCK_REALTIME, &LTClock);
     
     pa_InitDataFile( pa_data_file );
-    pa_data_file2 = pa_data_file;
+    pa_data_file2 = pa_data_file;       // Clone the initialized data file to create the BMP file
 
-    pa_Init_BMPfile( pa_data_file2 );  
+    pa_Init_BMPfile( pa_data_file2 );   // Inits the BMP file
     
     pa_LogFileEntry( pa_log_file, "Acquisition started" );
     
@@ -204,7 +197,6 @@ int main(int argc, char **argv)
             uint32_t TriggerPoint, StartPoint;
             osc_GetWritePointerAtTrig( &TriggerPoint );
  
-
             if( TriggerPoint >  pa_config->Pre_Trigger_Points )
                 StartPoint = TriggerPoint - pa_config->Pre_Trigger_Points ;
             else
@@ -216,7 +208,6 @@ int main(int argc, char **argv)
                 PulseData[i] = ( buff[(StartPoint + i) % ADC_BUFFER_SIZE] ) & ADC_BITS_MAK;
             }
         
-
             pa_GetFileName( pa_data_file, pa_log_file );
             
             fwrite(PulseData, sizeof(uint16_t), BuffSize, pa_data_file->Output_File );
@@ -251,7 +242,6 @@ int main(int argc, char **argv)
         }
     }
     
-    
     pa_LogFileEntry( pa_log_file, "Acquisition stopped" );
     
     pa_CloseDataFile( pa_data_file, pa_log_file );
@@ -263,7 +253,6 @@ int main(int argc, char **argv)
     printf("\n| Elapsed time:\t%11i s\n| Pulse count:\t%11" PRIu64 " \n| Average rate:\t%11.2f Hz\n| Files writed:\t%11i", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, avg_rate, *pa_run_info->File_Number_ptr);
     printf("\n|-----------------------------------------------------------------------------|\n");
     
-    
     sprintf(log_entry, "Elapsed time: %7i s; Pulse count: %11" PRIu64 "; Average rate: %5.2f Hz; Files writed: %7i", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, avg_rate, *pa_run_info->File_Number_ptr);
     pa_LogFileEntry( pa_log_file, log_entry );
     
@@ -273,8 +262,8 @@ int main(int argc, char **argv)
     pthread_join(   pa_DisplayInfo_thr_id, NULL);
     pthread_join(   pa_Timer_thr_id,       NULL);
 
-    pa_Close_BMPfile(pa_data_file2);
-    fun_close_disp(bmp,fd1); // stop devices lcd and bmp180 
+    pa_Close_BMPfile(pa_data_file2);    // Close the bmp file
+    fun_close_disp(bmp,fd1);            // stop devices lcd and bmp180 
     
     /* Releasing RP */
     

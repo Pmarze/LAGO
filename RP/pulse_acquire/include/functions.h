@@ -88,11 +88,12 @@ void fun_bienv(int);
     * @brief Obtains ambient temperature, pressure and altitude from the BMP180 sensor and displays these data on the LCD screen
     * @param bmp Indicates the address of the BMP180 sensor
     * @param fd Indicates the direction of the dispositive
+    * @param counter Permits the multiple iteration to show the selected data every second without take the atmospheric data at the same  time, the data adquisition is every 60 seconds
     */
-void fun_data(void *, int, int, int, int);
+void fun_data(void *, int, int, int);
   /**
-  * @brief Initializes all devices
-  */
+    * @brief Initializes all devices
+    */
 void fun_inic_disp();
   /**
     * @brief Close all devices
@@ -107,9 +108,16 @@ void fun_close_disp(void *, int);
     * @param a Number that indicates the letter. i.e. A=0, B=1, C=2 ... 
     */
 void fun_character(int, uint8_t [26][5], int);
-
+  /**
+    * @brief Set the direction of the LED to be used as output
+    * @param pin by default the program sets RP_DIO0_N, the pin sums a integer to this pin to set the selected
+    */
 void fun_setin(int pin);
-
+ /**
+   * @brief Get the state of "pin" connected to the push button and turn on the selected associated LED
+   * @param led Is the number of the LED to turn on when the push button is press
+   * @param pin When the push botton is press, the state changes to HIGH
+   */
 void fun_led(int led, int pin);
 
 #endif /*FUNCTIONS_H*/
