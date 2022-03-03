@@ -147,7 +147,7 @@ void fun_data(void *bmp, int fd, int sample, int counter, int rate){
 		fun_println(fd, " Pa");
 
 		fun_page_data(fd, 0x32, 0x00);
-		fun_println(fd, "Rate = ");
+		fun_println(fd, "Avg rate = ");
 		fun_digits(fd, rate);
 		fun_println(fd, " Hz");
 	}
