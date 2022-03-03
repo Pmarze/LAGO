@@ -23,8 +23,6 @@
 
 #include "functions.h"
 
-int globalrate;
-
 int pa_config_handler(void* user, const char* section, const char* name, const char* value)
 {
     pa_config_t* pconfig = (pa_config_t*)user;
@@ -543,7 +541,7 @@ void *pa_LcdBmp_thr( void *targs ){
             int counter=0, timesamp=5;  // time sample in seconds
             counter=timesamp;
             while(1){
-			    fun_data(bmp, fd1, timesamp,counter, globalrate);	
+			    fun_data(bmp, fd1, timesamp,counter);	
                 if(counter==timesamp){
                     counter==0;
                 }		
