@@ -90,7 +90,7 @@ void fun_bienv(int);
     * @param fd Indicates the direction of the dispositive
     * @param counter Permits the multiple iteration to show the selected data every second without take the atmospheric data at the same  time, the data adquisition is every 60 seconds
     */
-void fun_data(void *, int, int, int, int);
+void fun_data(void *, int, int, int, uint32_t);
   /**
     * @brief Initializes all devices
     */
