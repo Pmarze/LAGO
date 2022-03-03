@@ -23,6 +23,8 @@
 
 #include "functions.h"
 
+int SI;
+
 int pa_config_handler(void* user, const char* section, const char* name, const char* value)
 {
     pa_config_t* pconfig = (pa_config_t*)user;
@@ -172,6 +174,7 @@ void *pa_DisplayInfo_thr( void *targs )
     while( pa_flags.Running )
     {
         rate = (uint16_t)(pa_run_info->Pulse_Count - l_count);
+        SI= (int)rate;
         l_count = pa_run_info->Pulse_Count;
         printf("\r| ET:%7i s | PC:%11" PRIu64 " | R:%5i Hz | FN:%7i |", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, rate, *pa_run_info->File_Number_ptr);
         fflush(stdout);
@@ -540,7 +543,7 @@ void *pa_LcdBmp_thr( void *targs ){
                 rate = (uint16_t)(pa_run_info->Pulse_Count - l_count);
                 l_count = pa_run_info->Pulse_Count;
                 rate = rate*10;
-			    fun_data(bmp, fd1, timesamp,counter,(int)rate);	
+			    fun_data(bmp, fd1, timesamp,counter,SI);	
                 if(counter==timesamp){
                     counter==0;
                 }		
