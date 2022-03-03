@@ -529,13 +529,14 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file )
 
 void *pa_LcdBmp_thr( void *targs ){
     pa_run_info_t *pa_run_info = (pa_run_info_t*)targs;
-
+    uint32_t rate = 0;
     while( pa_flags.Running){
         if(bmp != NULL){
             int counter=0, timesamp=5;  // time sample in seconds
             counter=timesamp;
             while(1){
-			    fun_data(bmp, fd1, timesamp,counter);	
+                rate = (uint16_t)(pa_run_info->Pulse_Count - l_count);
+			    fun_data(bmp, fd1, timesamp,counter,rate);	
                 if(counter==timesamp){
                     counter==0;
                 }		
