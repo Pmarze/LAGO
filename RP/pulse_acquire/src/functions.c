@@ -108,7 +108,7 @@ void fun_close_disp(void *bmp, int fd){
     close(fd);
 }
 
-void fun_data(void *bmp, int fd, int sample, int counter){
+void fun_data(void *bmp, int fd, int sample, int counter, int rate){
 	int prevstate;
 	float t;
 	long p;
@@ -145,6 +145,11 @@ void fun_data(void *bmp, int fd, int sample, int counter){
 		fun_println(fd, "Presion = ");
 		fun_digits(fd, p);
 		fun_println(fd, " Pa");
+
+		fun_page_data(fd, 0x32, 0x00);
+		fun_println(fd, "Rate = ");
+		fun_digits(fd, rate);
+		fun_println(fd, " Hz");
 	}
 	prevstate=screen;
 	sleep(1);
