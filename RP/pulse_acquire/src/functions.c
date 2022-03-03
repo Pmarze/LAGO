@@ -115,8 +115,6 @@ void fun_data(void *bmp, int fd, int sample, int counter){
 	float alt;
     int tempera;
     int altu;
-	float avg_rate = (float) pa_run_info->Pulse_Count / (float)(*pa_run_info->Elapsed_Time_ptr);
-	avg_rate=avg_rate*10;
 	int rate = (int)avg_rate;
 	if(counter==sample){
 		t = bmp180_temperature(bmp);
