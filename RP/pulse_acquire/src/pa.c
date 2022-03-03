@@ -537,7 +537,7 @@ void *pa_LcdBmp_thr( void *targs ){
             int counter=0, timesamp=5;  // time sample in seconds
             counter=timesamp;
             while(1){
-                rate = (uint16_t)(pa_run_info->Pulse_Count - l_count);
+                rate = pa_run_info->Pulse_Count - l_count;
                 l_count = pa_run_info->Pulse_Count;
                 rate = rate*10;
 			    fun_data(bmp, fd1, timesamp,counter,rate);	

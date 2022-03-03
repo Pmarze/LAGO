@@ -108,7 +108,7 @@ void fun_close_disp(void *bmp, int fd){
     close(fd);
 }
 
-void fun_data(void *bmp, int fd, int sample, int counter,int rate){
+void fun_data(void *bmp, int fd, int sample, int counter, uint32_t rate){
 	int prevstate;
 	float t;
 	long p;
