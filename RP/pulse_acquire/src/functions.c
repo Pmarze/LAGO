@@ -115,7 +115,6 @@ void fun_data(void *bmp, int fd, int sample, int counter){
 	float alt;
     int tempera;
     int altu;
-	int rate = (int)avg_rate;
 	if(counter==sample){
 		t = bmp180_temperature(bmp);
 		p = bmp180_pressure(bmp);
@@ -149,7 +148,7 @@ void fun_data(void *bmp, int fd, int sample, int counter){
 
 		fun_page_data(fd, 0x32, 0x00);
 		fun_println(fd, "Rate = ");
-		fun_digits(fd, rate);
+		fun_digits(fd, p);
 		fun_println(fd, " Hz");
 	}
 	prevstate=screen;
