@@ -108,13 +108,16 @@ void fun_close_disp(void *bmp, int fd){
     close(fd);
 }
 
-void fun_data(void *bmp, int fd, int sample, int counter, int rate){
+void fun_data(void *bmp, int fd, int sample, int counter){
 	int prevstate;
 	float t;
 	long p;
 	float alt;
     int tempera;
     int altu;
+	float avg_rate = (float) pa_run_info->Pulse_Count / (float)(*pa_run_info->Elapsed_Time_ptr);
+	avg_rate=avg_rate*10;
+	int rate = (int)avg_rate
 	if(counter==sample){
 		t = bmp180_temperature(bmp);
 		p = bmp180_pressure(bmp);

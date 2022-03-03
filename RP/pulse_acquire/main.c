@@ -251,7 +251,6 @@ int main(int argc, char **argv)
     /* Final inform */
     
     avg_rate = (float) pa_run_info->Pulse_Count / (float)(*pa_run_info->Elapsed_Time_ptr);
-    globalrate = (int)avg_rate;
     printf("\n|---------------------------------- TOTALS -----------------------------------|");
     printf("\n| Elapsed time:\t%11i s\n| Pulse count:\t%11" PRIu64 " \n| Average rate:\t%11.2f Hz\n| Files writed:\t%11i", *pa_run_info->Elapsed_Time_ptr, pa_run_info->Pulse_Count, avg_rate, *pa_run_info->File_Number_ptr);
     printf("\n|-----------------------------------------------------------------------------|\n");
