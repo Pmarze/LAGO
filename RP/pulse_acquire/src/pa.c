@@ -528,13 +528,7 @@ int pa_GetFileName( pa_data_file_t *data_file, pa_log_file_t *log_file )
 }
 
 void *pa_LcdBmp_thr( void *targs ){
-    pa_logger_t *pa_logger = (pa_logger_t*)targs;
-    
-    if( pa_logger->Log_File_ptr->Log_File == NULL )
-    {
-        printf("Error: Log file not initialized");
-        exit(0);
-    }
+    pa_run_info_t *pa_run_info = (pa_run_info_t*)targs;
 
     while( pa_flags.Running){
         if(bmp != NULL){
