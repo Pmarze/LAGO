@@ -540,7 +540,7 @@ void *pa_LcdBmp_thr( void *targs ){
                     counter==0;
                 }		
                 counter++;
-                init=1;
+                //init=1;
             }
 	    }
     }
